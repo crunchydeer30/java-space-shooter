@@ -1,4 +1,5 @@
 package enemies;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -14,27 +15,35 @@ import game.GameScreen;
 public abstract class Enemy {
     public ArrayList<Bullet> bullets = new ArrayList<>();
 
-    abstract void shoot();
+    public abstract void shoot();
 
-    abstract double getX();
+    public abstract double getX();
 
-    abstract void setX(double x);
+    public abstract void setX(double x);
 
-    abstract double getY();
+    public abstract double getY();
 
-    abstract void setY(double y);
+    public abstract void setY(double y);
 
     public abstract double getSize();
 
-    abstract Image getSprite();
+    public abstract Image getSprite();
 
-    abstract double getSpeed();
+    public abstract double getSpeed();
 
-    abstract double getRateOfFire();
+    public abstract double getRateOfFire();
+
+    public abstract double getCurrentHP();
+
+    public abstract void setCurrentHP(double currentHP);
+
+    public abstract double getMaxHP();
+
+    public abstract void setMaxHP(double maxHP);
 
     public abstract ArrayList<Bullet> getBullets();
 
-    abstract void move();
+    public abstract void move();
 
     public void setPosition(double x, double y) {
         setX(x);
@@ -43,7 +52,6 @@ public abstract class Enemy {
 
     public void registerHits() {
         ArrayList<Bullet> playerBullets = GameScreen.currentLevel.getPlayer().getBullets();
-        ArrayList<Enemy> enemies = GameScreen.currentLevel.getEnemies();
 
         for (int i = 0; i < playerBullets.size(); i++) {
             Bullet bullet = playerBullets.get(i);
@@ -51,8 +59,7 @@ public abstract class Enemy {
 
             if (bulletHitbox.intersects(this.getHitbox())) {
                 playerBullets.remove(bullet);
-                enemies.remove(this);
-                GameScreen.currentLevel.setEnemiesKilled(GameScreen.currentLevel.getEnemiesKilled() + 1);
+                this.setCurrentHP(this.getCurrentHP() - bullet.getDamage());
                 break;
             }
         }
@@ -97,6 +104,11 @@ public abstract class Enemy {
         checkBounds();
         shoot();
 
+        if (getCurrentHP() <= 0) {
+            GameScreen.currentLevel.getEnemies().remove(this);
+            GameScreen.currentLevel.setEnemiesKilled(GameScreen.currentLevel.getEnemiesKilled() + 1);;
+        }
+
         for (int i = 0; i < getBullets().size(); i++) {
             getBullets().get(i).update();
         }
@@ -111,13 +123,24 @@ public abstract class Enemy {
         g2.drawImage(getSprite(), tran, null);
         g2.setTransform(oldTransform);
 
-        Rectangle hitboxShape = getHitbox();
-        g2.setColor(Color.red);
-        g2.draw(hitboxShape);
-        g2.draw(hitboxShape.getBounds2D());
+        
+        // drawHitbox(g2);
+        drawHP(g2);
 
         for (int i = 0; i < getBullets().size(); i++) {
             getBullets().get(i).draw(g2);
         }
+    }
+
+    public void drawHP(Graphics2D g2) {
+        g2.setColor(Color.GREEN);
+        g2.fillRect((int) getX(), (int) getY() - 5, (int) (getSize() * (getCurrentHP() / getMaxHP())), 2);
+    }
+
+    public void drawHitbox(Graphics2D g2) {
+        Rectangle hitboxShape = getHitbox();
+        g2.setColor(Color.red);
+        g2.draw(hitboxShape);
+        g2.draw(hitboxShape.getBounds2D());
     }
 }

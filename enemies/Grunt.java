@@ -19,10 +19,30 @@ public class Grunt extends Enemy {
     private Image sprite = new ImageIcon("graphics/grunt.png").getImage();
     private double rateOfFire = .25f;
     private double shotTime = 0;
+    private double damage = 10;
+
+    private double maxHP = 100;
+    private double currentHP = maxHP;
 
     public int movementType = 0;
     private double movementTime = 0;   
     public ArrayList<Bullet> bullets = new ArrayList<>();
+
+    public double getCurrentHP() {
+        return currentHP;
+    }
+
+    public void setCurrentHP(double currentHP) {
+        this.currentHP = currentHP;
+    }
+
+    public double getMaxHP() {
+        return maxHP;
+    }
+
+    public void setMaxHP(double maxHP) {
+        this.maxHP = maxHP;
+    }
 
     public double getX() {
         return x;
@@ -54,12 +74,12 @@ public class Grunt extends Enemy {
         }
 
         if (movementType == 0) {
-            y += speed;
+            y += 0.5 * speed;
         } else if (movementType == 1) {
-            y += speed;
+            y += 0.5 * speed;
             x += speed;
         } else if (movementType == 2) {
-            y += speed;
+            y += 0.5 * speed;
             x -= speed;
         }
 
@@ -83,7 +103,7 @@ public class Grunt extends Enemy {
 
     public void shoot() {
         if (shotTime == 0) {
-            bullets.add(new Bullet(x + size / 2 - 5, y, 10, Color.YELLOW, 8f, Math.cos(Math.toRadians(90)), Math.sin(Math.toRadians(90))));
+            bullets.add(new Bullet(x + size / 2 - 5, y, 10, damage, Color.YELLOW, 8f, Math.cos(Math.toRadians(90)), Math.sin(Math.toRadians(90))));
         }
         shotTime += rateOfFire;
         if (shotTime > 50) {

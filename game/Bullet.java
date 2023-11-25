@@ -19,8 +19,9 @@ public class Bullet {
     private Color color;
     private double xTrajectory;
     private double yTrajectory;
+    private double damage;
 
-    public Bullet(double x, double y, double size, Color color, double velocity, double xTrajectory,
+    public Bullet(double x, double y, double size, double damage, Color color, double velocity, double xTrajectory,
             double yTrajectory) {
         this.x = x;
         this.y = y;
@@ -30,6 +31,11 @@ public class Bullet {
         this.xTrajectory = xTrajectory;
         this.yTrajectory = yTrajectory;
         this.shape = new Ellipse2D.Double(0, 0, size, size);
+        this.damage = damage;
+    }
+
+    public double getDamage() {
+        return damage;
     }
 
     public Shape getHitbox() {

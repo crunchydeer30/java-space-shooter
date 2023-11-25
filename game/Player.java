@@ -17,8 +17,12 @@ public class Player {
 	private Image sprite;
 	private double velocity = 4f;
 	public static ArrayList<Bullet> bullets;
-	private double rateOfFire = 2f;
+	private double rateOfFire = 3f;
 	private double shotTime = 0;
+	private double damage = 50;
+
+	public double maxHp = 100;
+	public double currentHp = maxHp;
 
 	public Player() {
 		this.sprite = new ImageIcon("graphics/spaceship.png").getImage();
@@ -76,7 +80,7 @@ public class Player {
 
 	public void shoot() {
 		if (shotTime == 0) {
-			bullets.add(new Bullet(x + size / 2 - 5, y, 10, Color.ORANGE, 8f, -Math.cos(Math.toRadians(90)),
+			bullets.add(new Bullet(x + size / 2 - 5, y, 10, damage, Color.ORANGE, 8f, -Math.cos(Math.toRadians(90)),
 					-Math.sin(Math.toRadians(90))));
 		}
 		shotTime += rateOfFire;
@@ -95,9 +99,8 @@ public class Player {
 
 		g2.setTransform(oldTransform);
 
-		Shape hitboxShape = getHitbox();
-		g2.setColor(Color.GREEN);
-		g2.draw(hitboxShape.getBounds2D());
+		drawHP(g2);
+		// drawHitbox(g2);
 
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).draw(g2);
@@ -110,5 +113,16 @@ public class Player {
 
 	public ArrayList<Bullet> getBullets() {
 		return bullets;
+	}
+
+	public void drawHP(Graphics2D g2) {
+		g2.setColor(Color.GREEN);
+		g2.fillRect((int)x, (int)y, (int) (size * (currentHp / maxHp)), 5);
+	}
+
+	public void drawHitbox(Graphics2D g2) {
+		Rectangle hitboxShape = getHitbox();
+		g2.setColor(Color.red);
+		g2.draw(hitboxShape.getBounds2D());
 	}
 }

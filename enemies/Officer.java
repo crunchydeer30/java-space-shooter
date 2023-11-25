@@ -3,12 +3,14 @@ package enemies;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 
 import game.Bullet;
 
 public class Officer extends Enemy {
+    private Random rand = new Random();
     public double size = 64;
     private double x;
     private double y;
@@ -20,6 +22,8 @@ public class Officer extends Enemy {
     private double maxHP = 100;
     private double currentHP = maxHP;
     private double damage = 20;
+    public int movementType = 0;
+    private double movementTime = 0;    
 
     public double getCurrentHP() {
         return currentHP;
@@ -62,7 +66,24 @@ public class Officer extends Enemy {
     }
 
     public void move() {
-        y += speed;
+        if (movementTime == 0) {
+            movementType = rand.nextInt(3);
+        }
+
+        if (movementType == 0) {
+            y += 0.5 * speed;
+        } else if (movementType == 1) {
+            y += 0.5 * speed;
+            x += speed;
+        } else if (movementType == 2) {
+            y += 0.5 * speed;
+            x -= speed;
+        }
+
+        movementTime++;
+        if (movementTime > 50) {
+            movementTime = 0;
+        }
     }
 
     public double getSpeed() {

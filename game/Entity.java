@@ -57,7 +57,7 @@ public abstract class Entity {
 
     public void drawHP(Graphics2D g2) {
         g2.setColor(Color.GREEN);
-        g2.fillRect((int) getX(), (int) getY(), (int) (getSize() * (getCurrentHP() / getMaxHP())), 2);
+        g2.fillRect((int) getX(), (int) getY(), (int) (getSize() * (getCurrentHP() / getMaxHP())), (int)Math.ceil(getSize() / 25));
     }
 
     public void drawHitbox(Graphics2D g2) {

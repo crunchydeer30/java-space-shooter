@@ -19,7 +19,7 @@ public class Officer extends Enemy {
     public ArrayList<Bullet> bullets = new ArrayList<>();
     private double maxHP = 100;
     private double currentHP = maxHP;
-    private double damage;
+    private double damage = 20;
 
     public double getCurrentHP() {
         return currentHP;

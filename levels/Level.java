@@ -34,7 +34,8 @@ public abstract class Level {
     abstract void spawnEnemies();
 
     public void update() {
-        getPlayer().update(GameScreen.keyboardManager);
+        getPlayer().update();
+        
         for (int i = 0; i < getEnemies().size(); i++) {
             getEnemies().get(i).update();
         }

@@ -20,10 +20,8 @@ public class Grunt extends Enemy {
     private double rateOfFire = .25f;
     private double shotTime = 0;
     private double damage = 10;
-
     private double maxHP = 100;
     private double currentHP = maxHP;
-
     public int movementType = 0;
     private double movementTime = 0;   
     public ArrayList<Bullet> bullets = new ArrayList<>();
@@ -68,6 +66,18 @@ public class Grunt extends Enemy {
         return this.sprite;
     }
 
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getRateOfFire() {
+        return rateOfFire;
+    }
+
+    public ArrayList<Bullet> getBullets() {
+        return bullets;
+    }
+
     public void move() {
         if (movementTime == 0) {
             movementType = rand.nextInt(3);
@@ -87,18 +97,6 @@ public class Grunt extends Enemy {
         if (movementTime > 50) {
             movementTime = 0;
         }
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public double getRateOfFire() {
-        return rateOfFire;
-    }
-
-    public ArrayList<Bullet> getBullets() {
-        return bullets;
     }
 
     public void shoot() {

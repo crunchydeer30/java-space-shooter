@@ -1,28 +1,77 @@
 package game;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
-import javax.swing.ImageIcon;
 
+import java.awt.Color;
+import java.awt.geom.Area;
+import javax.swing.ImageIcon;
+import enemies.Enemy;
 import java.util.ArrayList;
 import java.awt.Image;
-import java.awt.Shape;
-import java.awt.Rectangle;
 
-public class Player {
-
+public class Player extends Entity {
+	KeyboardManager keyboardManager = GameScreen.keyboardManager;
 	public double size = 64;
 	private double x;
 	private double y;
 	private Image sprite;
-	private double velocity = 4f;
+	private double speed = 4f;
 	public static ArrayList<Bullet> bullets;
 	private double rateOfFire = 3f;
 	private double shotTime = 0;
 	private double damage = 50;
+	public double maxHP = 100;
+	public double currentHP = maxHP;
 
-	public double maxHp = 100;
-	public double currentHp = maxHp;
+	public double getCurrentHP() {
+		return this.currentHP;
+	}
+
+	public void setCurrentHP(double currentHP) {
+		this.currentHP = currentHP;
+	}
+
+	public double getMaxHP() {
+		return maxHP;
+	}
+
+	public void setMaxHP(double maxHP) {
+		this.maxHP = maxHP;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public double getSize() {
+		return size;
+	}
+
+	public Image getSprite() {
+		return this.sprite;
+	}
+
+	public double getSpeed() {
+		return speed;
+	}
+
+	public double getRateOfFire() {
+		return rateOfFire;
+	}
+
+	public ArrayList<Bullet> getBullets() {
+		return bullets;
+	}
 
 	public Player() {
 		this.sprite = new ImageIcon("graphics/spaceship.png").getImage();
@@ -34,48 +83,11 @@ public class Player {
 		this.y = y - size / 2;
 	};
 
-	public void update(KeyboardManager keyboardManager) {
-		if (keyboardManager.isKeyUp) {
-			y = y - velocity;
-		}
-
-		if (keyboardManager.isKeyDown) {
-			y = y + velocity;
-		}
-
-		if (keyboardManager.isKeyLeft) {
-			x = x - velocity;
-		}
-
-		if (keyboardManager.isKeyRight) {
-			x = x + velocity;
-		}
-
-		if (keyboardManager.isKeySpace) {
-			shoot();
-		}
-
-		if (y > GameScreen.gameHeight - size) {
-			y = GameScreen.gameHeight - size;
-		} else if (y < 0) {
-			y = 0;
-		}
-
-		if (x > GameScreen.gameWidth - size) {
-			x = 0;
-		} else if (x < 0) {
-			x = GameScreen.gameWidth - size;
-		}
-
-		if (bullets.size() > 0) {
-			for (int i = 0; i < bullets.size(); i++) {
-				if (!bullets.get(i).inBounds(1366, 768)) {
-					bullets.remove(i);
-				}
-				bullets.get(i).update();
-			}
-		}
-
+	public void update() {
+		move();
+		updateBullets();
+		checkBounds();
+		registerIncomingDamage();
 	}
 
 	public void shoot() {
@@ -89,40 +101,56 @@ public class Player {
 		}
 	}
 
-	public void draw(Graphics2D g2) {
-		AffineTransform oldTransform = g2.getTransform();
-		g2.translate(x, y);
+	public void move() {
+		if (keyboardManager.isKeyUp) {
+			y = y - speed;
+		}
 
-		AffineTransform tx = new AffineTransform();
-		tx.scale(size / sprite.getWidth(null), size / sprite.getHeight(null));
-		g2.drawImage(sprite, tx, null);
+		if (keyboardManager.isKeyDown) {
+			y = y + speed;
+		}
 
-		g2.setTransform(oldTransform);
+		if (keyboardManager.isKeyLeft) {
+			x = x - speed;
+		}
 
-		drawHP(g2);
-		// drawHitbox(g2);
+		if (keyboardManager.isKeyRight) {
+			x = x + speed;
+		}
 
-		for (int i = 0; i < bullets.size(); i++) {
-			bullets.get(i).draw(g2);
+		if (keyboardManager.isKeySpace) {
+			shoot();
 		}
 	}
 
-	public Rectangle getHitbox() {
-		return new Rectangle((int) x, (int) y, (int) size, (int) size);
+	public void checkBounds() {
+		if (y > GameScreen.gameHeight - size) {
+			y = GameScreen.gameHeight - size;
+		} else if (y < 0) {
+			y = 0;
+		}
+
+		if (x > GameScreen.gameWidth - size) {
+			x = 0;
+		} else if (x < 0) {
+			x = GameScreen.gameWidth - size;
+		}
 	}
 
-	public ArrayList<Bullet> getBullets() {
-		return bullets;
-	}
+	public void registerIncomingDamage() {
+		ArrayList<Enemy> enemies = GameScreen.currentLevel.getEnemies();
 
-	public void drawHP(Graphics2D g2) {
-		g2.setColor(Color.GREEN);
-		g2.fillRect((int)x, (int)y, (int) (size * (currentHp / maxHp)), 5);
-	}
-
-	public void drawHitbox(Graphics2D g2) {
-		Rectangle hitboxShape = getHitbox();
-		g2.setColor(Color.red);
-		g2.draw(hitboxShape.getBounds2D());
+		for (int i = 0; i < enemies.size(); i++) {
+			ArrayList<Bullet> enemyBullets = enemies.get(i).getBullets();
+			for (int j = 0; j < enemyBullets.size(); j++) {
+				Bullet bullet = enemyBullets.get(j);
+				Area bulletHitbox = new Area(bullet.getHitbox());
+				if (bulletHitbox.intersects(this.getHitbox())) {
+					enemyBullets.remove(bullet);
+					this.setCurrentHP(this.getCurrentHP() - bullet.getDamage());
+					break;
+				}
+			}
+		}
 	}
 }

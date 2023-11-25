@@ -14,6 +14,7 @@ CLASSES = \
 	game/Bullet.java \
 	enemies/Enemy.java \
 	enemies/Grunt.java \
+	enemies/Officer.java \
 	levels/Level.java \
 	levels/Level1.java \
 	levels/Level2.java \

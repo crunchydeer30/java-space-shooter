@@ -75,7 +75,7 @@ public abstract class Enemy {
         return new Rectangle((int) getX(), (int) getY(), (int) getSize(), (int) getSize());
     }
 
-    public boolean isInBounds(int width, int height) {
+    public boolean inBounds(int width, int height) {
         Rectangle size = getHitbox().getBounds();
         if (getX() <= -size.getWidth() || getY() < -size.getHeight() || getX() > width || getY() > height) {
             return false;
@@ -84,7 +84,7 @@ public abstract class Enemy {
     }
 
     public void checkBounds() {
-        if (!isInBounds(GameScreen.gameWidth, GameScreen.gameHeight)) {
+        if (!inBounds(GameScreen.gameWidth, GameScreen.gameHeight)) {
             Random rand = new Random();
             setPosition(rand.nextInt(GameScreen.gameWidth), 0);
         }

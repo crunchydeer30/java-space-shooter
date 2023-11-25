@@ -57,8 +57,8 @@ public class Player {
 			y = 0;
 		}
 
-		if (x > GameScreen.gameWidth) {
-			x = size;
+		if (x > GameScreen.gameWidth - size) {
+			x = 0;
 		} else if (x < 0) {
 			x = GameScreen.gameWidth - size;
 		}
@@ -96,7 +96,7 @@ public class Player {
 		g2.setTransform(oldTransform);
 
 		Shape hitboxShape = getHitbox();
-		g2.setColor(Color.RED);
+		g2.setColor(Color.GREEN);
 		g2.draw(hitboxShape.getBounds2D());
 
 		for (int i = 0; i < bullets.size(); i++) {

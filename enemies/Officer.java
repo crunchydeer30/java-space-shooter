@@ -14,7 +14,7 @@ public class Officer extends Enemy {
     private double y;
     private float speed = 3f;
     private Image sprite = new ImageIcon("graphics/officer.png").getImage();
-    private double rateOfFire = .25f;
+    private double rateOfFire = .5f;
     private double shotTime = 0;
     public ArrayList<Bullet> bullets = new ArrayList<>();
 
@@ -60,8 +60,9 @@ public class Officer extends Enemy {
 
     public void shoot() {
         if (shotTime == 0) {
-            bullets.add(new Bullet(x + size / 2 - 5, y, 10, Color.WHITE, 8f, Math.cos(Math.toRadians(90)), Math.cos(Math.toRadians(90))));
-            bullets.add(new Bullet(x + size / 2 - 5, y, 10, Color.WHITE, 8f, Math.cos(Math.toRadians(45)), Math.cos(Math.toRadians(45))));
+            bullets.add(new Bullet(x + size / 2 - 5, y, 10, Color.WHITE, 4f, Math.cos(Math.toRadians(90)), Math.sin(Math.toRadians(90))));
+            bullets.add(new Bullet(x + size / 2 - 5, y, 10, Color.WHITE, 4f, Math.cos(Math.toRadians(60)), Math.sin(Math.toRadians(60))));
+            bullets.add(new Bullet(x + size / 2 - 5, y, 10, Color.WHITE, 4f, Math.cos(Math.toRadians(120)), Math.sin(Math.toRadians(120))));
         }
         shotTime += rateOfFire;
         if (shotTime > 50) {

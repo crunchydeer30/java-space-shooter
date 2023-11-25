@@ -20,7 +20,8 @@ public class Bullet {
     private double xTrajectory;
     private double yTrajectory;
 
-    public Bullet(double x, double y, double size, Color color, double velocity, double xTrajectory, double yTrajectory) {
+    public Bullet(double x, double y, double size, Color color, double velocity, double xTrajectory,
+            double yTrajectory) {
         this.x = x;
         this.y = y;
         this.size = size;
@@ -36,7 +37,7 @@ public class Bullet {
     }
 
     public boolean inBounds(int width, int height) {
-        if (x > width || x < -size || y > height || y < -size) {
+        if (x > width || x < 0 || y > height || y < 0) {
             return false;
         }
         return true;
@@ -51,16 +52,17 @@ public class Bullet {
     public void removeBullet() {
         if (!inBounds(GameScreen.gameWidth, GameScreen.gameHeight)) {
             ArrayList<Bullet> playerBullets = GameScreen.currentLevel.getPlayer().getBullets();
+            ArrayList<Enemy> enemies = GameScreen.currentLevel.getEnemies();
+
             if (playerBullets.indexOf(this) != 1) {
                 playerBullets.remove(this);
-            } else {
-                ArrayList<Enemy> enemies = GameScreen.currentLevel.getEnemies();
-                for (int i = 0; i < enemies.size(); i++) {
-                    ArrayList<Bullet> bullets = enemies.get(i).getBullets();
-                    if (bullets.indexOf(this) != -1) {
-                        bullets.remove(this);
-                        break;
-                    }
+            }
+
+            for (int i = 0; i < enemies.size(); i++) {
+                ArrayList<Bullet> bullets = enemies.get(i).getBullets();
+                if (bullets.indexOf(this) != -1) {
+                    bullets.remove(this);
+                    break;
                 }
             }
         }

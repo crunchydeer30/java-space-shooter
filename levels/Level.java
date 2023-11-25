@@ -21,6 +21,12 @@ public abstract class Level {
 
     public abstract int getEnemiesCount();
 
+    public abstract int getEnemiesSpawned();
+
+    public abstract int getEnenySpawnTimer();
+
+    public abstract int getEnemySpawnDelay();
+
     public abstract int getEnemiesKilled();
 
     public abstract void setEnemiesKilled(int enemiesKilled);
@@ -40,6 +46,7 @@ public abstract class Level {
 
     public void draw(Graphics2D g2) {
         getPlayer().draw(g2);
+        spawnEnemies();
         for (int i = 0; i < getEnemies().size(); i++) {
             getEnemies().get(i).draw(g2);
         }
@@ -49,6 +56,5 @@ public abstract class Level {
         setPlayer(new Player());
         setEnemies(new ArrayList<Enemy>());
         getPlayer().setPosition(GameScreen.gameWidth / 2, GameScreen.gameHeight * 0.75);
-        spawnEnemies();
     }
 }

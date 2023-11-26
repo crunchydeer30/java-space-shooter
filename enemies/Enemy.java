@@ -20,6 +20,7 @@ public abstract class Enemy extends Entity {
             if (bulletHitbox.intersects(this.getHitbox())) {
                 playerBullets.remove(bullet);
                 this.setCurrentHP(this.getCurrentHP() - bullet.getDamage());
+                GameScreen.soundManager.play(2);
                 break;
             }
         }
@@ -28,7 +29,7 @@ public abstract class Enemy extends Entity {
     public void checkBounds() {
         if (!inBounds(GameScreen.gameWidth, GameScreen.gameHeight)) {
             Random rand = new Random();
-            setPosition(rand.nextInt(GameScreen.gameWidth), 0);
+            setPosition(rand.nextInt(GameScreen.gameWidth), getSize());
         }
     }
 
@@ -41,7 +42,7 @@ public abstract class Enemy extends Entity {
 
         if (getCurrentHP() <= 0) {
             GameScreen.levelManager.currentLevel.getEnemies().remove(this);
-            GameScreen.levelManager.currentLevel.setEnemiesKilled(GameScreen.levelManager.currentLevel.getEnemiesKilled() + 1);;
+            GameScreen.levelManager.currentLevel.setEnemiesKilled(GameScreen.levelManager.currentLevel.getEnemiesKilled() + 1);
         }
     }
 }

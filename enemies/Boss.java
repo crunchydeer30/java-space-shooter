@@ -9,28 +9,28 @@ import javax.swing.ImageIcon;
 
 import game.Bullet;
 
-public class Grunt extends Enemy {
-    Random rand = new Random();
-    private Image sprite = new ImageIcon("graphics/grunt.png").getImage();
-    private double size = 64;
+public class Boss extends Enemy {
+    private Random rand = new Random();
+    private Image sprite = new ImageIcon("graphics/boss.png").getImage();
+    private double size = 256;
 	private double width;
 	private double height;
     private double x;
     private double y;
-    private float speed = 1.5f;
-    private double rateOfFire = .25f;
+    private float speed = 1f;
+    private double rateOfFire = .75f;
     private double shotTime = 0;
-    private double damage = 10;
-    private double maxHP = 100;
-    private double currentHP = maxHP;
-    public int movementType = 0;
-    private double movementTime = 0;   
     public ArrayList<Bullet> bullets = new ArrayList<>();
+    private double maxHP = 500;
+    private double currentHP = maxHP;
+    private double damage = 20;
+    public int movementType = 0;
+    private double movementTime = 0;
 
-    public Grunt() {
+    public Boss() {
         calculateDimensions();
     }
-
+    
     public void setHeight(double height) {
         this.height = height;
     }
@@ -101,28 +101,36 @@ public class Grunt extends Enemy {
 
     public void move() {
         if (movementTime == 0) {
-            movementType = rand.nextInt(3);
+            movementType = rand.nextInt(4);
         }
 
         if (movementType == 0) {
-            y += 0.5 * speed;
+            y += 0.25 * speed;
+            x -= speed;
         } else if (movementType == 1) {
-            y += 0.5 * speed;
+            y += 0.25 * speed;
             x += speed;
         } else if (movementType == 2) {
-            y += 0.5 * speed;
+            y -= 0.25 * speed;
             x -= speed;
+        } else if (movementType == 3) {
+            y += 0.25 * speed;
+            x += speed;
         }
 
         movementTime++;
-        if (movementTime > 50) {
+        if (movementTime > 150) {
             movementTime = 0;
         }
     }
 
     public void shoot() {
         if (shotTime == 0) {
-            bullets.add(new Bullet(x + size / 2 - 5, y, 10, damage, Color.YELLOW, 8f, Math.cos(Math.toRadians(90)), Math.sin(Math.toRadians(90))));
+            bullets.add(new Bullet(x + size / 2, y + height / 2, 15, damage, Color.RED, 4f, Math.cos(Math.toRadians(90)), Math.sin(Math.toRadians(90))));
+            bullets.add(new Bullet(x + size / 2, y + height / 2, 15, damage, Color.RED, 4f, Math.cos(Math.toRadians(45)), Math.sin(Math.toRadians(45))));
+            bullets.add(new Bullet(x + size / 2, y + height / 2, 15, damage, Color.RED, 4f, Math.cos(Math.toRadians(135)), Math.sin(Math.toRadians(135))));
+            bullets.add(new Bullet(x + size / 2, y + height / 2, 15, damage, Color.RED, 4f, Math.cos(Math.toRadians(0)), Math.sin(Math.toRadians(0))));
+            bullets.add(new Bullet(x + size / 2, y + height / 2, 15, damage, Color.RED, 4f, Math.cos(Math.toRadians(180)), Math.sin(Math.toRadians(180))));
         }
         shotTime += rateOfFire;
         if (shotTime > 50) {

@@ -11,11 +11,13 @@ import game.Bullet;
 
 public class Officer extends Enemy {
     private Random rand = new Random();
-    public double size = 64;
+    private Image sprite = new ImageIcon("graphics/officer.png").getImage();
+    private double size = 64;
+	private double width;
+	private double height;
     private double x;
     private double y;
     private float speed = 2f;
-    private Image sprite = new ImageIcon("graphics/officer.png").getImage();
     private double rateOfFire = .5f;
     private double shotTime = 0;
     public ArrayList<Bullet> bullets = new ArrayList<>();
@@ -23,7 +25,27 @@ public class Officer extends Enemy {
     private double currentHP = maxHP;
     private double damage = 20;
     public int movementType = 0;
-    private double movementTime = 0;    
+    private double movementTime = 0;
+
+    public Officer() {
+        calculateDimensions();
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+    
+    public double getHeight() {
+		return this.height;
+	}
+
+	public double getWidth() {
+		return this.width;
+	}
 
     public double getCurrentHP() {
         return currentHP;
@@ -65,6 +87,18 @@ public class Officer extends Enemy {
         return this.sprite;
     }
 
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getRateOfFire() {
+        return rateOfFire;
+    }
+
+    public ArrayList<Bullet> getBullets() {
+        return bullets;
+    }
+
     public void move() {
         if (movementTime == 0) {
             movementType = rand.nextInt(3);
@@ -84,18 +118,6 @@ public class Officer extends Enemy {
         if (movementTime > 50) {
             movementTime = 0;
         }
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public double getRateOfFire() {
-        return rateOfFire;
-    }
-
-    public ArrayList<Bullet> getBullets() {
-        return bullets;
     }
 
     public void shoot() {

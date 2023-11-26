@@ -22,6 +22,10 @@ public class Level2 extends Level {
 
     public Background background = new Background("background.png");
 
+    public void setEnemiesSpawned(int enemiesSpawned) {
+        this.enemiesSpawned = enemiesSpawned;
+    }
+
     public Background getBackground() {
         return background;
     }

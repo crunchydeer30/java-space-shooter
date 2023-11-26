@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
+
+import levels.Level;
 
 
 public class GameScreen extends JPanel implements Runnable {
@@ -17,6 +21,7 @@ public class GameScreen extends JPanel implements Runnable {
 	public static SoundManager soundManager = new SoundManager();
 	public static StateManager stateManager = new StateManager();
 	public static LevelManager levelManager = new LevelManager();
+	public static ArrayList<Level> levelList;
 
 	public GameScreen() {
 		this.setBackground(Color.BLACK);
@@ -26,10 +31,8 @@ public class GameScreen extends JPanel implements Runnable {
 	}
 
 	public void startGameThread() {
-		levelManager.init();
 		playMusic(0);
 		stateManager.setGameState(GameState.TITLESCREEN);
-
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
@@ -40,10 +43,10 @@ public class GameScreen extends JPanel implements Runnable {
 		double nextDrawTime = System.nanoTime() + drawInterval;
 
 		while (gameThread != null) {
+			Toolkit.getDefaultToolkit().sync();
+			
 			update();
 			repaint();
-
-			Toolkit.getDefaultToolkit().sync();
 
 			try {
 				double remainingTime = nextDrawTime - System.nanoTime();

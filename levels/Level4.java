@@ -1,19 +1,21 @@
 package levels;
+
 import java.util.ArrayList;
 import java.util.Random;
 
+import enemies.Boss;
 import enemies.Enemy;
 import enemies.Officer;
 import game.Background;
 import game.GameScreen;
 import game.Player;
 
-public class Level3 extends Level {
+public class Level4 extends Level {
     public Player player;
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
 
-    public int enemiesCount = 5;
+    public int enemiesCount = 1;
     public int enemiesKilled = 0;
 
     public int enemiesSpawned = 0;
@@ -81,17 +83,13 @@ public class Level3 extends Level {
     public void spawnEnemies() {
         if (enemiesSpawned < enemiesCount) {
             if (enenySpawnTimer == 0) {
-                Enemy enemy = new Officer();
+                Enemy boss = new Boss();
                 Random rand = new Random();
-                enemy.setPosition(rand.nextInt((int)(GameScreen.gameWidth - enemy.getSize())), 50);
-                enemies.add(enemy);
+                boss.setPosition(rand.nextInt((int) (GameScreen.gameWidth - boss.getSize())), 50);
+                enemies.add(boss);
                 enemiesSpawned++;
             }
-
-            enenySpawnTimer++;
-            if (enenySpawnTimer >= enenySpawnDelay) {
-                enenySpawnTimer = 0;
-            }
         }
+
     }
 }

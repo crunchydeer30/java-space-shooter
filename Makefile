@@ -19,10 +19,12 @@ CLASSES = \
 	enemies/Enemy.java \
 	enemies/Grunt.java \
 	enemies/Officer.java \
+	enemies/Boss.java \
 	levels/Level.java \
 	levels/Level1.java \
 	levels/Level2.java \
 	levels/Level3.java \
+	levels/Level4.java \
 	ui/Menu.java \
 	ui/TitleScreen.java
 

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 public abstract class Entity {
@@ -25,6 +24,14 @@ public abstract class Entity {
     public abstract void setY(double y);
 
     public abstract double getSize();
+
+    public abstract double getWidth();
+
+    public abstract void setWidth(double width);
+
+    public abstract void setHeight(double height);
+
+    public abstract double getHeight();
 
     public abstract Image getSprite();
 
@@ -52,7 +59,7 @@ public abstract class Entity {
     }
 
     public Rectangle getHitbox() {
-        return new Rectangle((int) getX(), (int) getY(), (int) getSize(), (int) getSize());
+        return new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
     }
 
     public void drawHP(Graphics2D g2) {
@@ -67,7 +74,7 @@ public abstract class Entity {
         }
 
         if (getCurrentHP() != getMaxHP()) {
-            g2.fillRect((int) getX(), (int) getY(), (int) (getSize() * (getCurrentHP() / getMaxHP())), (int)Math.ceil(getSize() / 25));
+            g2.fillRect((int) getX(), (int) getY(), (int) (getWidth() * (getCurrentHP() / getMaxHP())), (int)Math.ceil(getHeight() / 25));
         }
     }
 
@@ -78,16 +85,11 @@ public abstract class Entity {
     }
 
     public void draw(Graphics2D g2) {
-		AffineTransform oldTransform = g2.getTransform();
-		g2.translate(getX(), getY());
 
-		AffineTransform tx = new AffineTransform();
-		tx.scale(getSize() / getSprite().getWidth(null), getSize() / getSprite().getHeight(null));
-		g2.drawImage(getSprite(), tx, null);
-
-		g2.setTransform(oldTransform);
+		g2.drawImage(getSprite(), (int)getX(), (int)getY(),  (int)getWidth(), (int)getHeight(), null);
 
 		drawHP(g2);
+        drawHitbox(g2);
         drawBullets(g2);
 	}
 
@@ -109,5 +111,11 @@ public abstract class Entity {
         for (int i = 0; i < getBullets().size(); i++) {
             getBullets().get(i).update();
         }
+    }
+
+    public void calculateDimensions() {
+        double sizeRatio = (double)((double)getSprite().getWidth(null) / (double)getSprite().getHeight(null));
+        setWidth(getSize());
+        setHeight(getSize() / sizeRatio);
     }
 }

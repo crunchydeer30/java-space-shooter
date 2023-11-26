@@ -15,6 +15,7 @@ public class SoundManager {
     public SoundManager() {
         soundLibrary[0] = this.getClass().getResource("/sounds/theme.wav");
         soundLibrary[1] = this.getClass().getResource("/sounds/shot.wav");
+        soundLibrary[2] = this.getClass().getResource("/sounds/explode.wav");
     }
 
     public void play(int i) {

@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import ui.Menu;
 import ui.TitleScreen;
 
-
 public class StateManager {
     Menu menu = new Menu();
     TitleScreen titleScreen = new TitleScreen();
@@ -18,10 +17,21 @@ public class StateManager {
 
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
+        switch (gameState) {
+            case TITLESCREEN:
+                break;
+            case MENU:
+                break;
+            case GAME:
+                GameScreen.levelManager.init();
+                break;
+            case END:
+                break;
+        }
     }
 
     public void draw(Graphics2D g2) {
-        switch(gameState) {
+        switch (gameState) {
             case TITLESCREEN:
                 titleScreen.draw(g2);
                 break;
@@ -37,7 +47,7 @@ public class StateManager {
     }
 
     public void update() {
-        switch(gameState) {
+        switch (gameState) {
             case TITLESCREEN:
                 titleScreen.update();
                 break;

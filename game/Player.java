@@ -9,17 +9,39 @@ import java.awt.Image;
 
 public class Player extends Entity {
 	KeyboardManager keyboardManager = GameScreen.keyboardManager;
-	public double size = 64;
+	private Image sprite = new ImageIcon("graphics/spaceship.png").getImage();
+	private double size = 64;
+	private double width;
+	private double height;
 	private double x;
 	private double y;
-	private Image sprite;
 	private double speed = 4f;
-	public static ArrayList<Bullet> bullets;
+	public static ArrayList<Bullet> bullets = new ArrayList<>();
 	private double rateOfFire = 3f;
 	private double shotTime = 0;
 	private double damage = 50;
 	public double maxHP = 100;
 	public double currentHP = maxHP;
+
+	public Player() {
+		calculateDimensions();
+	}
+
+	public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+	public double getHeight() {
+		return this.height;
+	}
+
+	public double getWidth() {
+		return this.width;
+	}
 
 	public double getCurrentHP() {
 		return this.currentHP;
@@ -71,11 +93,6 @@ public class Player extends Entity {
 
 	public ArrayList<Bullet> getBullets() {
 		return bullets;
-	}
-
-	public Player() {
-		this.sprite = new ImageIcon("graphics/spaceship.png").getImage();
-		bullets = new ArrayList<>();
 	}
 
 	public void setPosition(double x, double y) {

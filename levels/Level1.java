@@ -1,4 +1,5 @@
 package levels;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,11 +11,11 @@ import game.GameScreen;
 import game.Player;
 
 public class Level1 extends Level {
-    public Player player; ;
+    public Player player;
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
 
-    public int enemiesCount = 5;
+    public int enemiesCount = 2;
     public int enemiesKilled = 0;
 
     public int enemiesSpawned = 0;
@@ -22,6 +23,10 @@ public class Level1 extends Level {
     public int enenySpawnDelay = 200;
 
     public Background background = new Background("background.png");
+
+    public void setEnemiesSpawned(int enemiesSpawned) {
+        this.enemiesSpawned = enemiesSpawned;
+    }
 
     public Background getBackground() {
         return background;
@@ -79,13 +84,14 @@ public class Level1 extends Level {
         if (enemiesSpawned < enemiesCount) {
             if (enenySpawnTimer == 0) {
                 Enemy enemy;
-                if (enemiesKilled == 4) {
+                if (enemiesKilled == enemiesCount - 1) {
                     enemy = new Officer();
                 } else {
                     enemy = new Grunt();
                 }
                 Random rand = new Random();
-                enemy.setPosition(rand.nextInt((int)(GameScreen.gameWidth - enemy.getSize())), 50);
+                enemy.setPosition(rand.nextInt((int) (GameScreen.gameWidth -
+                        enemy.getSize())), 50);
                 enemies.add(enemy);
                 enemiesSpawned++;
             }

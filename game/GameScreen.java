@@ -4,30 +4,19 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
-import levels.Level;
-import levels.Level1;
-import levels.Level2;
-import levels.Level3;
-import ui.Menu;
 
 public class GameScreen extends JPanel implements Runnable {
 	private Thread gameThread;
 	public static int gameWidth = 1366;
 	public static int gameHeight = 768;
 	public static int FPS = 60;
-	public int gameState = 0;
 
 	public static KeyboardManager keyboardManager = new KeyboardManager();
-	Background background = new Background(gameWidth, gameHeight);
-
-	ArrayList<Level> levelList = new ArrayList<Level>();
-	public static Level currentLevel;
-	public Menu mainMenu = new Menu();
-	static SoundManager soundManager = new SoundManager();
+	public static SoundManager soundManager = new SoundManager();
+	public static StateManager stateManager = new StateManager();
+	public static LevelManager levelManager = new LevelManager();
 
 	public GameScreen() {
 		this.setBackground(Color.BLACK);
@@ -37,12 +26,9 @@ public class GameScreen extends JPanel implements Runnable {
 	}
 
 	public void startGameThread() {
-		levelList.add(new Level1());
-		levelList.add(new Level2());
-		levelList.add(new Level3());
-		currentLevel = levelList.get(0);
-		currentLevel.init();
-		playMusic();
+		levelManager.init();
+		playMusic(0);
+		stateManager.setGameState(GameState.TITLESCREEN);
 
 		gameThread = new Thread(this);
 		gameThread.start();
@@ -57,20 +43,6 @@ public class GameScreen extends JPanel implements Runnable {
 			update();
 			repaint();
 
-			if (currentLevel.isCompleted() == true) {
-				int curIdx = levelList.indexOf(currentLevel);
-
-				if (curIdx == levelList.size() - 1) {
-					gameState = 1;
-				} else {
-					Level prevLevel = currentLevel;
-					Level nextLevel = levelList.get(curIdx + 1);
-					nextLevel.init();
-					currentLevel = nextLevel;
-					levelList.remove(prevLevel);
-				}
-			}
-
 			Toolkit.getDefaultToolkit().sync();
 
 			try {
@@ -82,7 +54,6 @@ public class GameScreen extends JPanel implements Runnable {
 					remainingTime = 0;
 				}
 
-				// System.out.println((int)(1000 / remainingTime));
 				Thread.sleep((long) remainingTime);
 				nextDrawTime += drawInterval;
 			} catch (InterruptedException e) {
@@ -92,32 +63,20 @@ public class GameScreen extends JPanel implements Runnable {
 	}
 
 	public void update() {
-		if (gameState == 1) {
-
-		} else {
-			background.update();
-			currentLevel.update();
-		}
+		stateManager.update();
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
 		Graphics2D g2 = (Graphics2D) g;
-
-		if (gameState == 1) {
-			mainMenu.draw(g2);
-		} else {
-			background.draw(g2);
-			currentLevel.draw(g2);
-		}
+		stateManager.draw(g2);
 	}
 
-	public void playMusic() {
-		soundManager.loop();
+	public void playMusic(int i) {
+		soundManager.loop(i);
 	}
 
-	public static void playSoundEffect() {
-		soundManager.play();
+	public static void playSoundEffect(int i) {
+		soundManager.play(i);
 	}
 }

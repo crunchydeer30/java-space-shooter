@@ -57,8 +57,8 @@ public class Bullet {
 
     public void removeBullet() {
         if (!inBounds(GameScreen.gameWidth, GameScreen.gameHeight)) {
-            ArrayList<Bullet> playerBullets = GameScreen.currentLevel.getPlayer().getBullets();
-            ArrayList<Enemy> enemies = GameScreen.currentLevel.getEnemies();
+            ArrayList<Bullet> playerBullets = GameScreen.levelManager.currentLevel.getPlayer().getBullets();
+            ArrayList<Enemy> enemies = GameScreen.levelManager.currentLevel.getEnemies();
 
             if (playerBullets.indexOf(this) != 1) {
                 playerBullets.remove(this);

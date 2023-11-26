@@ -94,7 +94,7 @@ public class Player extends Entity {
 		if (shotTime == 0) {
 			bullets.add(new Bullet(x + size / 2 - 5, y, 10, damage, Color.ORANGE, 8f, -Math.cos(Math.toRadians(90)),
 					-Math.sin(Math.toRadians(90))));
-			GameScreen.playSoundEffect();
+			GameScreen.playSoundEffect(1);
 		}
 		shotTime += rateOfFire;
 
@@ -140,7 +140,7 @@ public class Player extends Entity {
 	}
 
 	public void registerIncomingDamage() {
-		ArrayList<Enemy> enemies = GameScreen.currentLevel.getEnemies();
+		ArrayList<Enemy> enemies = GameScreen.levelManager.currentLevel.getEnemies();
 
 		for (int i = 0; i < enemies.size(); i++) {
 			ArrayList<Bullet> enemyBullets = enemies.get(i).getBullets();

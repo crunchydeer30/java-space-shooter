@@ -11,7 +11,7 @@ import game.Entity;
 public abstract class Enemy extends Entity {
     
     public void registerIncomingDamage() {
-        ArrayList<Bullet> playerBullets = GameScreen.currentLevel.getPlayer().getBullets();
+        ArrayList<Bullet> playerBullets = GameScreen.levelManager.currentLevel.getPlayer().getBullets();
 
         for (int i = 0; i < playerBullets.size(); i++) {
             Bullet bullet = playerBullets.get(i);
@@ -40,8 +40,8 @@ public abstract class Enemy extends Entity {
         checkBounds();
 
         if (getCurrentHP() <= 0) {
-            GameScreen.currentLevel.getEnemies().remove(this);
-            GameScreen.currentLevel.setEnemiesKilled(GameScreen.currentLevel.getEnemiesKilled() + 1);;
+            GameScreen.levelManager.currentLevel.getEnemies().remove(this);
+            GameScreen.levelManager.currentLevel.setEnemiesKilled(GameScreen.levelManager.currentLevel.getEnemiesKilled() + 1);;
         }
     }
 }

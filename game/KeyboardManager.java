@@ -9,10 +9,7 @@ public class KeyboardManager implements KeyListener {
     public boolean isKeyUp;
     public boolean isKeyDown;
     public boolean isKeySpace;
-
-    public KeyboardManager() {
-
-    }
+    public boolean isKeyEnter;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -44,6 +41,9 @@ public class KeyboardManager implements KeyListener {
             isKeySpace = true;
         }
 
+        if (keyCode == KeyEvent.VK_ENTER) {
+            isKeyEnter = true;
+        }
     }
 
     @Override
@@ -68,6 +68,10 @@ public class KeyboardManager implements KeyListener {
 
         if (keyCode == KeyEvent.VK_SPACE) {
             isKeySpace = false;
+        }
+
+        if (keyCode == KeyEvent.VK_ENTER) {
+            isKeyEnter = false;
         }
     }
 }

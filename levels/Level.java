@@ -3,11 +3,15 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import enemies.Enemy;
+import game.Background;
 import game.GameScreen;
+import game.GameState;
 import game.Player;
 
 public abstract class Level {
     public Player player;
+
+    public abstract Background getBackground();
 
     public abstract Player getPlayer();
 
@@ -36,7 +40,8 @@ public abstract class Level {
     abstract void spawnEnemies();
 
     public void update() {
-        getPlayer().update();
+        getBackground().update();
+        player.update();
         
         for (int i = 0; i < getEnemies().size(); i++) {
             getEnemies().get(i).update();
@@ -45,9 +50,14 @@ public abstract class Level {
         if (getEnemiesKilled() == getEnemiesCount()) {
             setIsCompleted(true);
         }
+
+        if (getPlayer().getCurrentHP() <= 0) {
+            GameScreen.stateManager.setGameState(GameState.MENU);
+        }
     }
 
     public void draw(Graphics2D g2) {
+        getBackground().draw(g2);
         if (player != null) {
             player.draw(g2);
         }

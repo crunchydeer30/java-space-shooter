@@ -5,6 +5,7 @@ import java.util.Random;
 import enemies.Enemy;
 import enemies.Grunt;
 import enemies.Officer;
+import game.Background;
 import game.GameScreen;
 import game.Player;
 
@@ -19,6 +20,12 @@ public class Level1 extends Level {
     public int enemiesSpawned = 0;
     public int enenySpawnTimer = 0;
     public int enenySpawnDelay = 200;
+
+    public Background background = new Background("background.png");
+
+    public Background getBackground() {
+        return background;
+    }
 
     public int getEnemiesSpawned() {
         return enemiesSpawned;

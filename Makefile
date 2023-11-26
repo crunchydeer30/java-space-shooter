@@ -14,6 +14,8 @@ CLASSES = \
 	game/Bullet.java \
 	game/Entity.java \
 	game/SoundManager.java \
+	game/StateManager.java \
+	game/LevelManager.java \
 	enemies/Enemy.java \
 	enemies/Grunt.java \
 	enemies/Officer.java \
@@ -22,6 +24,7 @@ CLASSES = \
 	levels/Level2.java \
 	levels/Level3.java \
 	ui/Menu.java \
+	ui/TitleScreen.java
 
 default: classes
 classes: $(CLASSES:.java=.class)

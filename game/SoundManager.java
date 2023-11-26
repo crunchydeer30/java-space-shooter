@@ -10,14 +10,18 @@ import javax.sound.sampled.LineListener;
 
 public class SoundManager {
 
-    URL url = this.getClass().getResource("/sounds/shot.wav");
-    URL url2 = this.getClass().getResource("/sounds/theme.wav");
+    URL soundLibrary[] = new URL[10];
 
-    public void play() {
+    public SoundManager() {
+        soundLibrary[0] = this.getClass().getResource("/sounds/theme.wav");
+        soundLibrary[1] = this.getClass().getResource("/sounds/shot.wav");
+    }
+
+    public void play(int i) {
         Thread thread = new Thread() {
             public void run() {
                 try {
-                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
+                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundLibrary[i]);
                     Clip clip = AudioSystem.getClip();
                     clip.open(audioInputStream);
                     clip.addLineListener(new LineListener() {
@@ -38,11 +42,11 @@ public class SoundManager {
         thread.start();
     }
 
-    public void loop() {
+    public void loop(int i) {
         Thread thread = new Thread() {
             public void run() {
                 try {
-                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url2);
+                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundLibrary[i]);
                     Clip clip = AudioSystem.getClip();
                     clip.open(audioInputStream);
                     audioInputStream.close();

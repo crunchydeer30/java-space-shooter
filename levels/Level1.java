@@ -4,6 +4,7 @@ import java.util.Random;
 
 import enemies.Enemy;
 import enemies.Grunt;
+import enemies.Officer;
 import game.GameScreen;
 import game.Player;
 
@@ -70,7 +71,12 @@ public class Level1 extends Level {
     public void spawnEnemies() {
         if (enemiesSpawned < enemiesCount) {
             if (enenySpawnTimer == 0) {
-                Enemy enemy = new Grunt();
+                Enemy enemy;
+                if (enemiesKilled == 4) {
+                    enemy = new Officer();
+                } else {
+                    enemy = new Grunt();
+                }
                 Random rand = new Random();
                 enemy.setPosition(rand.nextInt((int)(GameScreen.gameWidth - enemy.getSize())), 50);
                 enemies.add(enemy);

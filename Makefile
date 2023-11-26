@@ -13,6 +13,7 @@ CLASSES = \
 	game/Background.java \
 	game/Bullet.java \
 	game/Entity.java \
+	game/SoundManager.java \
 	enemies/Enemy.java \
 	enemies/Grunt.java \
 	enemies/Officer.java \

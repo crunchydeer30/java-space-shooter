@@ -7,6 +7,8 @@ import game.GameScreen;
 import game.Player;
 
 public abstract class Level {
+    public Player player;
+
     public abstract Player getPlayer();
 
     public abstract void setPlayer(Player player);
@@ -46,7 +48,9 @@ public abstract class Level {
     }
 
     public void draw(Graphics2D g2) {
-        getPlayer().draw(g2);
+        if (player != null) {
+            player.draw(g2);
+        }
         spawnEnemies();
         for (int i = 0; i < getEnemies().size(); i++) {
             getEnemies().get(i).draw(g2);
@@ -54,8 +58,9 @@ public abstract class Level {
     }
 
     public void init() {
-        setPlayer(new Player());
         setEnemies(new ArrayList<Enemy>());
-        getPlayer().setPosition(GameScreen.gameWidth / 2, GameScreen.gameHeight * 0.75);
+        setPlayer(new Player());
+        player = getPlayer();
+        player.setPosition(GameScreen.gameWidth / 2, GameScreen.gameHeight * 0.75);
     }
 }

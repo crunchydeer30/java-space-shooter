@@ -94,8 +94,10 @@ public class Player extends Entity {
 		if (shotTime == 0) {
 			bullets.add(new Bullet(x + size / 2 - 5, y, 10, damage, Color.ORANGE, 8f, -Math.cos(Math.toRadians(90)),
 					-Math.sin(Math.toRadians(90))));
+			GameScreen.playSoundEffect();
 		}
 		shotTime += rateOfFire;
+
 		if (shotTime > 50) {
 			shotTime = 0;
 		}

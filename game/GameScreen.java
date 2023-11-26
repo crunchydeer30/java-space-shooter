@@ -1,4 +1,5 @@
 package game;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -26,6 +27,7 @@ public class GameScreen extends JPanel implements Runnable {
 	ArrayList<Level> levelList = new ArrayList<Level>();
 	public static Level currentLevel;
 	public Menu mainMenu = new Menu();
+	static SoundManager soundManager = new SoundManager();
 
 	public GameScreen() {
 		this.setBackground(Color.BLACK);
@@ -40,6 +42,7 @@ public class GameScreen extends JPanel implements Runnable {
 		levelList.add(new Level3());
 		currentLevel = levelList.get(0);
 		currentLevel.init();
+		playMusic();
 
 		gameThread = new Thread(this);
 		gameThread.start();
@@ -72,13 +75,13 @@ public class GameScreen extends JPanel implements Runnable {
 
 			try {
 				double remainingTime = nextDrawTime - System.nanoTime();
-				
+
 				remainingTime = remainingTime / 1000000;
-				
+
 				if (remainingTime < 0) {
 					remainingTime = 0;
 				}
-				
+
 				// System.out.println((int)(1000 / remainingTime));
 				Thread.sleep((long) remainingTime);
 				nextDrawTime += drawInterval;
@@ -108,5 +111,13 @@ public class GameScreen extends JPanel implements Runnable {
 			background.draw(g2);
 			currentLevel.draw(g2);
 		}
+	}
+
+	public void playMusic() {
+		soundManager.loop();
+	}
+
+	public static void playSoundEffect() {
+		soundManager.play();
 	}
 }

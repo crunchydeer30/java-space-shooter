@@ -7,12 +7,16 @@ import java.util.ArrayList;
 
 import enemies.Enemy;
 import game.Background;
+import game.BackgroundManager;
 import game.GameScreen;
 import game.GameState;
 import game.Player;
+import game.PlayerShip;
 
 public abstract class Level {
     public abstract Background getBackground();
+
+    public abstract String getBackgroundUrl();
 
     public abstract Player getPlayer();
 
@@ -66,10 +70,10 @@ public abstract class Level {
     }
 
     public void draw(Graphics2D g2) {
-        getBackground().draw(g2);
-        if (getPlayer() != null) {
-            getPlayer().draw(g2);
+        if (GameScreen.levelManager.currentLevel.getPlayer() != null) {
+            GameScreen.levelManager.currentLevel.getPlayer().draw(g2);
         }
+
         spawnEnemies();
         for (int i = 0; i < getEnemies().size(); i++) {
             getEnemies().get(i).draw(g2);
@@ -82,8 +86,9 @@ public abstract class Level {
     }
 
     public void init() {
+        BackgroundManager.setImage(getBackgroundUrl());
         setEnemies(new ArrayList<Enemy>());
-        setPlayer(new Player());
+        setPlayer(new PlayerShip());
         getPlayer().setPosition(GameScreen.gameWidth / 2, GameScreen.gameHeight * 0.75);
     }
 }

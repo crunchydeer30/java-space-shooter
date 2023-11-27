@@ -12,11 +12,11 @@ public class Main{
 		window.setResizable(false);
 		window.setTitle("Space Shooter");
 		window.setLayout(new BorderLayout());
+		window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		window.setUndecorated(true);
 		
 		GameScreen gameScreen = new GameScreen();	
 		window.add(gameScreen);
-
-		window.setSize(1366, 768);
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 		

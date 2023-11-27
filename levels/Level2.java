@@ -13,14 +13,19 @@ public class Level2 extends Level {
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
 
-    public int enemiesCount = 4;
+    public int enemiesCount = 2;
     
     public int enemiesKilled = 0;
     public int enemiesSpawned = 0;
     public int enenySpawnTimer = 0;
     public int enenySpawnDelay = 200;
 
-    public Background background = new Background("background.png");
+    public Background background = new Background("menu.jpg");
+    public String backgroundUrl = "graphics/title.png";
+
+    public String getBackgroundUrl() {
+        return this.backgroundUrl;
+    }
 
     public void setEnemiesSpawned(int enemiesSpawned) {
         this.enemiesSpawned = enemiesSpawned;

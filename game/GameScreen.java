@@ -13,14 +13,15 @@ import levels.Level;
 
 public class GameScreen extends JPanel implements Runnable {
 	private Thread gameThread;
-	public static int gameWidth = 1366;
-	public static int gameHeight = 768;
+	public static int gameWidth = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+	public static int gameHeight = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	public static int FPS = 60;
 
 	public static KeyboardManager keyboardManager = new KeyboardManager();
 	public static SoundManager soundManager = new SoundManager();
 	public static StateManager stateManager = new StateManager();
 	public static LevelManager levelManager = new LevelManager();
+	public static BackgroundManager backgroundManager = new BackgroundManager();
 	public static ArrayList<Level> levelList;
 
 	public GameScreen() {
@@ -28,6 +29,7 @@ public class GameScreen extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyboardManager);
 		this.setFocusable(true);
+		this.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
 	}
 
 	public void startGameThread() {
@@ -73,6 +75,7 @@ public class GameScreen extends JPanel implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		stateManager.draw(g2);
+		
 	}
 
 	public void playMusic(int i) {

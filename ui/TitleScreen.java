@@ -10,7 +10,7 @@ import game.GameScreen;
 import game.GameState;
 
 public class TitleScreen {
-    private int duration = 150;
+    private int duration = 0;
     private Image image = new ImageIcon("graphics/title.png").getImage();
 
 

@@ -25,6 +25,12 @@ public class LevelManager {
     }
 
     public void update() {
+        currentLevel.update();
+        
+        if (GameScreen.keyboardManager.isKeyEscape) {
+            GameScreen.stateManager.setGameState(GameState.MENU);
+        }
+
         if (currentLevel.isCompleted() == true) {
             int curIdx = levelList.indexOf(currentLevel);
 

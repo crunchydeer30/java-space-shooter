@@ -20,6 +20,7 @@ public class Bullet {
     private double xTrajectory;
     private double yTrajectory;
     private double damage;
+    public int bulletAngle = 0;
 
     public Bullet(double x, double y, double size, double damage, Color color, double velocity, double xTrajectory,
             double yTrajectory) {
@@ -52,6 +53,7 @@ public class Bullet {
     public void update() {
         x += xTrajectory * velocity;
         y += yTrajectory * velocity;
+        bulletAngle += 2;
         removeBullet();
     }
 

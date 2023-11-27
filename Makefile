@@ -16,6 +16,8 @@ CLASSES = \
 	game/SoundManager.java \
 	game/StateManager.java \
 	game/LevelManager.java \
+	game/BackgroundManager.java \
+	game/PlayerShip.java \
 	enemies/Enemy.java \
 	enemies/Grunt.java \
 	enemies/Officer.java \
@@ -26,7 +28,8 @@ CLASSES = \
 	levels/Level3.java \
 	levels/Level4.java \
 	ui/Menu.java \
-	ui/TitleScreen.java
+	ui/TitleScreen.java \
+	ui/MenuItem.java
 
 default: classes
 classes: $(CLASSES:.java=.class)

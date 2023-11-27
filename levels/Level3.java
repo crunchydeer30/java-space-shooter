@@ -13,7 +13,7 @@ public class Level3 extends Level {
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
 
-    public int enemiesCount = 5;
+    public int enemiesCount = 2;
     public int enemiesKilled = 0;
 
     public int enemiesSpawned = 0;
@@ -21,6 +21,11 @@ public class Level3 extends Level {
     public int enenySpawnDelay = 200;
 
     public Background background = new Background("background.png");
+    public String backgroundUrl = "graphics/background.png";
+
+    public String getBackgroundUrl() {
+        return this.backgroundUrl;
+    }
 
     public void setEnemiesSpawned(int enemiesSpawned) {
         this.enemiesSpawned = enemiesSpawned;

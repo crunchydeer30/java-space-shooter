@@ -12,7 +12,7 @@ public class StateManager {
     GameState gameState = GameState.TITLESCREEN;
 
     public GameState getGameState() {
-        return gameState;
+        return this.gameState;
     }
 
     public void setGameState(GameState gameState) {
@@ -24,6 +24,8 @@ public class StateManager {
                 break;
             case GAME:
                 GameScreen.levelManager.init();
+                break;
+            case PAUSE:
                 break;
             case END:
                 break;
@@ -39,7 +41,10 @@ public class StateManager {
                 menu.draw(g2);
                 break;
             case GAME:
+                GameScreen.backgroundManager.draw(g2);
                 GameScreen.levelManager.currentLevel.draw(g2);
+                break;
+            case PAUSE:
                 break;
             case END:
                 break;
@@ -55,8 +60,10 @@ public class StateManager {
                 menu.update();
                 break;
             case GAME:
-                GameScreen.levelManager.currentLevel.update();
+                GameScreen.backgroundManager.update();
                 GameScreen.levelManager.update();
+                break;
+            case PAUSE:
                 break;
             case END:
                 break;

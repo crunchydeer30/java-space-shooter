@@ -23,6 +23,7 @@ public class Background {
             y = 0;
         }
     }
+    
 
     public void draw(Graphics2D g2) {
         g2.drawImage(backroundImage, x, y - height, width, height, null);

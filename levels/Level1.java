@@ -14,6 +14,7 @@ public class Level1 extends Level {
     public Player player;
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
+    public String backgroundUrl = "graphics/background.png";
 
     public int enemiesCount = 2;
     public int enemiesKilled = 0;
@@ -23,6 +24,10 @@ public class Level1 extends Level {
     public int enenySpawnDelay = 200;
 
     public Background background = new Background("background.png");
+
+    public String getBackgroundUrl() {
+        return this.backgroundUrl;
+    }
 
     public void setEnemiesSpawned(int enemiesSpawned) {
         this.enemiesSpawned = enemiesSpawned;
@@ -91,7 +96,7 @@ public class Level1 extends Level {
                 }
                 Random rand = new Random();
                 enemy.setPosition(rand.nextInt((int) (GameScreen.gameWidth -
-                        enemy.getSize())), 50);
+                        enemy.getSize())), -enemy.getSize() * 2);
                 enemies.add(enemy);
                 enemiesSpawned++;
             }

@@ -103,7 +103,7 @@ public class PlayerShip extends Player {
 		if (shotTime == 0) {
 			bullets.add(new Bullet(x + size / 2 - 5, y, 10, damage, Color.ORANGE, 8f, -Math.cos(Math.toRadians(90)),
 					-Math.sin(Math.toRadians(90))));
-			GameScreen.playSoundEffect(1);
+			GameScreen.soundManager.play(1);
 		}
 		shotTime += rateOfFire;
 

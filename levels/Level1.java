@@ -29,6 +29,12 @@ public class Level1 extends Level {
     public int cutsceneX = 0;
     public int cutsceneY = 0;
 
+    public int levelMusic = 0;
+
+    public int getLevelMusic() {
+        return levelMusic;
+    }
+
     public Image getBackground() {
         return backgroundImage;
     }

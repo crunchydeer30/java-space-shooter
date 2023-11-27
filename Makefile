@@ -18,6 +18,7 @@ CLASSES = \
 	game/LevelManager.java \
 	game/BackgroundManager.java \
 	game/PlayerShip.java \
+	game/Utils.java \
 	enemies/Enemy.java \
 	enemies/Grunt.java \
 	enemies/Officer.java \

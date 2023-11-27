@@ -25,6 +25,12 @@ public class Level2 extends Level {
 
     public Image backgroundImage = new ImageIcon("graphics/menu.jpg").getImage();
 
+    public int levelMusic = 0;
+
+    public int getLevelMusic() {
+        return levelMusic;
+    }
+
     public Image getBackground() {
         return backgroundImage;
     }

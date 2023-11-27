@@ -24,7 +24,13 @@ public class Level4 extends Level {
     public int enenySpawnTimer = 0;
     public int enenySpawnDelay = 200;
 
-    public Image backgroundImage = new ImageIcon("graphics/background.png").getImage();
+    public Image backgroundImage = new ImageIcon("graphics/menu.jpg").getImage();
+
+    public int levelMusic = 0;
+
+    public int getLevelMusic() {
+        return levelMusic;
+    }
 
     public Image getBackground() {
         return backgroundImage;

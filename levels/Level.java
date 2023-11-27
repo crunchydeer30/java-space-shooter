@@ -12,6 +12,7 @@ import game.GameScreen;
 import game.GameState;
 import game.Player;
 import game.PlayerShip;
+import game.Utils;
 
 public abstract class Level {
     public abstract Image getBackground();
@@ -41,6 +42,8 @@ public abstract class Level {
     public abstract int getEnemiesKilled();
 
     public abstract void setEnemiesKilled(int enemiesKilled);
+
+    public abstract int getLevelMusic();
 
     abstract void spawnEnemies();
 
@@ -74,6 +77,7 @@ public abstract class Level {
     }
 
     public void draw(Graphics2D g2) {
+
         if (GameScreen.levelManager.currentLevel.getPlayer() != null) {
             GameScreen.levelManager.currentLevel.getPlayer().draw(g2);
         }
@@ -84,11 +88,15 @@ public abstract class Level {
 
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Arial", Font.BOLD, 36));
-        String text = "Level " + (GameScreen.levelManager.currentLevelIdx + 1);
-        g2.drawString(text, 0, GameScreen.gameHeight);
+
+        if (!startingCutscenePlayed) {
+            String text = "Level " + (GameScreen.levelManager.currentLevelIdx + 1);
+            g2.drawString(text, Utils.centerX(g2, text), (int) (GameScreen.gameHeight * 0.8));
+        }
     }
 
     public void init() {
+        GameScreen.soundManager.loop(getLevelMusic());
         BackgroundManager.setBackground(getBackground());
         setEnemies(new ArrayList<Enemy>());
         setPlayer(new PlayerShip());
@@ -103,9 +111,6 @@ public abstract class Level {
     }
 
     public void playEndingCutscene() {
-        getPlayer().setX(getPlayer().getX() != GameScreen.gameWidth / 2
-                ? getPlayer().getX() + (GameScreen.gameWidth / 2 - getPlayer().getX())
-                : getPlayer().getX());
         getPlayer().setY(getPlayer().getY() - 5);
         if (getPlayer().getY() <= 0) {
             endingCutscenePlayed = true;

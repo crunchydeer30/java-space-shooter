@@ -33,7 +33,6 @@ public class GameScreen extends JPanel implements Runnable {
 	}
 
 	public void startGameThread() {
-		playMusic(0);
 		stateManager.setGameState(GameState.TITLESCREEN);
 		gameThread = new Thread(this);
 		gameThread.start();
@@ -76,13 +75,5 @@ public class GameScreen extends JPanel implements Runnable {
 		Graphics2D g2 = (Graphics2D) g;
 		stateManager.draw(g2);
 		
-	}
-
-	public void playMusic(int i) {
-		soundManager.loop(i);
-	}
-
-	public static void playSoundEffect(int i) {
-		soundManager.play(i);
 	}
 }

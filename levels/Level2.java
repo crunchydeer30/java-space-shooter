@@ -1,6 +1,9 @@
 package levels;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.ImageIcon;
 
 import enemies.Enemy;
 import enemies.Grunt;
@@ -20,19 +23,14 @@ public class Level2 extends Level {
     public int enenySpawnTimer = 0;
     public int enenySpawnDelay = 200;
 
-    public Background background = new Background("menu.jpg");
-    public String backgroundUrl = "graphics/title.png";
+    public Image backgroundImage = new ImageIcon("graphics/menu.jpg").getImage();
 
-    public String getBackgroundUrl() {
-        return this.backgroundUrl;
+    public Image getBackground() {
+        return backgroundImage;
     }
 
     public void setEnemiesSpawned(int enemiesSpawned) {
         this.enemiesSpawned = enemiesSpawned;
-    }
-
-    public Background getBackground() {
-        return background;
     }
 
     public int getEnemiesSpawned() {

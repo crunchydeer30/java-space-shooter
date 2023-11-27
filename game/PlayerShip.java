@@ -2,12 +2,9 @@ package game;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.geom.Area;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-
-import enemies.Enemy;
 
 public class PlayerShip extends Player {
     KeyboardManager keyboardManager = GameScreen.keyboardManager;
@@ -18,7 +15,7 @@ public class PlayerShip extends Player {
 	private double x;
 	private double y;
 	private double speed = 4f;
-	public static ArrayList<Bullet> bullets = new ArrayList<>();
+	public ArrayList<Bullet> bullets = new ArrayList<>();
 	private double rateOfFire = 3f;
 	private double shotTime = 0;
 	private double damage = 50;

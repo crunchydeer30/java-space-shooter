@@ -3,10 +3,10 @@ package levels;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.ArrayList;
 
 import enemies.Enemy;
-import game.Background;
 import game.BackgroundManager;
 import game.GameScreen;
 import game.GameState;
@@ -14,9 +14,7 @@ import game.Player;
 import game.PlayerShip;
 
 public abstract class Level {
-    public abstract Background getBackground();
-
-    public abstract String getBackgroundUrl();
+    public abstract Image getBackground();
 
     public abstract Player getPlayer();
 
@@ -46,26 +44,32 @@ public abstract class Level {
 
     abstract void spawnEnemies();
 
-    public int titleTimer = 200;
+    public boolean startingCutscenePlayed = false;
+    public boolean endingCutscenePlayed = true;
 
     public void update() {
-        getBackground().update();
-        getPlayer().update();
 
-        for (int i = 0; i < getEnemies().size(); i++) {
-            getEnemies().get(i).update();
-        }
+        if (!startingCutscenePlayed) {
+            playStartingCutscene();
+        } else if (!endingCutscenePlayed) {
+            playEndingCutscene();
+        } else {
+            GameScreen.backgroundManager.update();
+            getPlayer().update();
 
-        if (getEnemiesKilled() == getEnemiesCount()) {
-            setIsCompleted(true);
-        }
+            for (int i = 0; i < getEnemies().size(); i++) {
+                getEnemies().get(i).update();
+            }
 
-        if (getPlayer().getCurrentHP() <= 0) {
-            GameScreen.stateManager.setGameState(GameState.MENU);
-        }
+            if (getEnemiesKilled() == getEnemiesCount()) {
+                endingCutscenePlayed = false;
+            }
 
-        if (titleTimer >= 0) {
-            titleTimer--;
+            if (getPlayer().getCurrentHP() <= 0) {
+                GameScreen.stateManager.setGameState(GameState.MENU);
+            }
+
+            spawnEnemies();
         }
     }
 
@@ -74,7 +78,6 @@ public abstract class Level {
             GameScreen.levelManager.currentLevel.getPlayer().draw(g2);
         }
 
-        spawnEnemies();
         for (int i = 0; i < getEnemies().size(); i++) {
             getEnemies().get(i).draw(g2);
         }
@@ -86,9 +89,27 @@ public abstract class Level {
     }
 
     public void init() {
-        BackgroundManager.setImage(getBackgroundUrl());
+        BackgroundManager.setBackground(getBackground());
         setEnemies(new ArrayList<Enemy>());
         setPlayer(new PlayerShip());
-        getPlayer().setPosition(GameScreen.gameWidth / 2, GameScreen.gameHeight * 0.75);
+        getPlayer().setPosition(GameScreen.gameWidth / 2, GameScreen.gameHeight);
+    }
+
+    public void playStartingCutscene() {
+        getPlayer().setY(getPlayer().getY() - 3);
+        if (getPlayer().getY() <= GameScreen.gameHeight * 0.65) {
+            startingCutscenePlayed = true;
+        }
+    }
+
+    public void playEndingCutscene() {
+        getPlayer().setX(getPlayer().getX() != GameScreen.gameWidth / 2
+                ? getPlayer().getX() + (GameScreen.gameWidth / 2 - getPlayer().getX())
+                : getPlayer().getX());
+        getPlayer().setY(getPlayer().getY() - 5);
+        if (getPlayer().getY() <= 0) {
+            endingCutscenePlayed = true;
+            setIsCompleted(true);
+        }
     }
 }

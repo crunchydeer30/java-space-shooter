@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Color;
 import java.awt.geom.Area;
 import javax.swing.ImageIcon;
 import enemies.Enemy;
@@ -16,7 +15,7 @@ public abstract class Player extends Entity {
 	private double x;
 	private double y;
 	private double speed = 4f;
-	public static ArrayList<Bullet> bullets = new ArrayList<>();
+	public static ArrayList<Bullet> bullets;
 	private double rateOfFire = 3f;
 	private double shotTime = 0;
 	private double damage = 50;

@@ -1,12 +1,14 @@
 package levels;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.ImageIcon;
 
 import enemies.Enemy;
 import enemies.Grunt;
 import enemies.Officer;
-import game.Background;
 import game.GameScreen;
 import game.Player;
 
@@ -14,7 +16,6 @@ public class Level1 extends Level {
     public Player player;
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
-    public String backgroundUrl = "graphics/background.png";
 
     public int enemiesCount = 2;
     public int enemiesKilled = 0;
@@ -23,18 +24,17 @@ public class Level1 extends Level {
     public int enenySpawnTimer = 0;
     public int enenySpawnDelay = 200;
 
-    public Background background = new Background("background.png");
+    public Image backgroundImage = new ImageIcon("graphics/background.png").getImage();
 
-    public String getBackgroundUrl() {
-        return this.backgroundUrl;
+    public int cutsceneX = 0;
+    public int cutsceneY = 0;
+
+    public Image getBackground() {
+        return backgroundImage;
     }
 
     public void setEnemiesSpawned(int enemiesSpawned) {
         this.enemiesSpawned = enemiesSpawned;
-    }
-
-    public Background getBackground() {
-        return background;
     }
 
     public int getEnemiesSpawned() {

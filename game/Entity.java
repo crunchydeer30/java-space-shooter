@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public abstract class Entity {
-    public ArrayList<Bullet> bullets = new ArrayList<>();
+    public ArrayList<Bullet> bullets;
 
     public abstract void update();
 

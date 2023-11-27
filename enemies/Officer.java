@@ -11,7 +11,7 @@ import game.Bullet;
 
 public class Officer extends Enemy {
     private Random rand = new Random();
-    private Image sprite = new ImageIcon("graphics/officer.png").getImage();
+    private Image sprite = new ImageIcon("assets/graphics/officer.png").getImage();
     private double size = 64;
 	private double width;
 	private double height;

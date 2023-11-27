@@ -11,7 +11,7 @@ import game.Bullet;
 
 public class Boss extends Enemy {
     private Random rand = new Random();
-    private Image sprite = new ImageIcon("graphics/boss.png").getImage();
+    private Image sprite = new ImageIcon("assets/graphics/boss.png").getImage();
     private double size = 256;
 	private double width;
 	private double height;

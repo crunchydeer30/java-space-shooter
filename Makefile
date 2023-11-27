@@ -13,12 +13,14 @@ CLASSES = \
 	game/Background.java \
 	game/Bullet.java \
 	game/Entity.java \
-	game/SoundManager.java \
 	game/StateManager.java \
 	game/LevelManager.java \
 	game/BackgroundManager.java \
 	game/PlayerShip.java \
 	game/Utils.java \
+	sounds/SoundManager.java \
+	sounds/SoundEffect.java \
+	sounds/Music.java \
 	enemies/Enemy.java \
 	enemies/Grunt.java \
 	enemies/Officer.java \

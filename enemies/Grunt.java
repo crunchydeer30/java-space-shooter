@@ -11,7 +11,7 @@ import game.Bullet;
 
 public class Grunt extends Enemy {
     Random rand = new Random();
-    private Image sprite = new ImageIcon("graphics/grunt.png").getImage();
+    private Image sprite = new ImageIcon("assets/graphics/grunt.png").getImage();
     private double size = 64;
 	private double width;
 	private double height;

@@ -13,6 +13,7 @@ import game.GameState;
 import game.Player;
 import game.PlayerShip;
 import game.Utils;
+import sounds.Music;
 
 public abstract class Level {
     public abstract Image getBackground();
@@ -49,6 +50,8 @@ public abstract class Level {
 
     public boolean startingCutscenePlayed = false;
     public boolean endingCutscenePlayed = true;
+
+    public Music levelMusic;
 
     public void update() {
 
@@ -96,7 +99,7 @@ public abstract class Level {
     }
 
     public void init() {
-        GameScreen.soundManager.loop(getLevelMusic());
+        levelMusic = new Music(getLevelMusic());
         BackgroundManager.setBackground(getBackground());
         setEnemies(new ArrayList<Enemy>());
         setPlayer(new PlayerShip());
@@ -114,6 +117,7 @@ public abstract class Level {
         getPlayer().setY(getPlayer().getY() - 5);
         if (getPlayer().getY() <= 0) {
             endingCutscenePlayed = true;
+            levelMusic.stop();
             setIsCompleted(true);
         }
     }

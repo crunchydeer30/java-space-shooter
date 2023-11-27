@@ -11,7 +11,7 @@ import game.GameState;
 
 public class TitleScreen {
     private int duration = 0;
-    private Image image = new ImageIcon("graphics/title.png").getImage();
+    private Image image = new ImageIcon("assets/graphics/title.png").getImage();
 
 
     public void draw(Graphics2D g2) {

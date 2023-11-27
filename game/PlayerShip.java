@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import sounds.SoundEffect;
+
 public class PlayerShip extends Player {
     KeyboardManager keyboardManager = GameScreen.keyboardManager;
-	private Image sprite = new ImageIcon("graphics/officer.png").getImage();
+	private Image sprite = new ImageIcon("assets/graphics/officer.png").getImage();
 	private double size = 64;
 	private double width;
 	private double height;
@@ -21,6 +23,7 @@ public class PlayerShip extends Player {
 	private double damage = 50;
 	public double maxHP = 100;
 	public double currentHP = maxHP;
+	public SoundEffect shotSound = new SoundEffect();
 
     public PlayerShip() {
 		calculateDimensions();
@@ -103,7 +106,7 @@ public class PlayerShip extends Player {
 		if (shotTime == 0) {
 			bullets.add(new Bullet(x + size / 2 - 5, y, 10, damage, Color.ORANGE, 8f, -Math.cos(Math.toRadians(90)),
 					-Math.sin(Math.toRadians(90))));
-			GameScreen.soundManager.play(1);
+			shotSound.play(1);
 		}
 		shotTime += rateOfFire;
 

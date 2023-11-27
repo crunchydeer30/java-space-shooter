@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import levels.Level;
+import sounds.SoundManager;
 
 
 public class GameScreen extends JPanel implements Runnable {

@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 import enemies.Enemy;
 import enemies.Officer;
-import game.Background;
 import game.GameScreen;
 import game.Player;
 
@@ -23,7 +22,7 @@ public class Level3 extends Level {
     public int enenySpawnTimer = 0;
     public int enenySpawnDelay = 200;
 
-    public Image backgroundImage = new ImageIcon("graphics/background.png").getImage();
+    public Image backgroundImage = new ImageIcon("assets/graphics/background.png").getImage();
 
     public int levelMusic = 0;
 

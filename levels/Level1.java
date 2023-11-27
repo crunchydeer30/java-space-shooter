@@ -24,7 +24,7 @@ public class Level1 extends Level {
     public int enenySpawnTimer = 0;
     public int enenySpawnDelay = 200;
 
-    public Image backgroundImage = new ImageIcon("graphics/background.png").getImage();
+    public Image backgroundImage = new ImageIcon("assets/graphics/background.png").getImage();
 
     public int cutsceneX = 0;
     public int cutsceneY = 0;

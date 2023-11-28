@@ -1,30 +1,20 @@
-package game;
+package player;
 
 import java.awt.geom.Area;
-import javax.swing.ImageIcon;
 import enemies.Enemy;
+import game.Bullet;
+import game.Entity;
+import game.GameScreen;
+import game.KeyboardManager;
+
 import java.util.ArrayList;
-import java.awt.Image;
 
 public abstract class Player extends Entity {
 	KeyboardManager keyboardManager = GameScreen.keyboardManager;
-	private Image sprite = new ImageIcon("graphics/spaceship.png").getImage();
-	private double size = 64;
-	private double width;
-	private double height;
-	private double x;
-	private double y;
-	private double speed = 4f;
-	public static ArrayList<Bullet> bullets;
-	private double rateOfFire = 3f;
-	private double shotTime = 0;
-	private double damage = 50;
-	public double maxHP = 100;
-	public double currentHP = maxHP;
 
 	public void setPosition(double x, double y) {
-		this.x = x - size / 2;
-		this.y = y - size / 2;
+		setX(getX() - (getSize() / 2));
+		setY(getY() - (getSize() / 2));
 	};
 
 	public void update() {
@@ -36,19 +26,19 @@ public abstract class Player extends Entity {
 
 	public void move() {
 		if (keyboardManager.isKeyUp) {
-			y = y - speed;
+			setY(getY() - getSpeed());
 		}
 
 		if (keyboardManager.isKeyDown) {
-			y = y + speed;
+			setY(getY() + getSpeed());
 		}
 
 		if (keyboardManager.isKeyLeft) {
-			x = x - speed;
+			setX(getX() - getSpeed());
 		}
 
 		if (keyboardManager.isKeyRight) {
-			x = x + speed;
+			setX(getX() + getSpeed());
 		}
 
 		if (keyboardManager.isKeySpace) {
@@ -57,16 +47,16 @@ public abstract class Player extends Entity {
 	}
 
 	public void checkBounds() {
-		if (y > GameScreen.gameHeight - size) {
-			y = GameScreen.gameHeight - size;
-		} else if (y < 0) {
-			y = 0;
+		if (getY() > GameScreen.gameHeight - getSize()) {
+			setY(GameScreen.gameHeight - getSize());
+		} else if (getY() < 0) {
+			setY(0);
 		}
 
-		if (x > GameScreen.gameWidth - size) {
-			x = 0;
-		} else if (x < 0) {
-			x = GameScreen.gameWidth - size;
+		if (getX() > GameScreen.gameWidth - getSize()) {
+			setX(0);;
+		} else if (getX() < 0) {
+			setX(GameScreen.gameWidth - getSize());
 		}
 	}
 

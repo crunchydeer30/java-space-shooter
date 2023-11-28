@@ -47,4 +47,12 @@ public class LevelManager {
             }
         }
     }
+
+    public void reset() {
+        if (currentLevel != null) {
+            currentLevel.levelMusic.stop();
+        }
+        currentLevelIdx = 0;
+        levelList.removeAll(levelList);
+    }
 }

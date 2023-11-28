@@ -1,4 +1,4 @@
-package game;
+package player;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -6,11 +6,14 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import game.Bullet;
+import game.GameScreen;
+import game.KeyboardManager;
 import sounds.SoundEffect;
 
-public class PlayerShip extends Player {
+public class PlayerLight extends Player {
     KeyboardManager keyboardManager = GameScreen.keyboardManager;
-	private Image sprite = new ImageIcon("assets/graphics/officer.png").getImage();
+	private Image sprite = new ImageIcon("assets/graphics/spaceship.png").getImage();
 	private double size = 64;
 	private double width;
 	private double height;
@@ -25,7 +28,7 @@ public class PlayerShip extends Player {
 	public double currentHP = maxHP;
 	public SoundEffect shotSound = new SoundEffect();
 
-    public PlayerShip() {
+    public PlayerLight() {
 		calculateDimensions();
 	}
 
@@ -112,43 +115,6 @@ public class PlayerShip extends Player {
 
 		if (shotTime > 50) {
 			shotTime = 0;
-		}
-	}
-
-    @Override
-	public void move() {
-		if (keyboardManager.isKeyUp) {
-			y = y - speed;
-		}
-
-		if (keyboardManager.isKeyDown) {
-			y = y + speed;
-		}
-
-		if (keyboardManager.isKeyLeft) {
-			x = x - speed;
-		}
-
-		if (keyboardManager.isKeyRight) {
-			x = x + speed;
-		}
-
-		if (keyboardManager.isKeySpace) {
-			shoot();
-		}
-	}
-
-	public void checkBounds() {
-		if (y > GameScreen.gameHeight - size) {
-			y = GameScreen.gameHeight - size;
-		} else if (y < 0) {
-			y = 0;
-		}
-
-		if (x > GameScreen.gameWidth - size) {
-			x = 0;
-		} else if (x < 0) {
-			x = GameScreen.gameWidth - size;
 		}
 	}
 }

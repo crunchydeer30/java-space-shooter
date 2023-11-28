@@ -20,7 +20,6 @@ public abstract class Enemy extends Entity {
             if (bulletHitbox.intersects(this.getHitbox())) {
                 playerBullets.remove(bullet);
                 this.setCurrentHP(this.getCurrentHP() - bullet.getDamage());
-                // GameScreen.soundManager.play(2);
                 break;
             }
         }

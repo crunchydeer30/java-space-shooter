@@ -9,15 +9,17 @@ CLASSES = \
 	Main.java \
 	game/GameScreen.java \
 	game/KeyboardManager.java \
-	game/Player.java \
 	game/Background.java \
 	game/Bullet.java \
 	game/Entity.java \
 	game/StateManager.java \
 	game/LevelManager.java \
 	game/BackgroundManager.java \
-	game/PlayerShip.java \
 	game/Utils.java \
+	player/Player.java \
+	player/PlayerLight.java \
+	player/PlayerHeavy.java \
+	player/PlayerManager.java \
 	sounds/SoundManager.java \
 	sounds/SoundEffect.java \
 	sounds/Music.java \
@@ -32,7 +34,8 @@ CLASSES = \
 	levels/Level4.java \
 	ui/Menu.java \
 	ui/TitleScreen.java \
-	ui/MenuItem.java
+	ui/MenuItem.java \
+	ui/Options.java
 
 default: classes
 classes: $(CLASSES:.java=.class)

@@ -3,11 +3,13 @@ package game;
 import java.awt.Graphics2D;
 
 import ui.Menu;
+import ui.Options;
 import ui.TitleScreen;
 
 public class StateManager {
     Menu menu = new Menu();
     TitleScreen titleScreen = new TitleScreen();
+    Options options = new Options();
 
     GameState gameState = GameState.TITLESCREEN;
 
@@ -21,9 +23,12 @@ public class StateManager {
             case TITLESCREEN:
                 break;
             case MENU:
+                GameScreen.levelManager.reset();
                 break;
             case GAME:
                 GameScreen.levelManager.init();
+                break;
+            case OPTIONS:
                 break;
             case PAUSE:
                 break;
@@ -44,6 +49,9 @@ public class StateManager {
                 GameScreen.backgroundManager.draw(g2);
                 GameScreen.levelManager.currentLevel.draw(g2);
                 break;
+            case OPTIONS:
+                options.draw(g2);
+                break;
             case PAUSE:
                 break;
             case END:
@@ -62,6 +70,9 @@ public class StateManager {
             case GAME:
                 GameScreen.backgroundManager.update();
                 GameScreen.levelManager.update();
+                break;
+            case OPTIONS:
+                options.update();
                 break;
             case PAUSE:
                 break;

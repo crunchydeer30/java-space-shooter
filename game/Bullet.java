@@ -50,10 +50,29 @@ public class Bullet {
         return true;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getVelocity() {
+        return velocity;
+    }
+
     public void update() {
         x += xTrajectory * velocity;
         y += yTrajectory * velocity;
-        bulletAngle += 2;
         removeBullet();
     }
 

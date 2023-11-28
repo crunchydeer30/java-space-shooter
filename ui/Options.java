@@ -11,17 +11,15 @@ import javax.swing.ImageIcon;
 import game.GameScreen;
 import game.GameState;
 
-public class Menu {
+public class Options {
     Graphics2D g2;
     public Image backgroundImage = new ImageIcon("assets/graphics/menu.jpg").getImage();
     public ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
     public MenuItem selectedItem;
 
-    public Menu() {
+    public Options() {
         Font font = new Font("Arial", Font.BOLD, 52);
-        menuItems.add(new MenuItem("START", font, Color.WHITE, 0, (int) (GameScreen.gameHeight * 0.4)));
-        menuItems.add(new MenuItem("OPTIONS", font, Color.WHITE, 0, (int) (GameScreen.gameHeight * 0.6)));
-        menuItems.add(new MenuItem("EXIT", font, Color.WHITE, 0, (int) (GameScreen.gameHeight * 0.8)));
+        menuItems.add(new MenuItem("BACK", font, Color.WHITE, 0, (int) (GameScreen.gameHeight * 0.4)));
         selectedItem = menuItems.get(0);
     }
 
@@ -63,11 +61,7 @@ public class Menu {
 
         if (GameScreen.keyboardManager.isKeyEnter) {
             if (menuItems.indexOf(selectedItem) == 0) {
-                GameScreen.stateManager.setGameState(GameState.GAME);
-            } else if (menuItems.indexOf(selectedItem) == 1) {
-                GameScreen.stateManager.setGameState(GameState.OPTIONS);
-            } else if (menuItems.indexOf(selectedItem) == 2) {
-                System.exit(0);
+                GameScreen.stateManager.setGameState(GameState.MENU);
             }
             GameScreen.keyboardManager.isKeyEnter = false;
         }

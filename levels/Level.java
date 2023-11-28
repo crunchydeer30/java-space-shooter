@@ -10,9 +10,9 @@ import enemies.Enemy;
 import game.BackgroundManager;
 import game.GameScreen;
 import game.GameState;
-import game.Player;
-import game.PlayerShip;
 import game.Utils;
+import player.Player;
+import player.PlayerLight;
 import sounds.Music;
 
 public abstract class Level {
@@ -102,13 +102,13 @@ public abstract class Level {
         levelMusic = new Music(getLevelMusic());
         BackgroundManager.setBackground(getBackground());
         setEnemies(new ArrayList<Enemy>());
-        setPlayer(new PlayerShip());
+        setPlayer(GameScreen.playerManager.createPlayer());
         getPlayer().setPosition(GameScreen.gameWidth / 2, GameScreen.gameHeight);
     }
 
     public void playStartingCutscene() {
         getPlayer().setY(getPlayer().getY() - 3);
-        if (getPlayer().getY() <= GameScreen.gameHeight * 0.65) {
+        if (getPlayer().getY() <= GameScreen.gameHeight * 0.75) {
             startingCutscenePlayed = true;
         }
     }
@@ -120,5 +120,6 @@ public abstract class Level {
             levelMusic.stop();
             setIsCompleted(true);
         }
+        getPlayer().update();
     }
 }

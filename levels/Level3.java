@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import enemies.Enemy;
 import enemies.Officer;
 import game.GameScreen;
-import game.Player;
+import player.Player;
 
 public class Level3 extends Level {
     public Player player;

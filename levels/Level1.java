@@ -10,7 +10,7 @@ import enemies.Enemy;
 import enemies.Grunt;
 import enemies.Officer;
 import game.GameScreen;
-import game.Player;
+import player.Player;
 
 public class Level1 extends Level {
     public Player player;

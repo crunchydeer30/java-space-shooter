@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import enemies.Boss;
 import enemies.Enemy;
 import game.GameScreen;
-import game.Player;
+import player.Player;
 
 public class Level4 extends Level {
     public Player player;

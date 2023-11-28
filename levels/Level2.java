@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import enemies.Enemy;
 import enemies.Grunt;
 import game.GameScreen;
-import game.Player;
+import player.Player;
 
 public class Level2 extends Level {
     public Player player;

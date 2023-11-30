@@ -20,10 +20,10 @@ public class GameScreen extends JPanel implements Runnable {
 	public static int FPS = 60;
 
 	public static KeyboardManager keyboardManager = new KeyboardManager();
+	public static PlayerManager playerManager = new PlayerManager();
 	public static SoundManager soundManager = new SoundManager();
 	public static StateManager stateManager = new StateManager();
 	public static LevelManager levelManager = new LevelManager();
-	public static PlayerManager playerManager = new PlayerManager();
 	public static BackgroundManager backgroundManager = new BackgroundManager();
 	public static ArrayList<Level> levelList;
 

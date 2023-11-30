@@ -2,7 +2,7 @@ package player;
 import java.util.ArrayList;
 
 public class PlayerManager {
-    ArrayList<PlayerType> playerList = new ArrayList<PlayerType>();
+    public ArrayList<PlayerType> playerList = new ArrayList<PlayerType>();
     PlayerType selectedPlayerType;
 
     public PlayerManager() {
@@ -17,6 +17,17 @@ public class PlayerManager {
 
     public Player createPlayer() {
         switch (selectedPlayerType) {
+            case LIGHT:
+                return new PlayerLight();
+            case HEAVY:
+                return new PlayerHeavy();
+            default:
+                return new PlayerLight();
+        }
+    }
+
+    public Player createPlayer(PlayerType playerType) {
+        switch (playerType) {
             case LIGHT:
                 return new PlayerLight();
             case HEAVY:

@@ -35,7 +35,8 @@ CLASSES = \
 	ui/Menu.java \
 	ui/TitleScreen.java \
 	ui/MenuItem.java \
-	ui/Options.java
+	ui/Options.java \
+	ui/PlayerMenuItem.java
 
 default: classes
 classes: $(CLASSES:.java=.class)

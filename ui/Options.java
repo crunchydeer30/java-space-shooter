@@ -16,11 +16,15 @@ public class Options {
     public Image backgroundImage = new ImageIcon("assets/graphics/menu.jpg").getImage();
     public ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
     public MenuItem selectedItem;
+    ArrayList<PlayerMenuItem> playerMenuItems = new ArrayList<PlayerMenuItem>();
 
     public Options() {
         Font font = new Font("Arial", Font.BOLD, 52);
         menuItems.add(new MenuItem("BACK", font, Color.WHITE, 0, (int) (GameScreen.gameHeight * 0.4)));
         selectedItem = menuItems.get(0);
+        for (int i = 0; i < GameScreen.playerManager.playerList.size(); i++) {
+            playerMenuItems.add(new PlayerMenuItem(GameScreen.playerManager.createPlayer(GameScreen.playerManager.playerList.get(i))));
+        }
     }
 
     public void draw(Graphics2D g2) {
@@ -29,6 +33,9 @@ public class Options {
         for (int i = 0; i < menuItems.size(); i++) {
             menuItems.get(i).draw(g2);
         }
+        for (int i = 0; i < playerMenuItems.size(); i++) {
+            playerMenuItems.get(i).draw(g2);
+        }
     }
 
     public void update() {
@@ -36,6 +43,10 @@ public class Options {
 
         for (int i = 0; i < menuItems.size(); i++) {
             menuItems.get(i).draw(g2);
+        }
+
+        for (int i = 0; i < playerMenuItems.size(); i++) {
+            playerMenuItems.get(i).draw(g2);
         }
 
         selectedItem.setIsSelected(true);

@@ -2,13 +2,17 @@ package player;
 import java.util.ArrayList;
 
 public class PlayerManager {
-    public ArrayList<PlayerType> playerList = new ArrayList<PlayerType>();
+    public ArrayList<PlayerType> playerTypeList = new ArrayList<PlayerType>();
+    public ArrayList<Player> playerModelList = new ArrayList<Player>();
     PlayerType selectedPlayerType;
 
     public PlayerManager() {
-        playerList.add(PlayerType.LIGHT);
-        playerList.add(PlayerType.HEAVY);
-        selectedPlayerType = playerList.get(1);
+        playerTypeList.add(PlayerType.LIGHT);
+        playerTypeList.add(PlayerType.HEAVY);
+        selectedPlayerType = playerTypeList.get(0);
+        for (int i = 0; i < playerTypeList.size(); i++) {
+            playerModelList.add(createPlayer(playerTypeList.get(i)));
+        }
     }
 
     public void setSelectedPlayerType(PlayerType selectedPlayerType) {

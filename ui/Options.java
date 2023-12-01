@@ -15,16 +15,18 @@ public class Options {
     Graphics2D g2;
     public Image backgroundImage = new ImageIcon("assets/graphics/menu.jpg").getImage();
     public ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
-    public MenuItem selectedItem;
     ArrayList<PlayerMenuItem> playerMenuItems = new ArrayList<PlayerMenuItem>();
+    public MenuItem selectedItem;
+    public PlayerMenuItem selectedPlayer;
 
     public Options() {
         Font font = new Font("Arial", Font.BOLD, 52);
-        menuItems.add(new MenuItem("BACK", font, Color.WHITE, 0, (int) (GameScreen.gameHeight * 0.4)));
+        menuItems.add(new MenuItem("BACK", font, Color.WHITE, 0, (int) (GameScreen.gameHeight * 0.9)));
         selectedItem = menuItems.get(0);
-        for (int i = 0; i < GameScreen.playerManager.playerList.size(); i++) {
-            playerMenuItems.add(new PlayerMenuItem(GameScreen.playerManager.createPlayer(GameScreen.playerManager.playerList.get(i))));
+        for (int i = 0; i < GameScreen.playerManager.playerModelList.size(); i++) {
+            playerMenuItems.add(new PlayerMenuItem(GameScreen.playerManager.playerModelList.get(i)));
         }
+        selectedPlayer = playerMenuItems.get(0);
     }
 
     public void draw(Graphics2D g2) {
@@ -33,9 +35,7 @@ public class Options {
         for (int i = 0; i < menuItems.size(); i++) {
             menuItems.get(i).draw(g2);
         }
-        for (int i = 0; i < playerMenuItems.size(); i++) {
-            playerMenuItems.get(i).draw(g2);
-        }
+        selectedPlayer.draw(g2);
     }
 
     public void update() {
@@ -76,5 +76,26 @@ public class Options {
             }
             GameScreen.keyboardManager.isKeyEnter = false;
         }
+
+        if (GameScreen.keyboardManager.isKeyLeft) {
+            if (playerMenuItems.indexOf(selectedPlayer) > 0) {
+                selectedPlayer = playerMenuItems.get(playerMenuItems.indexOf(selectedPlayer) - 1);
+                GameScreen.keyboardManager.isKeyLeft = false;
+            }
+        }
+
+        if (GameScreen.keyboardManager.isKeyRight) {
+            if (playerMenuItems.indexOf(selectedPlayer) < playerMenuItems.size() - 1) {
+                selectedPlayer = playerMenuItems.get(playerMenuItems.indexOf(selectedPlayer) - 1);
+                GameScreen.keyboardManager.isKeyRight = false;
+            }
+        }
+
+        if (menuItems.indexOf(selectedItem) < menuItems.size() - 1) {
+            selectedItem.setIsSelected(false);
+            selectedItem = menuItems.get(menuItems.indexOf(selectedItem) + 1);
+            GameScreen.keyboardManager.isKeyDown = false;
+        }
+
     }
 }

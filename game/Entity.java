@@ -53,6 +53,8 @@ public abstract class Entity {
 
     public abstract void registerIncomingDamage();
 
+    public abstract double getDamage();
+
     public void setPosition(double x, double y) {
         setX(x);
         setY(y);

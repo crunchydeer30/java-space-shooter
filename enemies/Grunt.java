@@ -31,6 +31,10 @@ public class Grunt extends Enemy {
         calculateDimensions();
     }
 
+    public double getDamage() {
+        return damage;
+    }
+
     public void setHeight(double height) {
         this.height = height;
     }

@@ -32,6 +32,10 @@ public class PlayerLight extends Player {
 		calculateDimensions();
 	}
 
+	public double getDamage() {
+        return damage;
+    }
+
 	public void setHeight(double height) {
         this.height = height;
     }

@@ -19,18 +19,22 @@ public class PlayerHeavy extends Player {
 	private double height;
 	private double x;
 	private double y;
-	private double speed = 4f;
+	private double speed = 2f;
 	public ArrayList<Bullet> bullets = new ArrayList<>();
-	private double rateOfFire = 5f;
+	private double rateOfFire = 2.5f;
 	private double shotTime = 0;
-	private double damage = 50;
-	public double maxHP = 100;
+	private double damage = 75;
+	public double maxHP = 200;
 	public double currentHP = maxHP;
 	public SoundEffect shotSound = new SoundEffect();
 
 	public PlayerHeavy() {
 		calculateDimensions();
 	}
+
+	public double getDamage() {
+        return damage;
+    }
 
 	public void setHeight(double height) {
 		this.height = height;

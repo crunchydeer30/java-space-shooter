@@ -30,6 +30,10 @@ public class Boss extends Enemy {
     public Boss() {
         calculateDimensions();
     }
+
+    public double getDamage() {
+        return damage;
+    }
     
     public void setHeight(double height) {
         this.height = height;

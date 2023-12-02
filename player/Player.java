@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public abstract class Player extends Entity {
 	KeyboardManager keyboardManager = GameScreen.keyboardManager;
 
+	public abstract PlayerType getPlayerType();
+
 	public void setPosition(double x, double y) {
 		setX(getX() - (getSize() / 2));
 		setY(getY() - (getSize() / 2));

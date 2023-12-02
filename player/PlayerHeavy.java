@@ -27,6 +27,11 @@ public class PlayerHeavy extends Player {
 	public double maxHP = 200;
 	public double currentHP = maxHP;
 	public SoundEffect shotSound = new SoundEffect();
+	public PlayerType type = PlayerType.HEAVY;
+
+	public PlayerType getPlayerType() {
+		return type;
+	}
 
 	public PlayerHeavy() {
 		calculateDimensions();

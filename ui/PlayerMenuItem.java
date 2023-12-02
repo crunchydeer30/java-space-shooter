@@ -2,6 +2,7 @@ package ui;
 
 import game.GameScreen;
 import player.Player;
+import player.PlayerType;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,6 +16,7 @@ public class PlayerMenuItem {
     double maxHP;
     double maxRateOfFire;
     double maxDamage;
+    PlayerType type;
 
     public PlayerMenuItem(Player player) {
         this.player = player;

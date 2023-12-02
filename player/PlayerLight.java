@@ -28,6 +28,12 @@ public class PlayerLight extends Player {
 	public double currentHP = maxHP;
 	public SoundEffect shotSound = new SoundEffect();
 
+	public PlayerType type = PlayerType.HEAVY;
+
+	public PlayerType getPlayerType() {
+		return type;
+	}
+
     public PlayerLight() {
 		calculateDimensions();
 	}

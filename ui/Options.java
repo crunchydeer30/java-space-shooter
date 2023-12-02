@@ -86,7 +86,8 @@ public class Options {
 
         if (GameScreen.keyboardManager.isKeyRight) {
             if (playerMenuItems.indexOf(selectedPlayer) < playerMenuItems.size() - 1) {
-                selectedPlayer = playerMenuItems.get(playerMenuItems.indexOf(selectedPlayer) - 1);
+                selectedPlayer = playerMenuItems.get(playerMenuItems.indexOf(selectedPlayer) + 1);
+                GameScreen.playerManager.setSelectedPlayerType(selectedPlayer.player.getPlayerType());
                 GameScreen.keyboardManager.isKeyRight = false;
             }
         }
@@ -94,6 +95,7 @@ public class Options {
         if (menuItems.indexOf(selectedItem) < menuItems.size() - 1) {
             selectedItem.setIsSelected(false);
             selectedItem = menuItems.get(menuItems.indexOf(selectedItem) + 1);
+            GameScreen.playerManager.setSelectedPlayerType(selectedPlayer.player.getPlayerType());
             GameScreen.keyboardManager.isKeyDown = false;
         }
 

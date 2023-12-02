@@ -13,7 +13,7 @@ import game.GameState;
 
 public class Menu {
     Graphics2D g2;
-    public Image backgroundImage = new ImageIcon("assets/graphics/menu.jpg").getImage();
+    public Image backgroundImage = new ImageIcon("assets/graphics/background_2.png").getImage();
     public ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
     public MenuItem selectedItem;
 

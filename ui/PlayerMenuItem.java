@@ -33,7 +33,7 @@ public class PlayerMenuItem {
                 (int) player.getWidth() * 2, (int) player.getHeight() * 2, null);
 
         double speed = player.getSpeed() / maxSpeed;
-        double health = player.getCurrentHP() / player.getMaxHP();
+        double health = player.getMaxHP() / maxHP;
         double rateOfFire = player.getRateOfFire() / maxRateOfFire;
         double damage = player.getDamage() / maxDamage;
 

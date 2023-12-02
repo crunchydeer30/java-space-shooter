@@ -13,17 +13,17 @@ import sounds.SoundEffect;
 
 public class PlayerHeavy extends Player {
 	KeyboardManager keyboardManager = GameScreen.keyboardManager;
-	private Image sprite = new ImageIcon("assets/graphics/officer.png").getImage();
-	private double size = 64;
+	private Image sprite = new ImageIcon("assets/graphics/spaceship_2.png").getImage();
+	private double size = 128;
 	private double width;
 	private double height;
 	private double x;
 	private double y;
 	private double speed = 2f;
 	public ArrayList<Bullet> bullets = new ArrayList<>();
-	private double rateOfFire = 2.5f;
+	private double rateOfFire = 1f;
 	private double shotTime = 0;
-	private double damage = 75;
+	private double damage = 100;
 	public double maxHP = 200;
 	public double currentHP = maxHP;
 	public SoundEffect shotSound = new SoundEffect();
@@ -116,29 +116,7 @@ public class PlayerHeavy extends Player {
 
 	public void shoot() {
 		if (shotTime == 0) {
-			bullets.add(new Bullet(x + (size / 2) - 20, y, 10, damage, Color.ORANGE, 4f, -Math.cos(Math.toRadians(90)),
-					-Math.sin(Math.toRadians(90))) {
-				int bulletAngle = 0;
-
-				public void update() {
-					super.setX(getX() + getVelocity() * 4 * Math.cos(Math.toRadians(bulletAngle)));
-					super.setY(getY() + getVelocity() * Math.sin(Math.toRadians(-90)));
-					removeBullet();
-					bulletAngle += 10;
-				}
-			});
-
-			bullets.add(new Bullet(x + (size / 2) + 20, y, 10, damage, Color.ORANGE, 4f, -Math.cos(Math.toRadians(90)),
-					-Math.sin(Math.toRadians(90))) {
-				int bulletAngle = -90;
-
-				public void update() {
-					super.setX(getX() - getVelocity() * 4 * Math.cos(Math.toRadians(bulletAngle)));
-					super.setY(getY() + getVelocity() * Math.sin(Math.toRadians(-90)));
-					removeBullet();
-					bulletAngle += 10;
-				}
-			});
+			bullets.add(new Bullet(x + size / 2 - 15, y, 30, damage, Color.ORANGE, 8f, -Math.cos(Math.toRadians(90)), -Math.sin(Math.toRadians(90))));
 			shotSound.play(1);
 		}
 		shotTime += rateOfFire;

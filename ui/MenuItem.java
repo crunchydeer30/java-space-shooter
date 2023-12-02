@@ -36,7 +36,7 @@ public class MenuItem {
         this.g2 = g2;
         g2.setFont(font);
         if (isSelected) {
-            g2.setColor(Color.YELLOW);
+            g2.setColor(Color.BLUE);
         } else {
             g2.setColor(color);
         }

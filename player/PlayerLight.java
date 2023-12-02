@@ -23,7 +23,7 @@ public class PlayerLight extends Player {
 	public ArrayList<Bullet> bullets = new ArrayList<>();
 	private double rateOfFire = 3f;
 	private double shotTime = 0;
-	private double damage = 50;
+	private double damage = 25;
 	public double maxHP = 100;
 	public double currentHP = maxHP;
 	public SoundEffect shotSound = new SoundEffect();

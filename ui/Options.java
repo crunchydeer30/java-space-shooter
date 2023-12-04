@@ -80,6 +80,7 @@ public class Options {
         if (GameScreen.keyboardManager.isKeyLeft) {
             if (playerMenuItems.indexOf(selectedPlayer) > 0) {
                 selectedPlayer = playerMenuItems.get(playerMenuItems.indexOf(selectedPlayer) - 1);
+                GameScreen.playerManager.setSelectedPlayerType(selectedPlayer.player.getPlayerType());
                 GameScreen.keyboardManager.isKeyLeft = false;
             }
         }

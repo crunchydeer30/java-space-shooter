@@ -57,11 +57,11 @@ public class PlayerMenuItem {
         g2.drawString(name, (int) x, (int) y);
         g2.drawRect((int)x, (int)y + 22, (int)width, (int)height);
 
-        if ((width * value) < 0.3) {
+        if (value < 0.3) {
             g2.setColor(Color.RED);
-        } else if ((width * value) < 0.5) {
+        } else if (value < 0.5) {
             g2.setColor(Color.ORANGE);
-        } else if ((width * value) < 0.8) {
+        } else if (value < 0.8) {
             g2.setColor(Color.YELLOW);
         } else {
             g2.setColor(Color.GREEN);

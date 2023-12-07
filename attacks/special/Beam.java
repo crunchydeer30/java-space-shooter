@@ -1,16 +1,19 @@
-package bosses.specialAttacks;
+package attacks.special;
 
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.Line2D;
-import java.util.ArrayList;
-
+import attacks.Attack;
+import game.Entity;
 import game.GameScreen;
 import player.Player;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 
-public class Beam extends SpecialAttack {
+public class Beam extends Attack {
+  public Entity entity;
+
   public double startX;
   public double startY;
   public double endX;
@@ -24,9 +27,8 @@ public class Beam extends SpecialAttack {
   public double radius = 5;
   public double damage = 5;
   public Player player;
-  public ArrayList<SpecialAttack> specialAttacks;
 
-  public Beam(double startX, double startY, double angle, Color color) {
+  public Beam(Entity entity, double startX, double startY, double angle, Color color) {
     this.startX = startX;
     this.startY = startY;
     this.endX = startX;
@@ -34,7 +36,7 @@ public class Beam extends SpecialAttack {
     this.angle = angle;
     this.color = color;
     this.player = GameScreen.levelManager.currentLevel.getPlayer();
-    this.specialAttacks = GameScreen.levelManager.currentLevel.getBoss().getSpecialAttacks();
+    this.entity = entity;
   }
 
   public void update() {
@@ -46,18 +48,19 @@ public class Beam extends SpecialAttack {
     }
 
     if (timer > liveTime) {
-      if (specialAttacks.indexOf(this) != -1) {
-        specialAttacks.remove(this);
-      }
-    }
-
-    if (timer > chargeTime && getHitbox().intersects(player.getHitbox().getBounds2D())) {
-      player.setCurrentHP(player.getCurrentHP() - damage);
-      specialAttacks.remove(this);
+      entity.getAttacks().remove(this);
     }
   }
 
-  public Line2D getHitbox() {
+  public Entity getEntity() {
+    return entity;
+  }
+
+  public double getDamage() {
+    return damage;
+  }
+
+  public Shape getHitbox() {
     return new Line2D.Double(startX, startY, endX, endY);
   }
 
@@ -79,3 +82,4 @@ public class Beam extends SpecialAttack {
         (int) (radius * 0.65));
   }
 }
+

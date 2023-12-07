@@ -7,8 +7,8 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-import bosses.specialAttacks.SpecialAttack;
-import game.Bullet;
+import attacks.Attack;
+import attacks.Sphere;
 
 public class Officer extends Enemy {
     private Random rand = new Random();
@@ -21,22 +21,20 @@ public class Officer extends Enemy {
     private float speed = 2f;
     private double rateOfFire = .5f;
     private double shotTime = 0;
-    public ArrayList<Bullet> bullets = new ArrayList<>();
     private double maxHP = 100;
     private double currentHP = maxHP;
     private double damage = 20;
     public int movementType = 0;
     private double movementTime = 0;
-    
-    public ArrayList<SpecialAttack> projectiles = new ArrayList<SpecialAttack>();
-
-    public ArrayList<SpecialAttack> getProjectiles() {
-        return projectiles;
-    }
+    public ArrayList<Attack> attacks = new ArrayList<Attack>();
 
     public Officer() {
         calculateDimensions();
     }
+
+    public ArrayList<Attack> getAttacks() {
+		return attacks;
+	}
 
     public double getDamage() {
         return damage;
@@ -106,10 +104,6 @@ public class Officer extends Enemy {
         return rateOfFire;
     }
 
-    public ArrayList<Bullet> getBullets() {
-        return bullets;
-    }
-
     public void move() {
         if (movementTime == 0) {
             movementType = rand.nextInt(3);
@@ -131,11 +125,11 @@ public class Officer extends Enemy {
         }
     }
 
-    public void shoot() {
+    public void attack() {
         if (shotTime == 0) {
-            bullets.add(new Bullet(x + size / 2 - 5, y + size, 10, damage, Color.WHITE, 4f, Math.cos(Math.toRadians(90)), Math.sin(Math.toRadians(90))));
-            bullets.add(new Bullet(x + size / 2 - 5, y + size, 10, damage, Color.WHITE, 4f, Math.cos(Math.toRadians(60)), Math.sin(Math.toRadians(60))));
-            bullets.add(new Bullet(x + size / 2 - 5, y + size, 10, damage, Color.WHITE, 4f, Math.cos(Math.toRadians(120)), Math.sin(Math.toRadians(120))));
+            attacks.add(new Sphere(this, x + size / 2 - 5, y + size, 10, damage, Color.WHITE, 4f, 90));
+            attacks.add(new Sphere(this, x + size / 2 - 5, y + size, 10, damage, Color.WHITE, 4f, 60));
+            attacks.add(new Sphere(this, x + size / 2 - 5, y + size, 10, damage, Color.WHITE, 4f, 120));
         }
         shotTime += rateOfFire;
         if (shotTime > 50) {

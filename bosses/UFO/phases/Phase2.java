@@ -1,13 +1,11 @@
 package bosses.UFO.phases;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
+import attacks.Sphere;
+import attacks.special.Beyblade;
 import bosses.Boss;
 import bosses.Phase;
-import bosses.specialAttacks.Bayblade;
-import bosses.specialAttacks.SpecialAttack;
-import game.Bullet;
 import game.GameScreen;
 import sounds.SoundEffect;
 
@@ -16,8 +14,6 @@ public class Phase2 extends Phase {
   public double shotTimer = 0;
   public double baybladeTimer = 0;
   public boolean moveRight = true;
-  public ArrayList<SpecialAttack> specialAttacks;
-  public ArrayList<Bullet> bullets;
   public boolean baybladeRight = true;
   public SoundEffect shotSound = new SoundEffect();
 
@@ -30,9 +26,6 @@ public class Phase2 extends Phase {
   }
 
   public void shoot() {
-    specialAttacks = boss.getSpecialAttacks();
-    bullets = boss.getBullets();
-    bullets();
     bayblades();
   }
 
@@ -54,18 +47,16 @@ public class Phase2 extends Phase {
     if (shotTimer == 0) {
 
       for (int i = 0; i < 360; i += 20) {
-        bullets
-            .add(new Bullet(boss.getX() + boss.getSize() / 2, boss.getY() + boss.getHeight() / 2, 20, 0, Color.RED, 8f,
-                Math.cos(Math.toRadians(i)), Math.sin(Math.toRadians(i))));
+        boss.getAttacks()
+            .add(new Sphere(boss, boss.getX() + boss.getSize() / 2, boss.getY() + boss.getHeight() / 2, 20, 0, Color.RED, 8f, i));
       }
       shotSound.play(4);
     }
 
     if (shotTimer == 25) {
       for (int i = 0; i < 360; i += 10) {
-        bullets
-            .add(new Bullet(boss.getX() + boss.getSize() / 2, boss.getY() + boss.getHeight() / 2, 20, 0, Color.RED, 8f,
-                Math.cos(Math.toRadians(i)), Math.sin(Math.toRadians(i))));
+        boss.getAttacks()
+            .add(new Sphere(boss, boss.getX() + boss.getSize() / 2, boss.getY() + boss.getHeight() / 2, 20, 0, Color.RED, 8f, i));
       }
       shotSound.play(4);
     }
@@ -79,10 +70,10 @@ public class Phase2 extends Phase {
   public void bayblades() {
     if (baybladeTimer == 0) {
       if (baybladeRight) {
-        specialAttacks.add(new Bayblade(boss, boss.getX(), 150, 0.2f, 1.5f, 100, Color.yellow));
+        boss.getAttacks().add(new Beyblade(boss, boss.getX(), 150, 0.2f, 1.5f, 100, Color.yellow));
         baybladeRight = false;
       } else {
-        specialAttacks.add(new Bayblade(boss, boss.getX() + boss.getSize(), 150, -0.2f, 1.5f, 100, Color.yellow));
+        boss.getAttacks().add(new Beyblade(boss, boss.getX() + boss.getSize(), 150, -0.2f, 1.5f, 100, Color.yellow));
         baybladeRight = true;
       }
     }
@@ -91,9 +82,5 @@ public class Phase2 extends Phase {
     if (baybladeTimer == 500) {
       baybladeTimer = 0;
     }
-  }
-
-  public void destroy() {
-
   }
 }

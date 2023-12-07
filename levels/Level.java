@@ -13,7 +13,6 @@ import game.GameScreen;
 import game.GameState;
 import game.Utils;
 import player.Player;
-import player.PlayerLight;
 import sounds.Music;
 
 public abstract class Level {

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import levels.Level;
+import levels.LevelManager;
 import player.PlayerManager;
 import sounds.SoundManager;
 

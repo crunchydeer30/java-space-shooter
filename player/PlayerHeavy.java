@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import game.Bullet;
+import attacks.Attack;
+import attacks.Sphere;
 import game.GameScreen;
 import game.KeyboardManager;
 import sounds.SoundEffect;
@@ -20,7 +21,6 @@ public class PlayerHeavy extends Player {
 	private double x;
 	private double y;
 	private double speed = 2f;
-	public ArrayList<Bullet> bullets = new ArrayList<>();
 	private double rateOfFire = 1f;
 	private double shotTime = 0;
 	private double damage = 100;
@@ -28,6 +28,7 @@ public class PlayerHeavy extends Player {
 	public double currentHP = maxHP;
 	public SoundEffect shotSound = new SoundEffect();
 	public PlayerType type = PlayerType.HEAVY;
+	public ArrayList<Attack> attacks = new ArrayList<Attack>();
 
 	public PlayerType getPlayerType() {
 		return type;
@@ -35,6 +36,10 @@ public class PlayerHeavy extends Player {
 
 	public PlayerHeavy() {
 		calculateDimensions();
+	}
+
+	public ArrayList<Attack> getAttacks() {
+		return attacks;
 	}
 
 	public double getDamage() {
@@ -105,18 +110,15 @@ public class PlayerHeavy extends Player {
 		return rateOfFire;
 	}
 
-	public ArrayList<Bullet> getBullets() {
-		return bullets;
-	}
-
 	public void setPosition(double x, double y) {
 		this.x = x - size / 2;
 		this.y = y - size / 2;
 	};
 
-	public void shoot() {
+	public void attack() {
 		if (shotTime == 0) {
-			bullets.add(new Bullet(x + size / 2 - 15, y, 30, damage, Color.ORANGE, 8f, -Math.cos(Math.toRadians(90)), -Math.sin(Math.toRadians(90))));
+			attacks.add(new Sphere(this, x, y, 10, damage, Color.ORANGE, 12f, 270));
+			attacks.add(new Sphere(this, x + size - 5, y, 10, damage, Color.ORANGE, 12f, 270));
 			shotSound.play(1);
 		}
 		shotTime += rateOfFire;

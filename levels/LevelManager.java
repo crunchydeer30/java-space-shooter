@@ -1,12 +1,9 @@
-package game;
+package levels;
 
 import java.util.ArrayList;
 
-import levels.Level;
-import levels.Level1;
-import levels.Level2;
-import levels.Level3;
-import levels.Level4;
+import game.GameScreen;
+import game.GameState;
 
 public class LevelManager {
     public Level currentLevel;

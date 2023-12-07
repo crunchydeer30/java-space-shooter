@@ -1,15 +1,11 @@
 package bosses.UFO.phases;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.Random;
-
+import attacks.Sphere;
+import attacks.special.Beam;
 import bosses.Boss;
 import bosses.Phase;
-import bosses.specialAttacks.Beam;
-import bosses.specialAttacks.SpecialAttack;
-import enemies.Enemy;
-import game.Bullet;
 import game.GameScreen;
 import sounds.SoundEffect;
 
@@ -20,8 +16,6 @@ public class Phase1 extends Phase {
   public double shotTimer = 0;
   public boolean shootLeft = true;
   public double shotAngle = 35;
-  public ArrayList<SpecialAttack> specialAttacks;
-  public ArrayList<Bullet> bullets;
   Random rand = new Random();
   public int beamAttackType = 1;
   public SoundEffect soundEffect = new SoundEffect();
@@ -37,9 +31,6 @@ public class Phase1 extends Phase {
   }
 
   public void shoot() {
-    specialAttacks = boss.getSpecialAttacks();
-    bullets = boss.getBullets();
-
     beams();
     bullets();
   }
@@ -65,20 +56,20 @@ public class Phase1 extends Phase {
     if (beamTimer == 0) {
       if (beamAttackType == 0) {
         for (int i = -2; i < 5; i++) {
-          specialAttacks.add(new Beam(boss.getX() + boss.getSize() + 30 * i, boss.getY() - 30 * i, 90, Color.RED));
-          specialAttacks.add(new Beam(boss.getX() - 30 * i, boss.getY() - 30 * i, 90, Color.RED));
+          boss.getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() - 30 * i, 90, Color.RED));
+          boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() - 30 * i, 90, Color.RED));
         }
       } else {
         for (int i = 0; i < 6; i++) {
-          specialAttacks
-              .add(new Beam(boss.getX() + boss.getSize() + 30 * i, boss.getY() - 10 * i, 90 - 5 * i, Color.RED));
-          specialAttacks.add(new Beam(boss.getX() - 30 * i, boss.getY() - 10 * i, 90 + 2.5 * i, Color.RED));
+          boss
+              .getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() - 10 * i, 90 - 5 * i, Color.RED));
+          boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() - 10 * i, 90 + 2.5 * i, Color.RED));
         }
 
         for (int i = 0; i < 6; i++) {
-          specialAttacks
-              .add(new Beam(boss.getX() + boss.getSize() + 30 * i, boss.getY() + 60 * i, 90 + 6.5f * i, Color.RED));
-          specialAttacks.add(new Beam(boss.getX() - 30 * i, boss.getY() + 60 * i, 90 - 6.5f * i, Color.RED));
+          boss
+              .getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() + 60 * i, 90 + 6.5f * i, Color.RED));
+          boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() + 60 * i, 90 - 6.5f * i, Color.RED));
         }
       }
     }
@@ -104,16 +95,12 @@ public class Phase1 extends Phase {
         }
       }
 
-      bullets.add(new Bullet(boss.getX() + boss.getSize() / 2, boss.getY() + boss.getHeight() / 2, 25, 0, Color.RED, 6f,
-          Math.cos(Math.toRadians(shotAngle)), Math.sin(Math.toRadians(shotAngle))));
+      boss.getAttacks().add(new Sphere(boss, boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 25, 5, Color.RED, 12f, shotAngle));
     }
 
     shotTimer += 20;
     if (shotTimer >= 50) {
       shotTimer = 0;
     }
-  }
-
-  public void destroy() {
   }
 }

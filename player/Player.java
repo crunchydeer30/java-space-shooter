@@ -1,13 +1,9 @@
 package player;
 
-import java.awt.geom.Area;
-import enemies.Enemy;
-import game.Bullet;
 import game.Entity;
 import game.GameScreen;
 import game.KeyboardManager;
 
-import java.util.ArrayList;
 
 public abstract class Player extends Entity {
 	KeyboardManager keyboardManager = GameScreen.keyboardManager;
@@ -21,9 +17,8 @@ public abstract class Player extends Entity {
 
 	public void update() {
 		move();
-		updateBullets();
+		updateAttacks();
 		checkBounds();
-		registerIncomingDamage();
 	}
 
 	public void move() {
@@ -44,7 +39,7 @@ public abstract class Player extends Entity {
 		}
 
 		if (keyboardManager.isKeySpace) {
-			shoot();
+			attack();
 		}
 	}
 
@@ -59,30 +54,6 @@ public abstract class Player extends Entity {
 			setX(0);;
 		} else if (getX() < 0) {
 			setX(GameScreen.gameWidth - getSize());
-		}
-	}
-
-	@Override
-	public void updateBullets() {
-        for (int i = 0; i < getBullets().size(); i++) {
-            getBullets().get(i).update();
-        }
-    }
-
-	public void registerIncomingDamage() {
-		ArrayList<Enemy> enemies = GameScreen.levelManager.currentLevel.getEnemies();
-
-		for (int i = 0; i < enemies.size(); i++) {
-			ArrayList<Bullet> enemyBullets = enemies.get(i).getBullets();
-			for (int j = 0; j < enemyBullets.size(); j++) {
-				Bullet bullet = enemyBullets.get(j);
-				Area bulletHitbox = new Area(bullet.getHitbox());
-				if (bulletHitbox.intersects(this.getHitbox().getBounds2D())) {
-					enemyBullets.remove(bullet);
-					this.setCurrentHP(this.getCurrentHP() - bullet.getDamage());
-					break;
-				}
-			}
 		}
 	}
 }

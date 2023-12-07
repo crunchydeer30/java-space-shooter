@@ -7,8 +7,8 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-import bosses.specialAttacks.SpecialAttack;
-import game.Bullet;
+import attacks.Attack;
+import attacks.Sphere;
 
 public class Grunt extends Enemy {
     Random rand = new Random();
@@ -26,16 +26,16 @@ public class Grunt extends Enemy {
     private double currentHP = maxHP;
     public int movementType = 0;
     private double movementTime = 0;   
-    public ArrayList<Bullet> bullets = new ArrayList<>();
-    public ArrayList<SpecialAttack> projectiles = new ArrayList<SpecialAttack>();
+    public ArrayList<Attack> attacks = new ArrayList<Attack>();
 
-    public ArrayList<SpecialAttack> getProjectiles() {
-        return projectiles;
-    }
 
     public Grunt() {
         calculateDimensions();
     }
+
+    public ArrayList<Attack> getAttacks() {
+		return attacks;
+	}
 
     public double getDamage() {
         return damage;
@@ -105,10 +105,6 @@ public class Grunt extends Enemy {
         return rateOfFire;
     }
 
-    public ArrayList<Bullet> getBullets() {
-        return bullets;
-    }
-
     public void move() {
         if (movementTime == 0) {
             movementType = rand.nextInt(3);
@@ -130,9 +126,9 @@ public class Grunt extends Enemy {
         }
     }
 
-    public void shoot() {
+    public void attack() {
         if (shotTime == 0) {
-            bullets.add(new Bullet(x + size / 2 - 5, y, 10, damage, Color.YELLOW, 8f, Math.cos(Math.toRadians(90)), Math.sin(Math.toRadians(90))));
+            attacks.add(new Sphere(this, x + size / 2 - 5, y, 10, damage, Color.YELLOW, 8f, 90));
         }
         shotTime += rateOfFire;
         if (shotTime > 50) {

@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import game.Bullet;
+import attacks.Attack;
+import attacks.Sphere;
 import game.GameScreen;
 import game.KeyboardManager;
 import sounds.SoundEffect;
@@ -20,13 +21,13 @@ public class PlayerLight extends Player {
 	private double x;
 	private double y;
 	private double speed = 8f;
-	public ArrayList<Bullet> bullets = new ArrayList<>();
 	private double rateOfFire = 5f;
 	private double shotTime = 0;
 	private double damage = 25;
 	public double maxHP = 100;
 	public double currentHP = maxHP;
 	public SoundEffect shotSound = new SoundEffect();
+	public ArrayList<Attack> attacks = new ArrayList<Attack>();
 
 	public PlayerType type = PlayerType.LIGHT;
 
@@ -34,8 +35,12 @@ public class PlayerLight extends Player {
 		return type;
 	}
 
-    public PlayerLight() {
+  public PlayerLight() {
 		calculateDimensions();
+	}
+
+	public ArrayList<Attack> getAttacks() {
+		return attacks;
 	}
 
 	public double getDamage() {
@@ -106,21 +111,15 @@ public class PlayerLight extends Player {
 		return rateOfFire;
 	}
 
-	public ArrayList<Bullet> getBullets() {
-		return bullets;
-	}
-
 	public void setPosition(double x, double y) {
 		this.x = x - size / 2;
 		this.y = y - size / 2;
 	};
 
-	public void shoot() {
+	public void attack() {
 		if (shotTime == 0) {
-			bullets.add(new Bullet(x, y, 10, damage, Color.ORANGE, 12f, -Math.cos(Math.toRadians(90)),
-					-Math.sin(Math.toRadians(90))));
-			bullets.add(new Bullet(x + size - 5, y, 10, damage, Color.ORANGE, 12f, -Math.cos(Math.toRadians(90)),
-					-Math.sin(Math.toRadians(90))));
+			attacks.add(new Sphere(this, x, y, 10, damage, Color.ORANGE, 12f, 270));
+			attacks.add(new Sphere(this, x + size - 5, y, 10, damage, Color.ORANGE, 12f, 270));
 			shotSound.play(1);
 		}
 		shotTime += rateOfFire;

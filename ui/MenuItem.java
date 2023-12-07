@@ -9,7 +9,6 @@ import game.GameScreen;
 public class MenuItem {
     private String text;
     private Font font;
-    private int x;
     private int y;
     private Color color;
     private Graphics2D g2;
@@ -18,7 +17,6 @@ public class MenuItem {
     public MenuItem (String text, Font font, Color color, int x, int y) {
         this.text = text;
         this.font = font;
-        this.x = x;
         this.y = y;
         this.color = color;
     }

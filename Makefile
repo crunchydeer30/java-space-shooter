@@ -10,16 +10,19 @@ CLASSES = \
 	game/GameScreen.java \
 	game/KeyboardManager.java \
 	game/Background.java \
-	game/Bullet.java \
 	game/Entity.java \
 	game/StateManager.java \
-	game/LevelManager.java \
 	game/BackgroundManager.java \
 	game/Utils.java \
 	player/Player.java \
 	player/PlayerLight.java \
 	player/PlayerHeavy.java \
 	player/PlayerManager.java \
+	attacks/Attack.java \
+	attacks/Sphere.java \
+	attacks/special/Beam.java \
+	attacks/special/Beyblade.java \
+	attacks/special/Pulse.java \
 	sounds/SoundManager.java \
 	sounds/SoundEffect.java \
 	sounds/Music.java \
@@ -34,11 +37,7 @@ CLASSES = \
 	bosses/UFO/phases/Phase4.java \
 	bosses/UFO/phases/Phase5.java \
 	bosses/UFO/phases/Phase6.java \
-	bosses/specialAttacks/SpecialAttack.java \
-	bosses/specialAttacks/Beam.java \
-	bosses/specialAttacks/Bayblade.java \
-	bosses/specialAttacks/Circle.java \
-	bosses/specialAttacks/Pulse.java \
+	levels/LevelManager.java \
 	levels/Level.java \
 	levels/Level1.java \
 	levels/Level2.java \

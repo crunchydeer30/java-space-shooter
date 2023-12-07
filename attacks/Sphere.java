@@ -6,16 +6,14 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
-
-import enemies.Enemy;
 import game.Entity;
+import game.GameScreen;
 
 public class Sphere extends Attack {
     private Shape shape;
     private double x;
     private double y;
-    private double velocity;
+    private double speed;
     private double size;
     private Color color;
     private double angle;
@@ -23,12 +21,12 @@ public class Sphere extends Attack {
     public int bulletAngle = 0;
     public Entity entity;
 
-    public Sphere(Entity entity, double x, double y, double size, double damage, Color color, double velocity, double angle) {
+    public Sphere(Entity entity, double x, double y, double size, double damage, Color color, double speed, double angle) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.color = color;
-        this.velocity = velocity;
+        this.speed = speed;
         this.angle = angle;
         this.shape = new Ellipse2D.Double(0, 0, size, size);
         this.damage = damage;
@@ -47,11 +45,10 @@ public class Sphere extends Attack {
         return new Area(new Ellipse2D.Double(x, y, size, size));
     }
 
-    public boolean inBounds(int width, int height) {
-        if (x > width || x < 0 || y > height || y < 0) {
-            return false;
+    public void checkBounds() {
+        if (x > GameScreen.gameWidth || x < 0 || y > GameScreen.gameHeight || y < 0) {
+            entity.getAttacks().remove(this);
         }
-        return true;
     }
 
     public void setX(double x) {
@@ -70,33 +67,15 @@ public class Sphere extends Attack {
         return y;
     }
 
-    public double getVelocity() {
-        return velocity;
+    public double getSpeed() {
+        return speed;
     }
 
     public void update() {
-        x += Math.toRadians(Math.cos(angle)) * velocity;
-        y += Math.toRadians(Math.sin(angle)) * velocity;
-        removeBullet();
-    }
-
-    public void removeBullet() {
-        if (!inBounds(GameScreen.gameWidth, GameScreen.gameHeight)) {
-            ArrayList<Bullet> playerBullets = GameScreen.levelManager.currentLevel.getPlayer().getBullets();
-            ArrayList<Enemy> enemies = GameScreen.levelManager.currentLevel.getEnemies();
-
-            if (playerBullets.indexOf(this) != 1) {
-                playerBullets.remove(this);
-            }
-
-            for (int i = 0; i < enemies.size(); i++) {
-                ArrayList<Bullet> bullets = enemies.get(i).getBullets();
-                if (bullets.indexOf(this) != -1) {
-                    bullets.remove(this);
-                    break;
-                }
-            }
-        }
+        x += Math.cos(Math.toRadians(angle)) * speed;
+        y += Math.sin(Math.toRadians(angle)) * speed;
+        checkBounds();
+        registerHit();
     }
 
     public void draw(Graphics2D g2) {
@@ -105,9 +84,5 @@ public class Sphere extends Attack {
         g2.translate(x, y);
         g2.fill(shape);
         g2.setTransform(oldTransform);
-    }
-
-    public void destroy() {
-
     }
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import attacks.Attack;
 import bosses.Boss;
 import bosses.Phase;
 import bosses.UFO.phases.Phase1;
@@ -13,8 +14,6 @@ import bosses.UFO.phases.Phase3;
 import bosses.UFO.phases.Phase4;
 import bosses.UFO.phases.Phase5;
 import bosses.UFO.phases.Phase6;
-import bosses.specialAttacks.SpecialAttack;
-import game.Bullet;
 
 public class UFO extends Boss {
     private Image sprite = new ImageIcon("assets/graphics/boss.png").getImage();
@@ -25,13 +24,11 @@ public class UFO extends Boss {
     private double y;
     private float speed = 1f;
     private double rateOfFire = 12.5f;
-    public ArrayList<Bullet> bullets = new ArrayList<>();
-    private double maxHP = 20000;
+    private double maxHP = 5000;
     private double currentHP = maxHP;
     private double damage = 20;
-    
-    public ArrayList<SpecialAttack> specialAttacks = new ArrayList<SpecialAttack>();
     public ArrayList<Phase> phases = new ArrayList<Phase>();
+    public ArrayList<Attack> attacks = new ArrayList<Attack>();
     public Phase currentPhase;
 
     public UFO() {
@@ -45,8 +42,8 @@ public class UFO extends Boss {
         currentPhase = phases.get(0);
     }
 
-    public ArrayList<SpecialAttack> getSpecialAttacks() {
-        return specialAttacks;
+    public ArrayList<Attack> getAttacks() {
+        return attacks;
     }
 
     public ArrayList<Phase> getPhases() {
@@ -125,15 +122,11 @@ public class UFO extends Boss {
         return rateOfFire;
     }
 
-    public ArrayList<Bullet> getBullets() {
-        return bullets;
-    }
-
     public void move() {
         currentPhase.move();
     }
 
-    public void shoot() {
+    public void attack() {
         if (currentHP <= maxHP * 0.15) {
             currentPhase = phases.get(5);
         } else if (currentHP <= maxHP * 0.25) {

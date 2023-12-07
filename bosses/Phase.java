@@ -8,6 +8,4 @@ public abstract class Phase {
   public abstract void shoot();
 
   public abstract void move();
-
-  public abstract void destroy();
 }

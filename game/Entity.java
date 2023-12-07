@@ -10,13 +10,9 @@ import java.util.ArrayList;
 import attacks.Attack;
 
 public abstract class Entity {
-    public ArrayList<Bullet> bullets;
-
     public abstract void update();
 
     public abstract void checkBounds();
-
-    public abstract void shoot();
 
     public abstract double getX();
 
@@ -50,13 +46,11 @@ public abstract class Entity {
 
     public abstract void setMaxHP(double maxHP);
 
-    public abstract ArrayList<Bullet> getBullets();
-
     public abstract void move();
 
-    public abstract void registerIncomingDamage();
-
     public abstract double getDamage();
+
+    public abstract void attack();
 
     public abstract ArrayList<Attack> getAttacks();
 
@@ -98,7 +92,7 @@ public abstract class Entity {
 
 		drawHP(g2);
         drawHitbox(g2);
-        drawBullets(g2);
+        drawAttacks(g2);
 	}
 
     public boolean inBounds(int width, int height) {
@@ -109,15 +103,15 @@ public abstract class Entity {
         return true;
     }
 
-    public void drawBullets(Graphics2D g2) {
-        for (int i = 0; i < getBullets().size(); i++) {
-            getBullets().get(i).draw(g2);
+    public void drawAttacks(Graphics2D g2) {
+        for (int i = 0; i < getAttacks().size(); i++) {
+            getAttacks().get(i).draw(g2);
         }
     }
 
-    public void updateBullets() {
-        for (int i = 0; i < getBullets().size(); i++) {
-            getBullets().get(i).update();
+    public void updateAttacks() {
+        for (int i = 0; i < getAttacks().size(); i++) {
+            getAttacks().get(i).update();
         }
     }
 

@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
+import bosses.specialAttacks.SpecialAttack;
 import game.Bullet;
 
 public class Officer extends Enemy {
@@ -26,6 +27,12 @@ public class Officer extends Enemy {
     private double damage = 20;
     public int movementType = 0;
     private double movementTime = 0;
+    
+    public ArrayList<SpecialAttack> projectiles = new ArrayList<SpecialAttack>();
+
+    public ArrayList<SpecialAttack> getProjectiles() {
+        return projectiles;
+    }
 
     public Officer() {
         calculateDimensions();

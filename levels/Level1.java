@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
+import bosses.Boss;
 import enemies.Enemy;
 import enemies.Grunt;
 import enemies.Officer;
@@ -17,12 +18,12 @@ public class Level1 extends Level {
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
 
-    public int enemiesCount = 2;
+    public int enemiesCount = 12;
     public int enemiesKilled = 0;
 
     public int enemiesSpawned = 0;
     public int enenySpawnTimer = 0;
-    public int enenySpawnDelay = 200;
+    public int enenySpawnDelay = 100;
 
     public Image backgroundImage = new ImageIcon("assets/graphics/background.png").getImage();
 
@@ -30,6 +31,10 @@ public class Level1 extends Level {
     public int cutsceneY = 0;
 
     public int levelMusic = 0;
+
+    public Boss getBoss() {
+        return null;
+    }
 
     public int getLevelMusic() {
         return levelMusic;

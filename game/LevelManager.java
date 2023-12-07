@@ -16,9 +16,9 @@ public class LevelManager {
     public void init() {
         currentLevelIdx = 0;
         levelList.removeAll(levelList);
-        levelList.add(new Level1());
-        levelList.add(new Level2());
-        levelList.add(new Level3());
+        // levelList.add(new Level1());
+        // levelList.add(new Level2());
+        // levelList.add(new Level3());
         levelList.add(new Level4());
         currentLevel = levelList.get(0);
         currentLevel.init();
@@ -38,8 +38,6 @@ public class LevelManager {
                 GameScreen.stateManager.setGameState(GameState.MENU);
             } else {
                 Level prevLevel = currentLevel;
-                prevLevel.getPlayer().getBullets().removeAll(prevLevel.getPlayer().getBullets());
-                prevLevel.setEnemies(null);
                 currentLevel = levelList.get(curIdx + 1);
                 levelList.remove(prevLevel);
                 currentLevel.init();

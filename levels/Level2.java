@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
+import bosses.Boss;
 import enemies.Enemy;
 import enemies.Grunt;
 import game.GameScreen;
@@ -25,6 +26,10 @@ public class Level2 extends Level {
     public Image backgroundImage = new ImageIcon("assets/graphics/background.png").getImage();
 
     public int levelMusic = 0;
+
+    public Boss getBoss() {
+        return null;
+    }
 
     public int getLevelMusic() {
         return levelMusic;

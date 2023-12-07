@@ -6,14 +6,15 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-import enemies.Boss;
+import bosses.Boss;
+import bosses.UFO.UFO;
 import enemies.Enemy;
 import game.GameScreen;
 import player.Player;
 
 public class Level4 extends Level {
     public Player player;
-    public ArrayList<Enemy> enemies;
+    public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     public boolean isCompleted = false;
 
     public int enemiesCount = 1;
@@ -25,7 +26,12 @@ public class Level4 extends Level {
 
     public Image backgroundImage = new ImageIcon("assets/graphics/background_3.png").getImage();
 
-    public int levelMusic = 0;
+    public int levelMusic = 3;
+    public Boss boss;
+
+    public Boss getBoss() {
+        return this.boss;
+    }
 
     public int getLevelMusic() {
         return levelMusic;
@@ -90,15 +96,12 @@ public class Level4 extends Level {
     public void spawnEnemies() {
         if (enemiesSpawned < enemiesCount) {
             if (enenySpawnTimer == 0) {
-                Enemy boss = new Boss();
-                Random rand = new Random();
-                boss.setPosition(rand.nextInt((int) (GameScreen.gameWidth - boss.getSize())), 50);
+                UFO boss = new UFO();
+                this.boss = boss;
+                boss.setPosition((GameScreen.gameWidth / 2 - boss.getSize()), 100);
                 enemies.add(boss);
                 enemiesSpawned++;
             }
         }
-
     }
-
-    
 }

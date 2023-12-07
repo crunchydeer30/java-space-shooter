@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import bosses.Boss;
 import enemies.Enemy;
 import game.BackgroundManager;
 import game.GameScreen;
@@ -45,6 +46,8 @@ public abstract class Level {
     public abstract void setEnemiesKilled(int enemiesKilled);
 
     public abstract int getLevelMusic();
+
+    public abstract Boss getBoss();
 
     abstract void spawnEnemies();
 

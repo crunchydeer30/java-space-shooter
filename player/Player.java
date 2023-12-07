@@ -77,7 +77,7 @@ public abstract class Player extends Entity {
 			for (int j = 0; j < enemyBullets.size(); j++) {
 				Bullet bullet = enemyBullets.get(j);
 				Area bulletHitbox = new Area(bullet.getHitbox());
-				if (bulletHitbox.intersects(this.getHitbox())) {
+				if (bulletHitbox.intersects(this.getHitbox().getBounds2D())) {
 					enemyBullets.remove(bullet);
 					this.setCurrentHP(this.getCurrentHP() - bullet.getDamage());
 					break;

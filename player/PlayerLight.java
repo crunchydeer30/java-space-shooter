@@ -14,14 +14,14 @@ import sounds.SoundEffect;
 public class PlayerLight extends Player {
     KeyboardManager keyboardManager = GameScreen.keyboardManager;
 	private Image sprite = new ImageIcon("assets/graphics/spaceship.png").getImage();
-	private double size = 64;
+	private double size = 50;
 	private double width;
 	private double height;
 	private double x;
 	private double y;
-	private double speed = 4f;
+	private double speed = 8f;
 	public ArrayList<Bullet> bullets = new ArrayList<>();
-	private double rateOfFire = 3f;
+	private double rateOfFire = 5f;
 	private double shotTime = 0;
 	private double damage = 25;
 	public double maxHP = 100;
@@ -117,7 +117,9 @@ public class PlayerLight extends Player {
 
 	public void shoot() {
 		if (shotTime == 0) {
-			bullets.add(new Bullet(x + size / 2 - 5, y, 10, damage, Color.ORANGE, 8f, -Math.cos(Math.toRadians(90)),
+			bullets.add(new Bullet(x, y, 10, damage, Color.ORANGE, 12f, -Math.cos(Math.toRadians(90)),
+					-Math.sin(Math.toRadians(90))));
+			bullets.add(new Bullet(x + size - 5, y, 10, damage, Color.ORANGE, 12f, -Math.cos(Math.toRadians(90)),
 					-Math.sin(Math.toRadians(90))));
 			shotSound.play(1);
 		}

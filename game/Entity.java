@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.util.ArrayList;
+
+import attacks.Attack;
 
 public abstract class Entity {
     public ArrayList<Bullet> bullets;
@@ -55,13 +58,16 @@ public abstract class Entity {
 
     public abstract double getDamage();
 
+    public abstract ArrayList<Attack> getAttacks();
+
     public void setPosition(double x, double y) {
         setX(x);
         setY(y);
     }
 
-    public Rectangle getHitbox() {
-        return new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
+    public Shape getHitbox() {
+        Shape shape = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
+        return shape;
     }
 
     public void drawHP(Graphics2D g2) {
@@ -81,9 +87,9 @@ public abstract class Entity {
     }
 
     public void drawHitbox(Graphics2D g2) {
-        Rectangle hitboxShape = getHitbox();
+        Shape hitboxShape = getHitbox();
         g2.setColor(Color.red);
-        g2.draw(hitboxShape.getBounds2D());
+        g2.draw(hitboxShape);
     }
 
     public void draw(Graphics2D g2) {
@@ -91,7 +97,7 @@ public abstract class Entity {
 		g2.drawImage(getSprite(), (int)getX(), (int)getY(),  (int)getWidth(), (int)getHeight(), null);
 
 		drawHP(g2);
-        // drawHitbox(g2);
+        drawHitbox(g2);
         drawBullets(g2);
 	}
 

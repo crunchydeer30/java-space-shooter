@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
+import bosses.specialAttacks.SpecialAttack;
 import game.Bullet;
 
 public class Grunt extends Enemy {
@@ -17,15 +18,20 @@ public class Grunt extends Enemy {
 	private double height;
     private double x;
     private double y;
-    private float speed = 1.5f;
-    private double rateOfFire = .25f;
+    private float speed = 3f;
+    private double rateOfFire = 1f;
     private double shotTime = 0;
     private double damage = 10;
-    private double maxHP = 100;
+    private double maxHP = 50;
     private double currentHP = maxHP;
     public int movementType = 0;
     private double movementTime = 0;   
     public ArrayList<Bullet> bullets = new ArrayList<>();
+    public ArrayList<SpecialAttack> projectiles = new ArrayList<SpecialAttack>();
+
+    public ArrayList<SpecialAttack> getProjectiles() {
+        return projectiles;
+    }
 
     public Grunt() {
         calculateDimensions();

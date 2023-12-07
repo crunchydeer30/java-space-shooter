@@ -34,9 +34,6 @@ public class Phase1 extends Phase {
   }
 
   public void move() {
-    if (boss.getY() <= 50) {
-      boss.setY(boss.getY() + 0.5f);
-    }
 
     if (beamTimer > 100) {
       if (moveRight) {

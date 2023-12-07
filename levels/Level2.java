@@ -2,6 +2,7 @@ package levels;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 
@@ -95,7 +96,8 @@ public class Level2 extends Level {
     public void spawnEnemies() {
         if (enemiesSpawned < enemiesCount) {
             Boss enemy = new Jet();
-            enemy.setPosition(GameScreen.gameWidth / 2, -200);
+
+            enemy.setPosition(GameScreen.gameWidth / 2 - enemy.getSize() / 2, 100);
             enemies.add(enemy);
             enemiesSpawned++;
         }

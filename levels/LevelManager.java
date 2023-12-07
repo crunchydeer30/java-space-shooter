@@ -13,7 +13,7 @@ public class LevelManager {
     public void init() {
         currentLevelIdx = 0;
         levelList.removeAll(levelList);
-        levelList.add(new Level1());
+        // levelList.add(new Level1());
         levelList.add(new Level2());
         // levelList.add(new Level3());
         levelList.add(new Level4());

@@ -10,7 +10,7 @@ import attacks.Attack;
 import attacks.Sphere;
 import game.GameScreen;
 import game.KeyboardManager;
-import sounds.SoundEffect;
+import sounds.SoundEffectPlayer;
 
 public class PlayerHeavy extends Player {
 	KeyboardManager keyboardManager = GameScreen.keyboardManager;
@@ -26,7 +26,7 @@ public class PlayerHeavy extends Player {
 	private double damage = 100;
 	public double maxHP = 200;
 	public double currentHP = maxHP;
-	public SoundEffect shotSound = new SoundEffect();
+	public SoundEffectPlayer soundEffectPlayer = new SoundEffectPlayer();
 	public PlayerType type = PlayerType.HEAVY;
 	public ArrayList<Attack> attacks = new ArrayList<Attack>();
 
@@ -119,7 +119,7 @@ public class PlayerHeavy extends Player {
 		if (shotTime == 0) {
 			attacks.add(new Sphere(this, x, y, 10, damage, Color.ORANGE, 12f, 270));
 			attacks.add(new Sphere(this, x + size - 5, y, 10, damage, Color.ORANGE, 12f, 270));
-			shotSound.play(1);
+			soundEffectPlayer.play("shot");
 		}
 		shotTime += rateOfFire;
 

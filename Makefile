@@ -24,8 +24,8 @@ CLASSES = \
 	attacks/special/Beyblade.java \
 	attacks/special/Pulse.java \
 	sounds/SoundManager.java \
-	sounds/SoundEffect.java \
-	sounds/Music.java \
+	sounds/SoundEffectPlayer.java \
+	sounds/MusicPlayer.java \
 	enemies/Enemy.java \
 	enemies/Grunt.java \
 	enemies/Officer.java \

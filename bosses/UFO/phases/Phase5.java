@@ -52,7 +52,7 @@ public class Phase5 extends Phase {
     }
 
     pulseTimer++;
-    if (pulseTimer == 1000) {
+    if (pulseTimer >= 200) {
       pulseTimer = 0;
     }
   }
@@ -66,7 +66,7 @@ public class Phase5 extends Phase {
     }
 
     beamTimer++;
-    if (beamTimer == 400) {
+    if (beamTimer >= 200) {
       beamTimer = 0;
     }
   }

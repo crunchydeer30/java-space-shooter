@@ -47,7 +47,7 @@ public class Phase3 extends Phase {
   public void beams() {
     if (beamTimer == 0) {
       for (int i = 0; i < GameScreen.gameHeight + (int)(GameScreen.gameHeight / 4); i += (int) (GameScreen.gameHeight / 4)) {
-        boss.getAttacks().add(new Beam(boss, 0, i, 90, Color.RED));
+        boss.getAttacks().add(new Beam(boss, 0, i, 0, Color.RED));
       }
     }
     

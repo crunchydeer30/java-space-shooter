@@ -3,13 +3,13 @@ package bosses.UFO.phases;
 import bosses.Boss;
 import bosses.Phase;
 import game.GameScreen;
-import sounds.SoundEffect;
+import sounds.SoundEffectPlayer;
 
 public class Phase6 extends Phase {
   public double shotTimer = 0;
   public double baybladeTimer = 0;
   public boolean moveRight = true;
-  public SoundEffect soundEffect = new SoundEffect();
+  public SoundEffectPlayer soundEffect = new SoundEffectPlayer();
   public int shotPattern = 0;
   public Boss boss;
 
@@ -36,9 +36,5 @@ public class Phase6 extends Phase {
         moveRight = true;
       }
     }
-  }
-
-  public void destroy() {
-
   }
 }

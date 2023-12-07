@@ -7,7 +7,7 @@ import attacks.special.Beam;
 import bosses.Boss;
 import bosses.Phase;
 import game.GameScreen;
-import sounds.SoundEffect;
+import sounds.SoundEffectPlayer;
 
 public class Phase1 extends Phase {
   Boss boss;
@@ -18,7 +18,7 @@ public class Phase1 extends Phase {
   public double shotAngle = 35;
   Random rand = new Random();
   public int beamAttackType = 1;
-  public SoundEffect soundEffect = new SoundEffect();
+  public SoundEffectPlayer soundEffect = new SoundEffectPlayer();
 
   public boolean moveRight = true;
 

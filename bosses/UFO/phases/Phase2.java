@@ -7,7 +7,7 @@ import attacks.special.Beyblade;
 import bosses.Boss;
 import bosses.Phase;
 import game.GameScreen;
-import sounds.SoundEffect;
+import sounds.SoundEffectPlayer;
 
 public class Phase2 extends Phase {
   public Boss boss;
@@ -15,7 +15,7 @@ public class Phase2 extends Phase {
   public double baybladeTimer = 0;
   public boolean moveRight = true;
   public boolean baybladeRight = true;
-  public SoundEffect shotSound = new SoundEffect();
+  public SoundEffectPlayer soundEffectPlayer = new SoundEffectPlayer();
 
   public Phase2(Boss boss) {
     this.boss = boss;
@@ -50,7 +50,7 @@ public class Phase2 extends Phase {
         boss.getAttacks()
             .add(new Sphere(boss, boss.getX() + boss.getSize() / 2, boss.getY() + boss.getHeight() / 2, 20, 0, Color.RED, 8f, i));
       }
-      shotSound.play(4);
+      soundEffectPlayer.play("laser");
     }
 
     if (shotTimer == 25) {
@@ -58,7 +58,7 @@ public class Phase2 extends Phase {
         boss.getAttacks()
             .add(new Sphere(boss, boss.getX() + boss.getSize() / 2, boss.getY() + boss.getHeight() / 2, 20, 0, Color.RED, 8f, i));
       }
-      shotSound.play(4);
+      soundEffectPlayer.play("laser");
     }
 
     shotTimer++;

@@ -6,14 +6,14 @@ import javax.sound.sampled.Clip;
 
 import game.GameScreen;
 
-public class Music {
+public class MusicPlayer {
     Clip clip;
 
-    public Music(int i) {
+    public MusicPlayer(String name) {
         Thread thread = new Thread() {
             public void run() {
                 try {
-                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(GameScreen.soundManager.soundLibrary[i]);
+                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(SoundManager.MusicTracks.get(name));
                     clip = AudioSystem.getClip();
                     clip.open(audioInputStream);
                     audioInputStream.close();

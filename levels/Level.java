@@ -13,7 +13,7 @@ import game.GameScreen;
 import game.GameState;
 import game.Utils;
 import player.Player;
-import sounds.Music;
+import sounds.MusicPlayer;
 
 public abstract class Level {
     public abstract Image getBackground();
@@ -53,7 +53,7 @@ public abstract class Level {
     public boolean startingCutscenePlayed = false;
     public boolean endingCutscenePlayed = true;
 
-    public Music levelMusic;
+    public MusicPlayer levelMusic;
 
     public void update() {
 
@@ -101,7 +101,7 @@ public abstract class Level {
     }
 
     public void init() {
-        levelMusic = new Music(getLevelMusic());
+        levelMusic = GameScreen.soundManager.createMusicPlayer("afterburner");
         BackgroundManager.setBackground(getBackground());
         setEnemies(new ArrayList<Enemy>());
         setPlayer(GameScreen.playerManager.createPlayer());

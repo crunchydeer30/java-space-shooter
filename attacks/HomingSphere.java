@@ -78,10 +78,8 @@ public class HomingSphere extends Attack {
   }
 
   public void update() {
-    if (!targetCaptured) {
-      System.out.println(Utils.getDistance(x, y, player.getX(), player.getY()));
+    if (!targetCaptured && entity.getY() < player.getY()) {
       angle = Utils.getAnglePoints(player.getX(), player.getY(), x, y);
-      System.out.println(angle);
       if (Utils.getDistance(x, y, player.getX(), player.getY()) < targetDistance) {
         targetCaptured = true;
       }

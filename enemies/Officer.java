@@ -8,7 +8,6 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import attacks.Attack;
-import attacks.HomingSphere;
 import attacks.Sphere;
 
 public class Officer extends Enemy {

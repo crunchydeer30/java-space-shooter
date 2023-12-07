@@ -1,4 +1,4 @@
-package bosses.UFO;
+package bosses.Devil;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -8,15 +8,15 @@ import javax.swing.ImageIcon;
 import attacks.Attack;
 import bosses.Boss;
 import bosses.Phase;
-import bosses.UFO.phases.Phase1;
-import bosses.UFO.phases.Phase2;
-import bosses.UFO.phases.Phase3;
-import bosses.UFO.phases.Phase4;
-import bosses.UFO.phases.Phase5;
-import bosses.UFO.phases.Phase6;
+import bosses.Devil.phases.Phase1;
+import bosses.Devil.phases.Phase2;
+import bosses.Devil.phases.Phase3;
+import bosses.Devil.phases.Phase4;
+import bosses.Devil.phases.Phase5;
+import bosses.Devil.phases.Phase6;
 
-public class UFO extends Boss {
-    private Image sprite = new ImageIcon("assets/graphics/boss_ufo.png").getImage();
+public class Devil extends Boss {
+    private Image sprite = new ImageIcon("assets/graphics/boss_devil.png").getImage();
     private double size = 256;
     private double width;
     private double height;
@@ -31,7 +31,7 @@ public class UFO extends Boss {
     public ArrayList<Attack> attacks = new ArrayList<Attack>();
     public Phase currentPhase;
 
-    public UFO() {
+    public Devil() {
         calculateDimensions();
         phases.add(new Phase1(this));
         phases.add(new Phase2(this));

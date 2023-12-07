@@ -24,6 +24,7 @@ CLASSES = \
 	player/PlayerManager.java \
 	attacks/Attack.java \
 	attacks/Sphere.java \
+	attacks/Laser.java \
 	attacks/HomingSphere.java \
 	attacks/special/Beam.java \
 	attacks/special/Beyblade.java \
@@ -34,14 +35,15 @@ CLASSES = \
 	enemies/Enemy.java \
 	enemies/Grunt.java \
 	enemies/Officer.java \
+	enemies/Ufo.java \
 	bosses/Phase.java \
-	bosses/UFO/UFO.java \
-	bosses/UFO/phases/Phase1.java \
-	bosses/UFO/phases/Phase2.java \
-	bosses/UFO/phases/Phase3.java \
-	bosses/UFO/phases/Phase4.java \
-	bosses/UFO/phases/Phase5.java \
-	bosses/UFO/phases/Phase6.java \
+	bosses/Devil/Devil.java \
+	bosses/Devil/phases/Phase1.java \
+	bosses/Devil/phases/Phase2.java \
+	bosses/Devil/phases/Phase3.java \
+	bosses/Devil/phases/Phase4.java \
+	bosses/Devil/phases/Phase5.java \
+	bosses/Devil/phases/Phase6.java \
 	bosses/JET/Jet.java \
 	bosses/JET/phases/Phase1.java \
 	bosses/JET/phases/Phase2.java \

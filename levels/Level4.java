@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import bosses.Boss;
-import bosses.UFO.UFO;
+import bosses.Devil.Devil;
 import enemies.Enemy;
 import game.GameScreen;
 import player.Player;
@@ -96,7 +96,7 @@ public class Level4 extends Level {
     public void spawnEnemies() {
         if (enemiesSpawned < enemiesCount) {
             if (enenySpawnTimer == 0) {
-                UFO boss = new UFO();
+                Devil boss = new Devil();
                 this.boss = boss;
                 boss.setPosition((GameScreen.gameWidth / 2 - boss.getSize()), 100);
                 enemies.add(boss);

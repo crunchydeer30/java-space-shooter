@@ -1,4 +1,4 @@
-package bosses.UFO.phases;
+package bosses.Devil.phases;
 
 import bosses.Boss;
 import bosses.Phase;

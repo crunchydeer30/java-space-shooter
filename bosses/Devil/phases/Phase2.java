@@ -1,4 +1,4 @@
-package bosses.UFO.phases;
+package bosses.Devil.phases;
 
 import java.awt.Color;
 
@@ -62,6 +62,14 @@ public class Phase2 extends Phase {
       soundEffectPlayer.play("laser");
     }
 
+    if (shotTimer == 50) {
+      for (int i = 0; i < 360; i += 15) {
+        boss.getAttacks()
+            .add(new Sphere(boss, boss.getX() + boss.getSize() / 2, boss.getY() + boss.getHeight() / 2, 20, 0, Color.RED, 8f, i));
+      }
+      soundEffectPlayer.play("laser");
+    }
+
     shotTimer++;
     if (shotTimer == 150) {
       shotTimer = 0;
@@ -71,16 +79,16 @@ public class Phase2 extends Phase {
   public void bayblades() {
     if (baybladeTimer == 0) {
       if (baybladeRight) {
-        boss.getAttacks().add(new Beyblade(boss, boss.getX(), 150, 0.2f, 1.5f, 100, Color.yellow));
+        boss.getAttacks().add(new Beyblade(boss, boss.getX(), 50, -1, 2f, 100, Color.darkGray));
         baybladeRight = false;
       } else {
-        boss.getAttacks().add(new Beyblade(boss, boss.getX() + boss.getSize(), 150, -0.2f, 1.5f, 100, Color.yellow));
+        boss.getAttacks().add(new Beyblade(boss, boss.getX() + boss.getSize(), 50, 1f, 2f, 100, Color.darkGray));
         baybladeRight = true;
       }
     }
 
     baybladeTimer++;
-    if (baybladeTimer == 500) {
+    if (baybladeTimer == 250) {
       baybladeTimer = 0;
     }
   }

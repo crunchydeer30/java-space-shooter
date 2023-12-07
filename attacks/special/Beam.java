@@ -2,7 +2,6 @@ package attacks.special;
 
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.geom.Area;
 import java.awt.geom.Line2D;
 import attacks.Attack;
 import game.Entity;
@@ -93,9 +92,6 @@ public class Beam extends Attack {
     g2.setColor(Color.WHITE);
     g2.fillOval((int) (startX - radius / 2 * 0.65), (int) (startY - radius / 2 * 0.65), (int) (radius * 0.65),
         (int) (radius * 0.65));
-
-    g2.setColor(Color.YELLOW);
-    g2.draw(getHitbox());
   }
 }
 

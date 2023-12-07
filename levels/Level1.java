@@ -7,9 +7,9 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import bosses.Boss;
-import bosses.JET.Jet;
 import enemies.Enemy;
 import enemies.Officer;
+import enemies.Ufo;
 import game.GameScreen;
 import player.Player;
 import sounds.MusicPlayer;
@@ -19,12 +19,12 @@ public class Level1 extends Level {
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
 
-    public int enemiesCount = 2;
+    public int enemiesCount = 35;
     public int enemiesKilled = 0;
 
     public int enemiesSpawned = 0;
     public int enenySpawnTimer = 0;
-    public int enenySpawnDelay = 150;
+    public int enenySpawnDelay = 100;
 
     public Image backgroundImage = new ImageIcon("assets/graphics/background_4.png").getImage();
 
@@ -99,13 +99,20 @@ public class Level1 extends Level {
 
     public void spawnEnemies() {
         if (enemiesSpawned < enemiesCount && enenySpawnTimer >= enenySpawnDelay) {
-            Enemy enemy = new Officer();
-            Random rand = new Random();
-            enemy.setPosition(rand.nextInt(100, (int) (GameScreen.gameWidth -
+            Enemy enemy;
+
+            if (new Random().nextInt(2) == 0) {
+                enemy = new Officer();
+            } else {
+                enemy = new Ufo();
+            }
+            
+            enemy.setPosition(new Random().nextInt(100, (int) (GameScreen.gameWidth -
                     enemy.getSize())), 0);
             enemies.add(enemy);
             enemiesSpawned++;
             enenySpawnTimer = 0;
         }
+        enenySpawnTimer++;
     }
 }

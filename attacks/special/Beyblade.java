@@ -78,7 +78,7 @@ public class Beyblade extends Attack {
   public void shootMinorSpheres() {
     if (shotTime == 0) {
       for (int i = 0; i < 360; i += 45) {
-        minorSpheres.add(new Sphere(entity, x + size / 2, y + size / 2, 15, damage, color, 8f, i) {
+        minorSpheres.add(new Sphere(entity, x + size / 2, y + size / 2, 25, damage, color, 8f, i) {
           @Override
           public void update() {
             this.angle += 0.2f;

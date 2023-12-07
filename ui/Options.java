@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import game.GameScreen;
-import game.GameState;
+import stateManager.GameStateType;
 
 public class Options {
     Graphics2D g2;
@@ -72,7 +72,7 @@ public class Options {
 
         if (GameScreen.keyboardManager.isKeyEnter) {
             if (menuItems.indexOf(selectedItem) == 0) {
-                GameScreen.stateManager.setGameState(GameState.MENU);
+                GameScreen.stateManager.setGameState(GameStateType.MENU);
             }
             GameScreen.keyboardManager.isKeyEnter = false;
         }

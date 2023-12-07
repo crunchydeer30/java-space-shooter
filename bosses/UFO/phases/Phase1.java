@@ -18,7 +18,7 @@ public class Phase1 extends Phase {
   public double shotAngle = 35;
   Random rand = new Random();
   public int beamAttackType = 1;
-  public SoundEffectPlayer soundEffect = new SoundEffectPlayer();
+  public SoundEffectPlayer soundEffectPlayer = new SoundEffectPlayer();
 
   public boolean moveRight = true;
 
@@ -32,18 +32,18 @@ public class Phase1 extends Phase {
 
   public void shoot() {
     beams();
-    bullets();
+    // bullets();
   }
 
   public void move() {
     if (beamTimer > 100) {
       if (moveRight) {
-        boss.setX(boss.getX() + 1);
+        boss.setX(boss.getX() + 2);
         if (boss.getX() > GameScreen.gameWidth / 2 + 100) {
           moveRight = false;
         }
       } else {
-        boss.setX(boss.getX() - 1);
+        boss.setX(boss.getX() - 2);
         if (boss.getX() < GameScreen.gameWidth / 2 - 100) {
           moveRight = true;
         }
@@ -72,6 +72,7 @@ public class Phase1 extends Phase {
           boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() + 60 * i, 90 - 6.5f * i, Color.RED));
         }
       }
+      soundEffectPlayer.play("beam");
     }
 
     beamTimer++;
@@ -94,7 +95,6 @@ public class Phase1 extends Phase {
           shootLeft = true;
         }
       }
-
       boss.getAttacks().add(new Sphere(boss, boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 25, 5, Color.RED, 12f, shotAngle));
     }
 

@@ -7,7 +7,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import game.GameScreen;
-import game.GameState;
+import stateManager.GameStateType;
 
 public class TitleScreen {
     private int duration = 0;
@@ -23,7 +23,7 @@ public class TitleScreen {
     public void update() {
         duration--;
         if (duration <= 0) {
-            GameScreen.stateManager.setGameState(GameState.MENU);
+            GameScreen.stateManager.setGameState(GameStateType.MENU);
         }
     }
 }

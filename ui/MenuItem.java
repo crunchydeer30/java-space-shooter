@@ -11,7 +11,7 @@ public class MenuItem {
     private Font font;
     private int y;
     private Color color;
-    private Graphics2D g2;
+    private Graphics2D g2 = GameScreen.g2;
     private boolean isSelected = false;
 
     public MenuItem (String text, Font font, Color color, int x, int y) {

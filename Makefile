@@ -11,9 +11,13 @@ CLASSES = \
 	game/KeyboardManager.java \
 	game/Background.java \
 	game/Entity.java \
-	game/StateManager.java \
 	game/BackgroundManager.java \
 	game/Utils.java \
+	stateManager/StateManager.java \
+	stateManager/GameState.java \
+	stateManager/StateGameplay.java \
+	stateManager/StateMenu.java \
+	stateManager/StateOptions.java \
 	player/Player.java \
 	player/PlayerLight.java \
 	player/PlayerHeavy.java \

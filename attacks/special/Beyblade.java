@@ -59,11 +59,11 @@ public class Beyblade extends Attack {
     x += Math.cos(Math.toRadians(angle)) * speed;
     y += Math.sin(Math.toRadians(angle)) * speed;
 
+    shootMinorSpheres();
+
     for (int i = 0; i < minorSpheres.size(); i++) {
       minorSpheres.get(i).update();
     }
-
-    shootMinorSpheres();
   }
 
   public void draw(Graphics2D g2) {
@@ -78,7 +78,16 @@ public class Beyblade extends Attack {
   public void shootMinorSpheres() {
     if (shotTime == 0) {
       for (int i = 0; i < 360; i += 45) {
-        minorSpheres.add(new Sphere(entity, x + size / 2, y + size / 2, 20, damage, color, 8f, i));
+        minorSpheres.add(new Sphere(entity, x + size / 2, y + size / 2, 15, damage, color, 8f, i) {
+          @Override
+          public void update() {
+            this.angle += 0.2f;
+            this.x += Math.cos(Math.toRadians(this.angle)) * this.speed;
+            this.y += Math.sin(Math.toRadians(this.angle)) * this.speed;
+            this.checkBounds();
+            this.registerHit();
+          }
+        });
       }
     }
     shotTime++;

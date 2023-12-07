@@ -10,10 +10,10 @@ import bosses.Boss;
 import enemies.Enemy;
 import game.BackgroundManager;
 import game.GameScreen;
-import game.GameState;
 import game.Utils;
 import player.Player;
 import sounds.MusicPlayer;
+import stateManager.GameStateType;
 
 public abstract class Level {
     public abstract Image getBackground();
@@ -74,7 +74,7 @@ public abstract class Level {
             }
 
             if (getPlayer().getCurrentHP() <= 0) {
-                GameScreen.stateManager.setGameState(GameState.MENU);
+                GameScreen.stateManager.setGameState(GameStateType.MENU);
             }
 
             spawnEnemies();
@@ -101,7 +101,9 @@ public abstract class Level {
     }
 
     public void init() {
+        System.out.println("Init level");
         levelMusic = GameScreen.soundManager.createMusicPlayer("afterburner");
+        levelMusic.play();
         BackgroundManager.setBackground(getBackground());
         setEnemies(new ArrayList<Enemy>());
         setPlayer(GameScreen.playerManager.createPlayer());
@@ -117,7 +119,7 @@ public abstract class Level {
 
     public void playEndingCutscene() {
         getPlayer().setY(getPlayer().getY() - 5);
-        if (getPlayer().getY() <= 0) {
+        if (getPlayer().getY() <= 100) {
             endingCutscenePlayed = true;
             levelMusic.stop();
             setIsCompleted(true);

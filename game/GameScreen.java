@@ -12,6 +12,7 @@ import levels.Level;
 import levels.LevelManager;
 import player.PlayerManager;
 import sounds.SoundManager;
+import stateManager.StateManager;
 
 
 public class GameScreen extends JPanel implements Runnable {
@@ -28,6 +29,8 @@ public class GameScreen extends JPanel implements Runnable {
 	public static BackgroundManager backgroundManager = new BackgroundManager();
 	public static ArrayList<Level> levelList;
 
+	public static Graphics2D g2;
+
 	public GameScreen() {
 		this.setBackground(Color.BLACK);
 		this.setDoubleBuffered(true);
@@ -37,7 +40,6 @@ public class GameScreen extends JPanel implements Runnable {
 	}
 
 	public void startGameThread() {
-		stateManager.setGameState(GameState.TITLESCREEN);
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
@@ -77,7 +79,7 @@ public class GameScreen extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+		g2 = (Graphics2D) g;
 		stateManager.draw(g2);
-		
 	}
 }

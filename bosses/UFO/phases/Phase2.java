@@ -27,6 +27,7 @@ public class Phase2 extends Phase {
 
   public void shoot() {
     bayblades();
+    bullets();
   }
 
   public void move() {

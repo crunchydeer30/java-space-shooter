@@ -10,14 +10,14 @@ import game.Entity;
 import game.GameScreen;
 
 public class Sphere extends Attack {
-    private Shape shape;
-    private double x;
-    private double y;
-    private double speed;
-    private double size;
-    private Color color;
-    private double angle;
-    private double damage;
+    public Shape shape;
+    public double x;
+    public double y;
+    public double speed;
+    public double size;
+    public Color color;
+    public double angle;
+    public double damage;
     public int bulletAngle = 0;
     public Entity entity;
 

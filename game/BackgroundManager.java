@@ -10,7 +10,7 @@ public class BackgroundManager {
     private int height = GameScreen.gameHeight;
     private int x = 0;
     private int y = 0;
-    private int velocity = 2;
+    private int velocity = 4;
 
     public BackgroundManager() {
 

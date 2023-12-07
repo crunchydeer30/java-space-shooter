@@ -56,20 +56,20 @@ public class Phase1 extends Phase {
     if (beamTimer == 0) {
       if (beamAttackType == 0) {
         for (int i = -2; i < 5; i++) {
-          boss.getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() - 30 * i, 90, Color.RED));
-          boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() - 30 * i, 90, Color.RED));
+          boss.getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() - 30 * i, 90, Color.RED, 100, 150, 40));
+          boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() - 30 * i, 90, Color.RED, 100, 150, 40));
         }
       } else {
         for (int i = 0; i < 6; i++) {
           boss
-              .getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() - 10 * i, 90 - 5 * i, Color.RED));
-          boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() - 10 * i, 90 + 2.5 * i, Color.RED));
+              .getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() - 10 * i, 90 - 5 * i, Color.RED, 100, 150, 40));
+          boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() - 10 * i, 90 + 2.5 * i, Color.RED, 100, 150, 40));
         }
 
         for (int i = 0; i < 6; i++) {
           boss
-              .getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() + 60 * i, 90 + 6.5f * i, Color.RED));
-          boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() + 60 * i, 90 - 6.5f * i, Color.RED));
+              .getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() + 60 * i, 90 + 6.5f * i, Color.RED, 100, 150, 40));
+          boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() + 60 * i, 90 - 6.5f * i, Color.RED, 100, 150, 40));
         }
       }
       soundEffectPlayer.play("beam");

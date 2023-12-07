@@ -27,6 +27,7 @@ CLASSES = \
 	attacks/Laser.java \
 	attacks/HomingSphere.java \
 	attacks/special/Beam.java \
+	attacks/special/HomingBeam.java \
 	attacks/special/Beyblade.java \
 	attacks/special/Pulse.java \
 	sounds/SoundManager.java \

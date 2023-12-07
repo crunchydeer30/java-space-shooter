@@ -28,6 +28,7 @@ public class SoundManager {
         SoundEffects.put("shot", this.getClass().getResource("/assets/sounds/shot.wav"));
         SoundEffects.put("laser", this.getClass().getResource("/assets/sounds/laser.wav"));
         SoundEffects.put("beam", this.getClass().getResource("/assets/sounds/beam.wav"));
+        SoundEffects.put("laser_big", this.getClass().getResource("/assets/sounds/laser_big.wav"));
     }
 
     public void play(String name) {

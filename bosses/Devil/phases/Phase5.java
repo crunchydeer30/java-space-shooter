@@ -60,8 +60,8 @@ public class Phase5 extends Phase {
   public void beams() {
     if (beamTimer == 0) {
       for (int i = -2; i < 5; i++) {
-        boss.getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() - 30 * i, 90, Color.RED));
-        boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() - 30 * i, 90, Color.RED));
+        boss.getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() - 30 * i, 90, Color.RED, 100, 150, 40));
+        boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() - 30 * i, 90, Color.RED, 100, 150, 40));
       }
     }
 

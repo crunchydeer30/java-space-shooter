@@ -51,7 +51,7 @@ public class Phase4 extends Phase {
     if (beamTimer == 0) {
       for (int i = 0; i < GameScreen.gameHeight
           + (int) (GameScreen.gameHeight / 4); i += (int) (GameScreen.gameHeight / 4)) {
-        boss.getAttacks().add(new Beam(boss, 0, i, 0, Color.RED) {
+        boss.getAttacks().add(new Beam(boss, 0, i, 0, Color.RED, 75, 300, 40) {
           @Override
           public void update() {
             this.liveTime = beamTimer - 100;

@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.Random;
 
 import attacks.HomingSphere;
-import attacks.special.Beam;
+import attacks.special.HomingBeam;
 import bosses.Boss;
 import bosses.Phase;
 import game.GameScreen;
@@ -37,7 +37,7 @@ public class Phase2 extends Phase {
       boss.setY(boss.getY() + 2);
     }
 
-    if (beamTimer > 100) {
+    if (beamTimer > 150) {
       if (moveRight) {
         boss.setX(boss.getX() + 2);
         if (boss.getX() > GameScreen.gameWidth / 2 + 100) {
@@ -54,17 +54,41 @@ public class Phase2 extends Phase {
   }
 
   public void beams() {
-    if (beamTimer >= 300) {
-      boss.getAttacks().add(new Beam(boss, boss.getX(), boss.getY() + 80, 90, Color.RED));
-      boss.getAttacks().add(new Beam(boss, boss.getX() + 80, boss.getY() + 80, 90, Color.RED));
+    if (beamTimer == 15) {
+      boss.getAttacks().add(new HomingBeam(boss, boss.getX() + 80, boss.getY() + 80, 90, Color.RED, 35, 100));
+      soundEffectPlayer.play("laser_big");
+    }
+    if (beamTimer == 30) {
+      boss.getAttacks().add(new HomingBeam(boss, boss.getX() + boss.getSize() - 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+      soundEffectPlayer.play("laser_big");
+    }
+    if (beamTimer == 45) {
       boss.getAttacks()
-          .add(new Beam(boss, boss.getX() + boss.getSize(), boss.getY() + 80, 90, Color.RED));
+          .add(new HomingBeam(boss, boss.getX() + 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+          soundEffectPlayer.play("laser_big");
+    }
+    if (beamTimer == 60) {
       boss.getAttacks()
-          .add(new Beam(boss, boss.getX() + boss.getSize() - 80, boss.getY() + 80, 90, Color.RED));
-
-      beamTimer = 0;
+          .add(new HomingBeam(boss, boss.getX() + boss.getSize() - 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+          soundEffectPlayer.play("laser_big");
     }
 
+    if (beamTimer == 75) {
+      boss.getAttacks()
+          .add(new HomingBeam(boss, boss.getX() + 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+          soundEffectPlayer.play("laser_big");
+    }
+
+    if (beamTimer == 90) {
+      boss.getAttacks()
+          .add(new HomingBeam(boss, boss.getX() + boss.getSize() - 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+          soundEffectPlayer.play("laser_big");
+    }
+
+
+    if (beamTimer >= 300) {
+      beamTimer = 0;
+    }
     beamTimer++;
   }
 
@@ -73,10 +97,10 @@ public class Phase2 extends Phase {
       for (int i = 0; i < 180; i += 10) {
         boss.getAttacks()
             .add(new HomingSphere(boss, boss.getX() + 80, boss.getY() + boss.getHeight() / 2, 20,
-                5, Color.YELLOW, 6f, 600));
+                5, Color.YELLOW, 8f, 600));
         boss.getAttacks()
             .add(new HomingSphere(boss, boss.getX() + boss.getWidth() - 80, boss.getY() + boss.getHeight() / 2, 20,
-                5, Color.YELLOW, 6f, 600));
+                5, Color.YELLOW, 8f, 600));
       }
       shotTimer = 0;
     }

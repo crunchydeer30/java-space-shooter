@@ -1,34 +1,38 @@
 package attacks.special;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Line2D;
+
 import attacks.Attack;
 import game.Entity;
 import game.GameScreen;
+import game.Utils;
 import player.Player;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-
-public class Beam extends Attack {
+public class HomingBeam extends Attack {
   public Entity entity;
 
   public double startX;
   public double startY;
   public double endX;
   public double endY;
-  public double speed;
+  public double speed = 40;
   public double timer = 0;
-  public double chargeTime;
-  public double liveTime;
+  public double chargeTime = 100;
+  public double liveTime = 150;
   public double angle;
   public Color color;
   public double radius = 5;
   public double damage = 5;
   public Player player = GameScreen.levelManager.currentLevel.getPlayer();
+  public boolean targetCaptured = false;
+  public double targetDistance = 500;
 
-  public Beam(Entity entity, double startX, double startY, double angle, Color color, double chargeTime, double liveTime, double speed) {
+  public HomingBeam(Entity entity, double startX, double startY, double angle, Color color, double chargeTime,
+      double liveTime) {
     this.startX = startX;
     this.startY = startY;
     this.endX = startX;
@@ -39,16 +43,22 @@ public class Beam extends Attack {
     this.entity = entity;
     this.chargeTime = chargeTime;
     this.liveTime = liveTime;
-    this.speed = speed;
   }
 
   public void update() {
     timer++;
     if (timer < chargeTime) {
       radius += 0.25;
-      endY += Math.sin(Math.toRadians(angle)) * speed;
-      endX += Math.cos(Math.toRadians(angle)) * speed;
+
+      if (!targetCaptured) {
+        angle = Utils.getAnglePoints(player.getX(), player.getY(), endX, endY);
+      }
+
+      endY += -Math.sin(Math.toRadians(angle)) * speed;
+      endX += -Math.cos(Math.toRadians(angle)) * speed;
     }
+
+    targetCaptured = true;
 
     if (timer > liveTime) {
       entity.getAttacks().remove(this);
@@ -97,4 +107,3 @@ public class Beam extends Attack {
         (int) (radius * 0.65));
   }
 }
-

@@ -27,17 +27,18 @@ public class HomingSphere extends Attack {
   public boolean targetCaptured = false;
   public double targetDistance;
 
-  public HomingSphere(Entity entity, double x, double y, double size, double damage, Color color, double speed, double targetDistance) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.color = color;
-        this.speed = speed;
-        this.targetDistance = targetDistance;
-        this.shape = new Ellipse2D.Double(0, 0, size, size);
-        this.damage = damage;
-        this.entity = entity;
-    }
+  public HomingSphere(Entity entity, double x, double y, double size, double damage, Color color, double speed,
+      double targetDistance) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.color = color;
+    this.speed = speed;
+    this.targetDistance = targetDistance;
+    this.shape = new Ellipse2D.Double(0, 0, size, size);
+    this.damage = damage;
+    this.entity = entity;
+  }
 
   public Entity getEntity() {
     return entity;

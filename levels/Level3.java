@@ -10,6 +10,7 @@ import enemies.Enemy;
 import enemies.Officer;
 import game.GameScreen;
 import player.Player;
+import sounds.MusicPlayer;
 
 public class Level3 extends Level {
     public Player player;
@@ -25,13 +26,13 @@ public class Level3 extends Level {
 
     public Image backgroundImage = new ImageIcon("assets/graphics/background.png").getImage();
 
-    public int levelMusic = 0;
+    public MusicPlayer levelMusic = new MusicPlayer("space_harrier");
 
     public Boss getBoss() {
         return null;
     }
 
-    public int getLevelMusic() {
+    public MusicPlayer getLevelMusic() {
         return levelMusic;
     }
 

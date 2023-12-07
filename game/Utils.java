@@ -15,4 +15,18 @@ public class Utils {
 
         return angle;
     }
+
+    public static double getDistance(double x1, double y1, double x2, double y2) {
+        return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    }
+
+    public static float getAnglePoints(double x1, double y1, double x2, double y2) {
+        float angle = (float) Math.toDegrees(Math.atan2(y2 - y1, x2 - x1));
+    
+        if(angle < 0){
+            angle += 360;
+        }
+    
+        return angle;
+    }
 }

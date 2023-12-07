@@ -24,7 +24,7 @@ public class PlayerLight extends Player {
 	private double rateOfFire = 5f;
 	private double shotTime = 0;
 	private double damage = 25;
-	public double maxHP = 100;
+	public double maxHP = 200;
 	public double currentHP = maxHP;
 	public SoundEffectPlayer soundEffectPlayer = new SoundEffectPlayer();
 	public ArrayList<Attack> attacks = new ArrayList<Attack>();

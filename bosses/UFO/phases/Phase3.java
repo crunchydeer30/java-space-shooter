@@ -3,6 +3,7 @@ package bosses.UFO.phases;
 import java.awt.Color;
 import java.util.Random;
 
+import attacks.Sphere;
 import attacks.special.Beam;
 import bosses.Boss;
 import bosses.Phase;
@@ -28,6 +29,7 @@ public class Phase3 extends Phase {
 
   public void shoot() {
     beams();
+    bullets();
   }
 
   public void move() {
@@ -56,6 +58,28 @@ public class Phase3 extends Phase {
     if (beamTimer == 400) {
       beamAttackType = new Random().nextInt(2);
       beamTimer = 0;
+    }
+  }
+
+  public void bullets() {
+    if (shotTimer == 0) {
+      if (shootLeft) {
+        shotAngle += 20;
+        if (shotAngle > 180) {
+          shootLeft = false;
+        }
+      } else {
+        shotAngle -= 20;
+        if (shotAngle < 0) {
+          shootLeft = true;
+        }
+      }
+      boss.getAttacks().add(new Sphere(boss, boss.getX() + boss.getWidth() / 2, boss.getY() + boss.getHeight() / 2, 25, 5, Color.RED, 12f, shotAngle));
+    }
+
+    shotTimer += 20;
+    if (shotTimer >= 50) {
+      shotTimer = 0;
     }
   }
 }

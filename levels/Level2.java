@@ -1,4 +1,5 @@
 package levels;
+
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Random;
@@ -6,32 +7,34 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import bosses.Boss;
+import bosses.JET.Jet;
 import enemies.Enemy;
-import enemies.Grunt;
+import enemies.Officer;
 import game.GameScreen;
 import player.Player;
+import sounds.MusicPlayer;
 
 public class Level2 extends Level {
     public Player player;
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
 
-    public int enemiesCount = 2;
-    
+    public int enemiesCount = 20;
+
     public int enemiesKilled = 0;
-    public int enemiesSpawned = 0;
+    public int enemiesSpawned = 1;
     public int enenySpawnTimer = 0;
     public int enenySpawnDelay = 200;
 
     public Image backgroundImage = new ImageIcon("assets/graphics/background.png").getImage();
 
-    public int levelMusic = 0;
+    public MusicPlayer levelMusic = new MusicPlayer("boss_theme");
 
     public Boss getBoss() {
         return null;
     }
 
-    public int getLevelMusic() {
+    public MusicPlayer getLevelMusic() {
         return levelMusic;
     }
 
@@ -92,19 +95,9 @@ public class Level2 extends Level {
     }
 
     public void spawnEnemies() {
-        if (enemiesSpawned < enemiesCount) {
-            if (enenySpawnTimer == 0) {
-                Enemy enemy = new Grunt();
-                Random rand = new Random();
-                enemy.setPosition(rand.nextInt((int)(GameScreen.gameWidth - enemy.getSize())), 50);
-                enemies.add(enemy);
-                enemiesSpawned++;
-            }
-
-            enenySpawnTimer++;
-            if (enenySpawnTimer >= enenySpawnDelay) {
-                enenySpawnTimer = 0;
-            }
-        }
+        Boss enemy = new Jet();
+        enemy.setPosition(GameScreen.gameWidth / 2, -2 * enemy.getSize());
+        enemies.add(enemy);
+        enemiesSpawned++;
     }
 }

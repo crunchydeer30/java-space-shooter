@@ -24,6 +24,7 @@ CLASSES = \
 	player/PlayerManager.java \
 	attacks/Attack.java \
 	attacks/Sphere.java \
+	attacks/HomingSphere.java \
 	attacks/special/Beam.java \
 	attacks/special/Beyblade.java \
 	attacks/special/Pulse.java \
@@ -41,6 +42,9 @@ CLASSES = \
 	bosses/UFO/phases/Phase4.java \
 	bosses/UFO/phases/Phase5.java \
 	bosses/UFO/phases/Phase6.java \
+	bosses/JET/Jet.java \
+	bosses/JET/phases/Phase1.java \
+	bosses/JET/phases/Phase2.java \
 	levels/LevelManager.java \
 	levels/Level.java \
 	levels/Level1.java \

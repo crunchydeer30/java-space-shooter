@@ -8,6 +8,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import attacks.Attack;
+import attacks.HomingSphere;
 import attacks.Sphere;
 
 public class Officer extends Enemy {
@@ -126,14 +127,12 @@ public class Officer extends Enemy {
     }
 
     public void attack() {
-        if (shotTime == 0) {
-            attacks.add(new Sphere(this, x + size / 2 - 5, y + size, 10, damage, Color.WHITE, 4f, 90));
-            attacks.add(new Sphere(this, x + size / 2 - 5, y + size, 10, damage, Color.WHITE, 4f, 60));
-            attacks.add(new Sphere(this, x + size / 2 - 5, y + size, 10, damage, Color.WHITE, 4f, 120));
-        }
-        shotTime += rateOfFire;
-        if (shotTime > 50) {
+        if (shotTime >= 75) {
+            for (int i = 60; i <= 120; i += 15) {
+                attacks.add(new Sphere(this, x + size / 2 - 5, y + size, 15, damage, Color.WHITE, 6f, i));
+            }
             shotTime = 0;
         }
+        shotTime += rateOfFire;
     }
 }

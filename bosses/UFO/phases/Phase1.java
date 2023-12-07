@@ -32,7 +32,7 @@ public class Phase1 extends Phase {
 
   public void shoot() {
     beams();
-    // bullets();
+    bullets();
   }
 
   public void move() {

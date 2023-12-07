@@ -22,7 +22,8 @@ public class SoundManager {
         MusicTracks.put("afterburner", this.getClass().getResource("/assets/sounds/afterburner.wav"));
         MusicTracks.put("theme", this.getClass().getResource("/assets/sounds/theme.wav"));
         MusicTracks.put("menu", this.getClass().getResource("/assets/sounds/menu.wav"));
-        MusicTracks.put("laser", this.getClass().getResource("/assets/sounds/laser.wav"));
+        MusicTracks.put("space_harrier", this.getClass().getResource("/assets/sounds/space_harrier.wav"));
+        MusicTracks.put("boss_theme", this.getClass().getResource("/assets/sounds/boss_theme.wav"));
 
         SoundEffects.put("shot", this.getClass().getResource("/assets/sounds/shot.wav"));
         SoundEffects.put("laser", this.getClass().getResource("/assets/sounds/laser.wav"));

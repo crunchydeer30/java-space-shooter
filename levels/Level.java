@@ -44,7 +44,7 @@ public abstract class Level {
 
     public abstract void setEnemiesKilled(int enemiesKilled);
 
-    public abstract int getLevelMusic();
+    public abstract MusicPlayer getLevelMusic();
 
     public abstract Boss getBoss();
 
@@ -101,8 +101,7 @@ public abstract class Level {
     }
 
     public void init() {
-        System.out.println("Init level");
-        levelMusic = GameScreen.soundManager.createMusicPlayer("afterburner");
+        levelMusic = getLevelMusic();
         levelMusic.play();
         BackgroundManager.setBackground(getBackground());
         setEnemies(new ArrayList<Enemy>());

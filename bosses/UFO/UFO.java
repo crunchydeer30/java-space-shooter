@@ -16,7 +16,7 @@ import bosses.UFO.phases.Phase5;
 import bosses.UFO.phases.Phase6;
 
 public class UFO extends Boss {
-    private Image sprite = new ImageIcon("assets/graphics/boss.png").getImage();
+    private Image sprite = new ImageIcon("assets/graphics/boss_ufo.png").getImage();
     private double size = 256;
     private double width;
     private double height;

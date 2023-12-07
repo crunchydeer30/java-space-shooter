@@ -7,36 +7,37 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import bosses.Boss;
+import bosses.JET.Jet;
 import enemies.Enemy;
-import enemies.Grunt;
 import enemies.Officer;
 import game.GameScreen;
 import player.Player;
+import sounds.MusicPlayer;
 
 public class Level1 extends Level {
     public Player player;
     public ArrayList<Enemy> enemies;
     public boolean isCompleted = false;
 
-    public int enemiesCount = 12;
+    public int enemiesCount = 2;
     public int enemiesKilled = 0;
 
     public int enemiesSpawned = 0;
     public int enenySpawnTimer = 0;
-    public int enenySpawnDelay = 100;
+    public int enenySpawnDelay = 150;
 
-    public Image backgroundImage = new ImageIcon("assets/graphics/background.png").getImage();
+    public Image backgroundImage = new ImageIcon("assets/graphics/background_4.png").getImage();
 
     public int cutsceneX = 0;
     public int cutsceneY = 0;
 
-    public int levelMusic = 0;
+    public MusicPlayer levelMusic = new MusicPlayer("space_harrier");
 
     public Boss getBoss() {
         return null;
     }
 
-    public int getLevelMusic() {
+    public MusicPlayer getLevelMusic() {
         return levelMusic;
     }
 
@@ -97,25 +98,14 @@ public class Level1 extends Level {
     }
 
     public void spawnEnemies() {
-        if (enemiesSpawned < enemiesCount) {
-            if (enenySpawnTimer == 0) {
-                Enemy enemy;
-                if (enemiesKilled == enemiesCount - 1) {
-                    enemy = new Officer();
-                } else {
-                    enemy = new Grunt();
-                }
-                Random rand = new Random();
-                enemy.setPosition(rand.nextInt((int) (GameScreen.gameWidth -
-                        enemy.getSize())), -enemy.getSize() * 2);
-                enemies.add(enemy);
-                enemiesSpawned++;
-            }
-
-            enenySpawnTimer++;
-            if (enenySpawnTimer >= enenySpawnDelay) {
-                enenySpawnTimer = 0;
-            }
+        if (enemiesSpawned < enemiesCount && enenySpawnTimer >= enenySpawnDelay) {
+            Enemy enemy = new Officer();
+            Random rand = new Random();
+            enemy.setPosition(rand.nextInt(100, (int) (GameScreen.gameWidth -
+                    enemy.getSize())), 0);
+            enemies.add(enemy);
+            enemiesSpawned++;
+            enenySpawnTimer = 0;
         }
     }
 }

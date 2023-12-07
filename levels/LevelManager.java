@@ -14,7 +14,7 @@ public class LevelManager {
         currentLevelIdx = 0;
         levelList.removeAll(levelList);
         levelList.add(new Level1());
-        // levelList.add(new Level2());
+        levelList.add(new Level2());
         // levelList.add(new Level3());
         levelList.add(new Level4());
         currentLevel = levelList.get(0);

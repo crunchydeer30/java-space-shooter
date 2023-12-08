@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import bosses.Boss;
 import enemies.Enemy;
 import game.BackgroundManager;
+import game.Effect;
 import game.GameScreen;
 import game.Utils;
 import player.Player;
@@ -50,12 +51,15 @@ public abstract class Level {
 
     abstract void spawnEnemies();
 
+    public abstract ArrayList<Effect> getEffects();
+
     public boolean startingCutscenePlayed = false;
     public boolean endingCutscenePlayed = true;
 
     public MusicPlayer levelMusic;
 
     public void update() {
+        updateEffects();
 
         if (!startingCutscenePlayed) {
             playStartingCutscene();
@@ -82,6 +86,7 @@ public abstract class Level {
     }
 
     public void draw(Graphics2D g2) {
+        drawEffects(g2);
 
         if (GameScreen.levelManager.currentLevel.getPlayer() != null) {
             GameScreen.levelManager.currentLevel.getPlayer().draw(g2);
@@ -98,6 +103,7 @@ public abstract class Level {
             String text = "Level " + (GameScreen.levelManager.currentLevelIdx + 1);
             g2.drawString(text, Utils.centerX(g2, text), (int) (GameScreen.gameHeight * 0.8));
         }
+
     }
 
     public void init() {
@@ -124,5 +130,17 @@ public abstract class Level {
             setIsCompleted(true);
         }
         getPlayer().update();
+    }
+
+    public void drawEffects(Graphics2D g2) {
+        for (int i = 0; i < getEffects().size(); i++) {
+            getEffects().get(i).draw(g2);
+        }
+    }
+
+    public void updateEffects() {
+        for (int i = 0; i < getEffects().size(); i++) {
+            getEffects().get(i).update();
+        }
     }
 }

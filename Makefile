@@ -13,6 +13,8 @@ CLASSES = \
 	game/Entity.java \
 	game/BackgroundManager.java \
 	game/Utils.java \
+	game/Effect.java \
+	game/Particle.java \
 	stateManager/StateManager.java \
 	stateManager/GameState.java \
 	stateManager/StateGameplay.java \

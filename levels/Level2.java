@@ -2,13 +2,13 @@ package levels;
 
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 
 import bosses.Boss;
 import bosses.JET.Jet;
 import enemies.Enemy;
+import game.Effect;
 import game.GameScreen;
 import player.Player;
 import sounds.MusicPlayer;
@@ -28,6 +28,12 @@ public class Level2 extends Level {
     public Image backgroundImage = new ImageIcon("assets/graphics/background_4.png").getImage();
 
     public MusicPlayer levelMusic = new MusicPlayer("boss_theme");
+
+    public ArrayList<Effect> effects = new ArrayList<Effect>();
+
+    public ArrayList<Effect> getEffects() {
+        return effects;
+    }
 
     public Boss getBoss() {
         return null;

@@ -10,6 +10,7 @@ import bosses.Boss;
 import enemies.Enemy;
 import enemies.Officer;
 import enemies.Ufo;
+import game.Effect;
 import game.GameScreen;
 import player.Player;
 import sounds.MusicPlayer;
@@ -32,6 +33,12 @@ public class Level1 extends Level {
     public int cutsceneY = 0;
 
     public MusicPlayer levelMusic = new MusicPlayer("space_harrier");
+
+    public ArrayList<Effect> effects = new ArrayList<Effect>();
+
+    public ArrayList<Effect> getEffects() {
+        return effects;
+    }
 
     public Boss getBoss() {
         return null;

@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import bosses.Boss;
 import enemies.Enemy;
 import enemies.Officer;
+import game.Effect;
 import game.GameScreen;
 import player.Player;
 import sounds.MusicPlayer;
@@ -27,6 +28,12 @@ public class Level3 extends Level {
     public Image backgroundImage = new ImageIcon("assets/graphics/background.png").getImage();
 
     public MusicPlayer levelMusic = new MusicPlayer("space_harrier");
+
+    public ArrayList<Effect> effects = new ArrayList<Effect>();
+
+    public ArrayList<Effect> getEffects() {
+        return effects;
+    }
 
     public Boss getBoss() {
         return null;

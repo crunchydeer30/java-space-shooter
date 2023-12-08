@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import bosses.Boss;
 import bosses.Devil.Devil;
 import enemies.Enemy;
+import game.Effect;
 import game.GameScreen;
 import player.Player;
 import sounds.MusicPlayer;
@@ -28,6 +29,12 @@ public class Level4 extends Level {
 
     public MusicPlayer levelMusic = new MusicPlayer("afterburner");
     public Boss boss;
+
+    public ArrayList<Effect> effects = new ArrayList<Effect>();
+
+    public ArrayList<Effect> getEffects() {
+        return effects;
+    }
 
     public Boss getBoss() {
         return this.boss;

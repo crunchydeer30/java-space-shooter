@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 import bosses.Boss;
 import enemies.Enemy;
+import enemies.Hiver;
 import enemies.Officer;
 import enemies.Ufo;
 import game.Effect;
@@ -109,7 +110,7 @@ public class Level1 extends Level {
             Enemy enemy;
 
             if (new Random().nextInt(2) == 0) {
-                enemy = new Officer();
+                enemy = new Hiver();
             } else {
                 enemy = new Ufo();
             }

@@ -3,11 +3,14 @@ package bosses.Devil.phases;
 import java.awt.Color;
 import java.util.Random;
 
+import attacks.Sphere;
 import attacks.special.Beam;
+import attacks.special.HomingBeam;
 import attacks.special.Pulse;
 import bosses.Boss;
 import bosses.Phase;
 import game.GameScreen;
+import sounds.SoundEffectPlayer;
 
 public class Phase5 extends Phase {
   public double pulseTimer = 0;
@@ -15,6 +18,9 @@ public class Phase5 extends Phase {
   public double beamTimer = 0;
   public boolean moveRight = true;
   public Boss boss;
+  public double shotTimer;
+  public int attackType = 0;
+  public SoundEffectPlayer soundEffectPlayer = new SoundEffectPlayer();
 
   public Phase5(Boss boss) {
     this.boss = boss;
@@ -25,10 +31,8 @@ public class Phase5 extends Phase {
   }
 
   public void shoot() {
-    // bullets = boss.getBullets();
-    pulse();
+    bullets();
     beams();
-    // bullets();
   }
 
   public void move() {
@@ -45,30 +49,60 @@ public class Phase5 extends Phase {
     }
   }
 
-  public void pulse() {
-    if (pulseTimer == 0) {
-      boss.getAttacks().add(new Pulse(boss, GameScreen.gameWidth * 0.25, GameScreen.gameHeight * 0.25, -1f, 1.5f, 100, Color.RED));
-      boss.getAttacks().add(new Pulse(boss, GameScreen.gameWidth * 0.75, GameScreen.gameHeight * 0.25, 1f, 1.5f, 100, Color.RED));
+  public void bullets() {
+    double projectileSize = 40;
+    if (shotTimer >= 50) {
+      double safeSpace = attackType == 0 ? 0.35 : 0.65;
+      attackType = new Random().nextInt(2);
+      for (int i = 0; i < GameScreen.gameWidth; i += projectileSize) {
+        if (i > GameScreen.gameWidth * safeSpace && i < GameScreen.gameWidth * (safeSpace + 0.2)) {
+          continue;
+        }
+        boss.getAttacks().add(new Sphere(boss, i, 0, projectileSize, 20, Color.RED, 10f, 90));
+      }
+      shotTimer = 0;
     }
 
-    pulseTimer++;
-    if (pulseTimer >= 200) {
-      pulseTimer = 0;
-    }
+    shotTimer++;
   }
 
   public void beams() {
-    if (beamTimer == 0) {
-      for (int i = -2; i < 5; i++) {
-        boss.getAttacks().add(new Beam(boss, boss.getX() + boss.getSize() + 30 * i, boss.getY() - 30 * i, 90, Color.RED, 100, 150, 40));
-        boss.getAttacks().add(new Beam(boss, boss.getX() - 30 * i, boss.getY() - 30 * i, 90, Color.RED, 100, 150, 40));
-      }
+    if (beamTimer == 15) {
+      boss.getAttacks().add(new HomingBeam(boss, boss.getX() + 80, boss.getY() + 80, 90, Color.RED, 35, 100));
+      soundEffectPlayer.play("laser_big");
+    }
+    if (beamTimer == 30) {
+      boss.getAttacks().add(new HomingBeam(boss, boss.getX() + boss.getSize() - 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+      soundEffectPlayer.play("laser_big");
+    }
+    if (beamTimer == 45) {
+      boss.getAttacks()
+          .add(new HomingBeam(boss, boss.getX() + 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+          soundEffectPlayer.play("laser_big");
+    }
+    if (beamTimer == 60) {
+      boss.getAttacks()
+          .add(new HomingBeam(boss, boss.getX() + boss.getSize() - 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+          soundEffectPlayer.play("laser_big");
     }
 
-    beamTimer++;
-    if (beamTimer >= 200) {
+    if (beamTimer == 75) {
+      boss.getAttacks()
+          .add(new HomingBeam(boss, boss.getX() + 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+          soundEffectPlayer.play("laser_big");
+    }
+
+    if (beamTimer == 90) {
+      boss.getAttacks()
+          .add(new HomingBeam(boss, boss.getX() + boss.getSize() - 80, boss.getY() + 80, 90, Color.RED, 35, 75));
+          soundEffectPlayer.play("laser_big");
+    }
+
+
+    if (beamTimer >= 300) {
       beamTimer = 0;
     }
+    beamTimer++;
   }
 
   public void destroy() {

@@ -40,6 +40,7 @@ CLASSES = \
 	enemies/Grunt.java \
 	enemies/Officer.java \
 	enemies/Ufo.java \
+	enemies/Hiver.java \
 	bosses/Phase.java \
 	bosses/Devil/Devil.java \
 	bosses/Devil/phases/Phase1.java \
@@ -51,6 +52,8 @@ CLASSES = \
 	bosses/JET/Jet.java \
 	bosses/JET/phases/Phase1.java \
 	bosses/JET/phases/Phase2.java \
+	bosses/ufo_boss/UFO_Boss.java \
+	bosses/ufo_boss/phases/Phase1.java \
 	levels/LevelManager.java \
 	levels/Level.java \
 	levels/Level1.java \

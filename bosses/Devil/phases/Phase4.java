@@ -54,14 +54,14 @@ public class Phase4 extends Phase {
         boss.getAttacks().add(new Beam(boss, 0, i, 0, Color.RED, 75, 300, 40) {
           @Override
           public void update() {
-            this.liveTime = beamTimer - 100;
             this.timer++;
             if (this.timer < this.chargeTime) {
               radius += 0.25;
             }
-
-            this.endY += Math.sin(Math.toRadians(this.angle)) * this.speed + (new Random().nextDouble(-1, 1) - 0.5) * 4;
-            this.endX += Math.cos(Math.toRadians(this.angle)) * this.speed;
+            double yIncrement = (new Random().nextDouble(-1, 1) - 0.5) * 4;
+            this.startY += yIncrement;
+            this.endY += Math.sin(Math.toRadians(this.angle)) * this.speed + yIncrement;
+            this.endX += Math.cos(Math.toRadians(this.angle)) * this.speed ;
 
             if (this.timer > this.liveTime) {
               this.entity.getAttacks().remove(this);

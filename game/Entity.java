@@ -91,7 +91,7 @@ public abstract class Entity {
 		g2.drawImage(getSprite(), (int)getX(), (int)getY(),  (int)getWidth(), (int)getHeight(), null);
 
 		drawHP(g2);
-        drawHitbox(g2);
+        // drawHitbox(g2);drawH
         drawAttacks(g2);
 	}
 

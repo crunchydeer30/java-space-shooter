@@ -8,6 +8,7 @@ import attacks.special.Beam;
 import bosses.Boss;
 import bosses.Phase;
 import game.GameScreen;
+import sounds.SoundEffectPlayer;
 
 public class Phase3 extends Phase {
   public double beamTimer = 0;
@@ -17,6 +18,7 @@ public class Phase3 extends Phase {
   Random rand = new Random();
   public boolean moveRight = true; 
   public Boss boss;
+  public SoundEffectPlayer soundEffectPlayer = new SoundEffectPlayer();
 
   public Phase3(Boss boss) {
     this.boss = boss;
@@ -50,6 +52,7 @@ public class Phase3 extends Phase {
       for (int i = 0; i < GameScreen.gameHeight + (int)(GameScreen.gameHeight / 4); i += (int) (GameScreen.gameHeight / 4)) {
         boss.getAttacks().add(new Beam(boss, 0, i, 0, Color.RED, 75, 300, 40));
       }
+      soundEffectPlayer.play("beam");
     }
     
     beamTimer++;

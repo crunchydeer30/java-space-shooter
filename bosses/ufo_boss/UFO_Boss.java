@@ -1,4 +1,4 @@
-package bosses.Devil;
+package bosses.ufo_boss;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -8,15 +8,11 @@ import javax.swing.ImageIcon;
 import attacks.Attack;
 import bosses.Boss;
 import bosses.Phase;
-import bosses.Devil.phases.Phase1;
-import bosses.Devil.phases.Phase2;
-import bosses.Devil.phases.Phase3;
-import bosses.Devil.phases.Phase4;
-import bosses.Devil.phases.Phase5;
-import bosses.Devil.phases.Phase6;
+import bosses.ufo_boss.phases.Phase1;
 
-public class Devil extends Boss {
-    private Image sprite = new ImageIcon("assets/graphics/boss_devil.png").getImage();
+
+public class UFO_Boss extends Boss {
+  private Image sprite = new ImageIcon("assets/graphics/ufo.png").getImage();
     private double size = 256;
     private double width;
     private double height;
@@ -24,21 +20,16 @@ public class Devil extends Boss {
     private double y;
     private float speed = 1f;
     private double rateOfFire = 12.5f;
-    private double maxHP = 10000;
+    private double maxHP = 5000;
     private double currentHP = maxHP;
     private double damage = 20;
     public ArrayList<Phase> phases = new ArrayList<Phase>();
     public ArrayList<Attack> attacks = new ArrayList<Attack>();
     public Phase currentPhase;
 
-    public Devil() {
+    public UFO_Boss() {
         calculateDimensions();
         phases.add(new Phase1(this));
-        phases.add(new Phase2(this));
-        phases.add(new Phase3(this));
-        phases.add(new Phase4(this));
-        phases.add(new Phase5(this));
-        phases.add(new Phase6(this));
         currentPhase = phases.get(0);
     }
 
@@ -127,20 +118,6 @@ public class Devil extends Boss {
     }
 
     public void attack() {
-        if (currentHP <= maxHP * 0.25) {
-            currentPhase = phases.get(5);
-        } else if (currentHP <= maxHP * 0.35) {
-            currentPhase = phases.get(4);
-        }
-        else if (currentHP <= maxHP * 0.45) {
-            currentPhase = phases.get(3);
-        } else if (currentHP <= maxHP * 0.65) {
-            currentPhase = phases.get(2);
-        } else if (currentHP <= maxHP * 0.85) {
-            currentPhase = phases.get(1);
-        } else {
-            currentPhase = phases.get(0);
-        }
         currentPhase.shoot();
     }
 }

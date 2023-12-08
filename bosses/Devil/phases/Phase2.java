@@ -85,6 +85,7 @@ public class Phase2 extends Phase {
         boss.getAttacks().add(new Beyblade(boss, boss.getX() + boss.getSize(), 50, 1f, 2f, 100, Color.darkGray));
         baybladeRight = true;
       }
+      soundEffectPlayer.play("laser_big");
     }
 
     baybladeTimer++;

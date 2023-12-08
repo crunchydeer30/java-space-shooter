@@ -86,8 +86,7 @@ public abstract class Level {
     }
 
     public void draw(Graphics2D g2) {
-        drawEffects(g2);
-
+        
         if (GameScreen.levelManager.currentLevel.getPlayer() != null) {
             GameScreen.levelManager.currentLevel.getPlayer().draw(g2);
         }
@@ -95,15 +94,15 @@ public abstract class Level {
         for (int i = 0; i < getEnemies().size(); i++) {
             getEnemies().get(i).draw(g2);
         }
-
+        
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Arial", Font.BOLD, 36));
-
+        
         if (!startingCutscenePlayed) {
             String text = "Level " + (GameScreen.levelManager.currentLevelIdx + 1);
             g2.drawString(text, Utils.centerX(g2, text), (int) (GameScreen.gameHeight * 0.8));
         }
-
+        drawEffects(g2);
     }
 
     public void init() {

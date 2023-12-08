@@ -27,7 +27,7 @@ public class Level2 extends Level {
 
     public Image backgroundImage = new ImageIcon("assets/graphics/background_4.png").getImage();
 
-    public MusicPlayer levelMusic = new MusicPlayer("boss_theme");
+    public MusicPlayer levelMusic = new MusicPlayer("super_stripe");
 
     public ArrayList<Effect> effects = new ArrayList<Effect>();
 

@@ -77,11 +77,11 @@ public abstract class Level {
                 endingCutscenePlayed = false;
             }
 
-            if (getPlayer().getCurrentHP() <= 0) {
-                GameScreen.stateManager.setGameState(GameStateType.MENU);
-            }
-
             spawnEnemies();
+        }
+
+        if (getPlayer().getCurrentHP() <= 0) {
+            GameScreen.stateManager.setGameState(GameStateType.GAMEOVER);
         }
     }
 

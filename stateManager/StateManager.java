@@ -11,6 +11,7 @@ public class StateManager {
         gameStates.put(GameStateType.MENU, new StateMenu());
         gameStates.put(GameStateType.GAMEPLAY, new StateGameplay());
         gameStates.put(GameStateType.OPTIONS, new StateOptions());
+        gameStates.put(GameStateType.GAMEOVER, new StateGameOver());
         setGameState(GameStateType.MENU);
     }
 

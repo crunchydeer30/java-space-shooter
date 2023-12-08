@@ -4,5 +4,6 @@ public enum GameStateType {
   TITLESCREEN,
   MENU,
   OPTIONS,
-  GAMEPLAY
+  GAMEPLAY,
+  GAMEOVER
 }

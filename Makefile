@@ -20,6 +20,7 @@ CLASSES = \
 	stateManager/StateGameplay.java \
 	stateManager/StateMenu.java \
 	stateManager/StateOptions.java \
+	stateManager/StateGameOver.java \
 	player/Player.java \
 	player/PlayerLight.java \
 	player/PlayerHeavy.java \
@@ -60,7 +61,8 @@ CLASSES = \
 	ui/TitleScreen.java \
 	ui/MenuItem.java \
 	ui/Options.java \
-	ui/PlayerMenuItem.java
+	ui/PlayerMenuItem.java \
+	ui/GameOver.java 
 
 default: classes
 classes: $(CLASSES:.java=.class)
